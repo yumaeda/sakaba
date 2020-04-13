@@ -15,6 +15,10 @@
     margin: 25px 10px;
 }
 
+.town-list {
+    padding-bottom: 20px;
+}
+
 .shop-list {
     list-style: none;
 }

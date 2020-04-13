@@ -8,9 +8,15 @@
     </head>
     <body class="body">
         <header>
-            <h1 class="header-label">池袋テイクアウト</h1>
+            <h1 class="header-label">
+                <a href="../index.html">東京</a>&nbsp;&gt;&nbsp;池袋
+            </h1>
         </header>
         <div class="contents">
+            <p>
+                ※ テイクアウトの情報は、頻繁に変わる事が予想されます。<br>
+                以下の情報に誤りがある場合には<a href="mailto:yumaeda@gmail.com">yumaeda@gmail.com</a>までお知らせください。
+            </p>
             <ul class="shop-list">
                 <li class="shop-item">
                     <h4>Winebox Barco（ワインボックス　バルコ）</h4>
@@ -25,3 +31,72 @@
         <footer class="footer">&copy; 2020 東京テイクアウト</footer>
     </body>
 </html>
+
+<script>
+
+var shops = [
+    {
+        name: 'Winebox Barco（ワインボックス　バルコ）',
+        address: '東京都豊島区東池袋１-３３-４ ニュー池袋ハイツ１F',
+        tel: '03-6907-0308',
+        open_hours: '11:30〜19:30（売り切り次第終了）'
+    },
+    {
+        name: '鮨 てつ也',
+        address: '東京都豊島区池袋2-63-6 2F',
+        tel: '03-5985-4201',
+        open_hours: '17:00〜?'
+    },
+    {
+        name: 'アガリコオリエンタルビストロ',
+        address: '東京都豊島区池袋2-10-6 1F',
+        tel: '03-3590-3170',
+        open_hours: '11:00〜20:00'
+    },
+    {
+        name: 'Ale House（エールハウス）',
+        address: '東京都豊島区西池袋1-16-8 山口ビル B1F',
+        tel: '050-5456-7958',
+        open_hours: '14:00〜20:00'
+    },
+    {
+        name: 'Bar CONCERTO（バー コンチェルト）',
+        address: '東京都豊島区池袋2-39-10 池袋倉田ビル 1F',
+        tel: '03-6869-2900',
+        open_hours: '12:00〜?'
+    },
+    {
+        name: 'サクラカフェ＆レストラン',
+        address: '東京都豊島区池袋2-39-10 サクラホテル池袋別館　1F',
+        tel: '050-5869-4856',
+        open_hours: '11:00〜20:00'
+    },
+    {
+        name: '鳥定',
+        address: '東京都豊島区南池袋1-21-4',
+        tel: '03-3987-7806',
+        open_hours: '??〜??'
+    },
+    {
+        name: 'バッカス',
+        address: '東京都豊島区南池袋1-27-8 サンパレスビル B1',
+        tel: '03-3985-5624',
+        open_hours: '??〜??'
+    }
+]
+
+var shopList = document.getElementsByClassName('shop-list')[0]
+var html = ''
+shops.forEach(function(item) {
+    html += '<li class="shop-item">'
+    html +=     '<h4>' + item.name + '</h4>'
+    html +=     '<p>'
+    html +=         '<span>' + item.address + '</span><br>'
+    html +=         '<span>' + item.open_hours + '</span><br>'
+    html +=         '<a href="tel:' + item.tel + '">' + item.tel + '</a>'
+    html +=     '</p>'
+    html += '</li>'
+});
+shopList.innerHTML = html
+
+</script>
