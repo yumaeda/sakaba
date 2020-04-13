@@ -1,0 +1,25 @@
+.header-label {
+    margin: 5px 10px;
+}
+
+.header-image {
+    height: 400px;
+    margin: 0 10px;
+}
+
+.contents {
+    margin: 25px 10px;
+}
+
+.footer {
+    margin: 25px 10px;
+}
+
+.shop-list {
+    list-style: none;
+}
+
+.shop-item {
+    border: solid 1px lightblue;
+    padding: 5px;
+}
