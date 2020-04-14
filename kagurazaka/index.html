@@ -13,17 +13,17 @@
             </h1>
         </header>
         <div class="contents">
-            <ul class="shop-list">
-                <li class="shop-item">
-                    <h4>The Royal Scotsman（ザ・ロイヤルスコッツマン）</h4>
-                    <p>
-                        <span>東京都新宿区神楽坂3-6-28 土屋ビル</span><br>
-                        <span>12:00〜19:00</span><br>
-                        <a href="tel:03-6280-8852">03-6280-8852</a>
-                    </p>
-                </li>
-            </ul>
+            <ul class="shop-list"></ul>
         </div>
         <footer class="footer">&copy; 2020 東京テイクアウト</footer>
     </body>
 </html>
+
+<script src="./shops.min.js"></script>
+<script src="../index.min.js"></script>
+<script>
+
+var shopList = document.getElementsByClassName('shop-list')[0]
+shopList.innerHTML = generateShopItemHtml(SHOPS)
+
+</script>
