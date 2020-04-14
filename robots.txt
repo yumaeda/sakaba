@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /*.html$
+Disallow: /*.js$
+Disallow: /*.css$
+Sitemap: http://tokyo-takeout.com/sitemap.xml
