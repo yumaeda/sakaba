@@ -27,3 +27,8 @@
     border: solid 1px lightblue;
     padding: 5px;
 }
+
+.shop-genre {
+    font-size: 12px;
+    color: darkgray;
+}
