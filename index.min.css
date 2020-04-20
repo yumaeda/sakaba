@@ -32,3 +32,7 @@
     font-size: 12px;
     color: darkgray;
 }
+
+.list-item {
+    padding: 10px;
+}
