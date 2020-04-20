@@ -3,15 +3,10 @@
     <head>
         <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
         <meta name="description" content="経堂でテイクアウト可能なお店の一覧です。">
-        <title>経堂｜東京テイクアウト</title>
         <link rel="stylesheet" type="text/css" href="../index.min.css">
     </head>
     <body class="body">
-        <header>
-            <h1 class="header-label">
-                <a href="../index.html">東京</a>&nbsp;&gt;&nbsp;経堂
-            </h1>
-        </header>
+        <header class="header"></header>
         <div class="contents">
             <p>
                 ※ テイクアウトの情報は、頻繁に変わる事が予想されます。<br>
@@ -26,6 +21,12 @@
 <script src="./shops.min.js"></script>
 <script src="../index.min.js"></script>
 <script>
+
+var region = '経堂'
+document.title = region + 'テイクアウト'
+
+var header = document.getElementsByClassName('header')[0]
+header.innerHTML = generateHeaderInnerHtml(region)
 
 var shopList = document.getElementsByClassName('shop-list')[0]
 shopList.innerHTML = generateShopItemHtml(SHOPS)
