@@ -7,6 +7,12 @@ Repository for Tokyo Takeout
 brew install webp
 ```
 
+## Deploy
+1. Execute the below command.
+```bash
+./deploy.sh
+```
+
 ## Upload Image
 1. Convert .png to .webp by following command.
 ```bash
