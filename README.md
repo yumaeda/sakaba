@@ -7,10 +7,17 @@ Repository for Tokyo Takeout
 brew install webp
 ```
 
+## Deploy
+1. Execute the below command.
+```bash
+./deploy.sh
+```
+
 ## Upload Image
 1. Convert .png to .webp by following command.
 ```bash
 cwebp aaa.png -o aaa.webp
+cwebp aaa_thumbnail.png -o aaa_thumbnail.webp
 ```
 2. Upload both .png and .webp to S3
 3. Add the following metadata.
