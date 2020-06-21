@@ -2,7 +2,7 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import HomePage from 'components/pages/HomePage'
-import MeguroPage from 'components/pages/MeguroPage'
+import AreaPage from 'components/pages/AreaPage'
 import * as React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
@@ -11,7 +11,7 @@ const Root: React.FC<{}> = () => {
         <Router>
             <Switch>
                 <Route exact path="/" component={HomePage} />
-                <Route path="/meguro" component={MeguroPage} />
+                <Route path="/:area?" component={AreaPage} />
             </Switch>
         </Router>
     )
