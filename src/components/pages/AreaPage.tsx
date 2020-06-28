@@ -8,16 +8,40 @@ interface Shop {
     name: string
     genre: string
     tel: string
-    address: string
     open_hours: string
+    address: string
+    comment: string
 }
 
 const AreaPage: React.FC<{ match: any }> = (props) => {
     const areaDictionary : { [id: string]: string } = {
+        'kanda': '神田',
         'kyodo': '経堂',
-        'meguro': '目黒'
+        'meguro': '目黒',
+        'shibuya': '渋谷'
     }
     const shops : { [id: string]: Shop[] } = {
+        'kanda': [
+            {
+                url: 'https://tabelog.com/tokyo/A1310/A131002/13193128/',
+                name: '土鍋ごはんと和酒の店 おてだま',
+                genre: '居酒屋',
+                tel: '03-3252-1277',
+                open_hours: '17:00〜20:00',
+                address: '東京都千代田区鍛冶町2-9-17 神田駅北口寿ビル 2F',
+                comment: ''
+            },
+            {
+                url: 'https://tabelog.com/tokyo/A1310/A131002/13183812/',
+                name: 'エクリプス ファースト（Eclipse first）',
+                genre: 'バー・お酒（その他）、バー',
+                tel: '050-5589-2907',
+                open_hours: '12:00〜20:00',
+                address: '東京都千代田区鍛冶町2-7-10 廣瀬ビル 1F',
+                comment: ''
+            }
+
+        ],
         'kyodo': [
             {
                 url: 'https://tabelog.com/tokyo/A1318/A131813/13202831/',
@@ -25,7 +49,8 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                 genre: '洋食、バル・バール',
                 tel: '050-5594-7267',
                 open_hours: '11:30〜20:00',
-                address: '東京都世田谷区経堂1-11-13 ウエダビル１F'
+                address: '東京都世田谷区経堂1-11-13 ウエダビル１F',
+                comment: ''
             }
         ],
         'meguro': [
@@ -34,8 +59,38 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                 name: 'ONE THE DINER （ワンザダイナー）',
                 genre: 'ダイニングバー、ステーキ、ハンバーガー',
                 tel: '03-6455-7588',
+                open_hours: '［月〜金］11：30〜23:00、［土日］11：30〜21:00',
                 address: '東京都品川区上大崎1-1-14 ト-カン白金キャステ-ル 1F',
-                open_hours: '［月〜金］11：30〜23:00、［土日］11：30〜21:00'
+                comment: ''
+            }
+        ],
+        'shibuya': [
+            {
+                url: 'https://tabelog.com/tokyo/A1303/A130301/13230194/',
+                name: 'On The Wine（オン ザ ワイン）',
+                genre: 'ワインバー、イタリアン、居酒屋',
+                tel: '03-6416-5973',
+                open_hours: '17:00〜??',
+                address: '東京都渋谷区桜丘町30-9 桜丘芳和ビル B1',
+                comment: '前菜盛り合わせ　¥1000〜\n温菜　¥500〜\n パスタ　¥1000\n メイン料理　¥1500〜\n\n になります。ご希望の方がいらっしゃれば私にメールかLINE、もしくはお店までお電話よろしくお願い申し上げます。ご近所の方でしたらデリバリーもいたします！'
+            },
+            {
+                url: 'https://tabelog.com/tokyo/A1303/A130301/13157208/',
+                name: 'とり茶太郎',
+                genre: '焼鳥',
+                tel: '03-6416-0364',
+                open_hours: '17:00〜20:00',
+                address: '東京都渋谷区鶯谷町7-12 TAKビル 1F',
+                comment: ''
+            },
+            {
+                url: 'https://tabelog.com/tokyo/A1303/A130301/13025563/',
+                name: 'Wine Bar Cabotte（カボット）',
+                genre: 'ワインバー、ビストロ',
+                tel: '03-3462-7790',
+                open_hours: '',
+                address: '東京都渋谷区桜丘町12-5 Ｂ１Ｆ',
+                comment: ''
             }
         ]
     }
