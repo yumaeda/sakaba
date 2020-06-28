@@ -31,7 +31,6 @@ jobs:
       run: |
           aws s3 cp "dist/bundle.js" "s3://tokyo-takeout.com/dist/bundle.js"
           aws s3 cp "index.html" "s3://tokyo-takeout.com/index.html"
-          aws s3 cp "index.min.js" "s3://tokyo-takeout.com/index.min.js"
           aws s3 cp "index.min.css" "s3://tokyo-takeout.com/index.min.css"
           aws s3 cp "robots.txt" "s3://tokyo-takeout.com/robots.txt"
           aws s3 cp "sitemap.xml" "s3://tokyo-takeout.com/sitemap.xml"
