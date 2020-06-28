@@ -8,10 +8,7 @@ brew install webp
 ```
 
 ## Deploy
-1. Execute the below command.
-```bash
-./deploy.sh
-```
+- Automatically deployed upon commit.
 
 ## Upload Image
 1. Convert .png to .webp by following command.
@@ -24,6 +21,3 @@ cwebp aaa_thumbnail.png -o aaa_thumbnail.webp
 ```
 Cache-Control: max-age=31536000
 ```
-
-## Reference
-https://dev.to/samueldaviddelacruz/how-to-host-your-static-web-app-on-aws-s3-in-10-steps-3kgp
