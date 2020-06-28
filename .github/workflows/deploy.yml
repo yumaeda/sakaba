@@ -25,8 +25,13 @@ jobs:
       with:
           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ap-northeast-1
+          aws-region: ${{ secrets.AWS_REGION }}
     - name: Deploy to S3
-      run: aws s3 cp "./" "s3://tokyo-takeout.com/" --recursive --exclude "src/*" --exclude ".git/"  --exclude "README.md" --exclude "deploy.sh" --exclude ".gitignore" --exclude ".git/*" --exclude "package.json" --exclude "webpack.config.js" --exclude "tsconfig.json"
+      run: |
+          aws s3 cp "dist/bundle.js" "s3://tokyo-takeout.com/dist/bundle.js"
+          aws s3 cp "./index.*" "s3://tokyo-takeout.com/"
+          aws s3 cp "./robots.txt" "s3://tokyo-takeout.com/robots.txt"
+          aws s3 cp "./sitemap.xml" "s3://tokyo-takeout.com/sitemap.xml"
+          aws s3 cp "./favicon.ico" "s3://tokyo-takeout.com/favicon.ico"
     - name: CloudFront Invalidation
       run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CF_DISTRIBUTION_ID }} --paths "/*"
