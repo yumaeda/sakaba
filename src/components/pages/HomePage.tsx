@@ -19,7 +19,7 @@ const HomePage: React.FC<{}> = () => {
                     このサイトでは、そのようなお悩みを抱えていると思われる東京のお店を私の方で勝手に紹介していきます。<br/>
                 </p>
                 <ul className="town-list">
-                    <li className="list-item"><a href="./ikebukuro/index.html">池袋</a></li>
+                    <Link className="list-item" to="/ikebukuro/">池袋</Link>
                     <Link className="list-item" to="/kagurazaka">神楽坂</Link>
                     <Link className="list-item" to="/kanda">神田</Link>
                     <Link className="list-item" to="/kyodo">経堂</Link>
