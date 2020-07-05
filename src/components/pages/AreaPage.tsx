@@ -32,11 +32,8 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         fetch('/api-key.txt')
             .then((r) => r.text())
             .then(text  => {
-                console.log(text);
                 fetch('https://api.tokyo-takeout.com/restaurants', {
-                    headers: {
-                        'X-Api-Key': text 
-                    }
+                    headers: { 'X-Api-Key': text }
                 })
                 .then(res => res.json())
                 .then(
