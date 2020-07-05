@@ -16,7 +16,6 @@ interface Shop {
 
 const AreaPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
-
     const [error, setError] = React.useState<Error>();
     const [shops, setShops] = React.useState<Shop[]>([])
 
@@ -28,16 +27,25 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         'meguro': '目黒',
         'shibuya': '渋谷'
     }
-  
+
     React.useEffect(() => {
-      fetch('https://api.tokyo-takeout.com/restaurants')
-        .then(res => res.json())
-        .then(
-            (data) => {
-                setShops(JSON.parse(data.body)[match.params.area])
-            },
-            (error: Error) => { setError(error); }
-        )
+        fetch('/api-key.txt')
+            .then((r) => r.text())
+            .then(text  => {
+                console.log(text);
+                fetch('https://api.tokyo-takeout.com/restaurants', {
+                    headers: {
+                        'X-Api-Key': text 
+                    }
+                })
+                .then(res => res.json())
+                .then(
+                    (data) => {
+                        setShops(JSON.parse(data.body)[match.params.area])
+                    },
+                    (error: Error) => { setError(error); }
+                )
+            })
     }, [])
   
     if (error) {

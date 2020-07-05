@@ -1,4 +1,5 @@
 .DS_Store
+api-key.txt
 package-lock.json
 node_modules
 dist
