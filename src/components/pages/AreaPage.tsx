@@ -4,6 +4,7 @@
 import * as React from 'react'
 
 interface Shop {
+    area: string
     url: string
     image_name: string
     name: string
@@ -38,7 +39,9 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                 .then(res => res.json())
                 .then(
                     (data) => {
-                        setShops(JSON.parse(data.body)[match.params.area])
+                        setShops(
+                            JSON.parse(data.body).filter((shop: Shop) => shop.area == match.params.area)
+                        )
                     },
                     (error: Error) => { setError(error); }
                 )
