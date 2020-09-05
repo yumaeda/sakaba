@@ -44,6 +44,12 @@
     color: darkgray;
 }
 
+.shop-takeout {
+    font-size: 12px;
+    color: white;
+    background-color: green;
+}
+
 .list-item {
     padding: 10px;
 }

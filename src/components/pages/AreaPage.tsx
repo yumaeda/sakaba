@@ -13,6 +13,7 @@ interface Shop {
     open_hours: string
     address: string
     comment: string
+    takeout_available: number 
 }
 
 const AreaPage: React.FC<{ match: any }> = (props) => {
@@ -57,7 +58,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         return (
             <>
                 <header className="header">
-                    <h1 className="header-label">{`${areaName}テイクアウト`}</h1>
+                    <h1 className="header-label">{`${areaName}のお店`}</h1>
                     <a href={`${basePath}/`}>Back</a>
                 </header>
                 <div className="contents">
@@ -78,6 +79,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                             </div>
                             <div className="shop-item-grid">
                                 <h4>
+                                    <span className="shop-takeout">{shop.takeout_available ? 'テイクアウトあり' : 'イートインのみ'}</span>
                                     <a href={shop.url} rel="nofollow noopener" target="_blank">{shop.name}</a><br />
                                     <span className="shop-genre">{shop.genre}</span>
                                 </h4>
