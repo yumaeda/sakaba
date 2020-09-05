@@ -79,7 +79,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                             </div>
                             <div className="shop-item-grid">
                                 <h4>
-                                    <span className="shop-takeout">{shop.takeout_available ? 'テイクアウトあり' : 'イートインのみ'}</span>
+                                    <span className="shop-takeout">{shop.takeout_available ? 'テイクアウトあり' : 'イートインのみ'}</span><br />
                                     <a href={shop.url} rel="nofollow noopener" target="_blank">{shop.name}</a><br />
                                     <span className="shop-genre">{shop.genre}</span>
                                 </h4>
