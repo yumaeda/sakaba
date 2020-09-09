@@ -23,6 +23,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
 
     const areaDictionary : { [id: string]: string } = {
         'ikebukuro': '池袋',
+        'itabashi': '板橋',
         'kagurazaka': '神楽坂',
         'kanda': '神田',
         'kyodo': '経堂',

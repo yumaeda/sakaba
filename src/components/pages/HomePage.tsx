@@ -20,6 +20,7 @@ const HomePage: React.FC<{}> = () => {
                 </p>
                 <ul className="town-list">
                     <Link className="list-item" to="/ikebukuro/">池袋</Link>
+                    <Link className="list-item" to="/itabashi/">板橋</Link>
                     <Link className="list-item" to="/kagurazaka">神楽坂</Link>
                     <Link className="list-item" to="/kanda">神田</Link>
                     <Link className="list-item" to="/kyodo">経堂</Link>
