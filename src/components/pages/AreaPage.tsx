@@ -4,6 +4,7 @@
 import * as React from 'react'
 
 interface Shop {
+    id: string
     area: string
     url: string
     image_name: string
@@ -56,6 +57,8 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         const imageDir = `${basePath}/images/${match.params.area}`
         const areaName = areaDictionary[match.params.area]
 
+        const restaurantImageDir = `${basePath}/images/restaurants/da04f5c9-ffb0-11ea-ba65-065a10bcba76`
+
         return (
             <>
                 <header className="header">
@@ -90,6 +93,19 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                     <a href={`tel:${shop.tel}`}>{shop.tel}</a>
                                 </p>
                             </div>
+                            { shop.id === 'Eer/sNoE9cm6ZQZaELy6dg==' ? (
+                                <div>
+                                    { Array(40).slice().map((index: number) => (
+                                    <a href={`${restaurantImageDir}/000000${index}.jpg`} target="_blank">
+                                        <picture>
+                                            <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${index.toString().padStart(7, '0')}_thumbnail.webp`} />
+                                            <img src={`${restaurantImageDir}/${index.toString().padStart(7, '0')}.jpg`} className="shop-image" alt={`店舗写真${index}`} />
+                                        </picture>
+                                    </a>
+                                    ))}
+                                </div>
+                                ) : ''
+                            }
                         </li>
                     )) : <div>Loading...</div>}
                     </ul>
