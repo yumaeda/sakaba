@@ -95,7 +95,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                 </p>
                             </div>
                             { shop.id === 'Eer/sNoE9cm6ZQZaELy6dg==' ? (
-                                <div>
+                                <div className="dish-image_container">
                                     { restaurantImageNames.map((value: number) => {
                                         const fileName = (value + 1).toString().padStart(7, '0')
                                         return (
