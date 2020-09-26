@@ -102,7 +102,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                             <a href={`${restaurantImageDir}/${fileName}.jpg`} target="_blank">
                                                 <picture>
                                                     <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${fileName}_thumbnail.webp`} />
-                                                    <img src={`${restaurantImageDir}/${fileName}.jpg`} className="shop-image" alt={`店舗写真${index}`} />
+                                                    <img src={`${restaurantImageDir}/${fileName}.jpg`} className="dish-image" alt={`店舗写真${index}`} />
                                                 </picture>
                                             </a>
                                         )
