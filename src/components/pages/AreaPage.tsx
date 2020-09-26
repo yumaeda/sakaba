@@ -95,7 +95,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                             </div>
                             { shop.id === 'Eer/sNoE9cm6ZQZaELy6dg==' ? (
                                 <div>
-                                    { Array(40).slice().map((index: number) => (
+                                    { Array(40).slice().map((value: any, index: number) => (
                                     <a href={`${restaurantImageDir}/000000${index}.jpg`} target="_blank">
                                         <picture>
                                             <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${index.toString().padStart(7, '0')}_thumbnail.webp`} />
