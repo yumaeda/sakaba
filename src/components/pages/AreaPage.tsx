@@ -58,7 +58,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         const areaName = areaDictionary[match.params.area]
 
         const restaurantImageDir = `${basePath}/images/restaurants`
-        const restaurantImageNames = Array.from(Array(40).keys())
+        const restaurantImageNames = Array.from(Array(79).keys())
 
         return (
             <>
