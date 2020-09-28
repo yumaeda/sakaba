@@ -57,7 +57,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         const imageDir = `${basePath}/images/${match.params.area}`
         const areaName = areaDictionary[match.params.area]
 
-        const restaurantImageDir = `${basePath}/images/restaurants/da04f5c9-ffb0-11ea-ba65-065a10bcba76`
+        const restaurantImageDir = `${basePath}/images/restaurants`
         const restaurantImageNames = Array.from(Array(40).keys())
 
         return (
@@ -94,22 +94,20 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                     <a href={`tel:${shop.tel}`}>{shop.tel}</a>
                                 </p>
                             </div>
-                            { shop.id === 'Eer/sNoE9cm6ZQZaELy6dg==' ? (
-                                <div className="dish-image-container">
-                                    { restaurantImageNames.map((value: number) => {
-                                        const fileName = (value + 1).toString().padStart(7, '0')
-                                        return (
-                                            <a href={`${restaurantImageDir}/${fileName}.jpg`} target="_blank">
-                                                <picture>
-                                                    <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${fileName}_thumbnail.webp`} />
-                                                    <img src={`${restaurantImageDir}/${fileName}.jpg`} className="dish-image" alt={`店舗写真${index}`} />
-                                                </picture>
-                                            </a>
-                                        )
-                                    })}
-                                </div>
-                                ) : ''
-                            }
+                            <div className="dish-image-container">
+                                { restaurantImageNames.map((value: number) => {
+                                    const shopFolder = atob(shop.id)
+                                    const fileName = (value + 1).toString().padStart(7, '0')
+                                    return (
+                                        <a href={`${restaurantImageDir}/${shopFolder}/${fileName}.jpg`} target="_blank">
+                                            <picture>
+                                                <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${shopFolder}/${fileName}_thumbnail.webp`} />
+                                                <img src={`${restaurantImageDir}/${shopFolder}/${fileName}.jpg`} className="dish-image" alt={`店舗写真${index}`} />
+                                            </picture>
+                                        </a>
+                                    )
+                                })}
+                            </div>
                         </li>
                     )) : <div>Loading...</div>}
                     </ul>
