@@ -29,6 +29,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         'kanda': '神田',
         'kyodo': '経堂',
         'meguro': '目黒',
+        'nakaitabashi': '中板橋',
         'otsuka': '大塚',
         'shibuya': '渋谷'
     }
@@ -55,11 +56,9 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     } else {
         const basePath = 'https://tokyo-takeout.com'
         const defaultImage = 'image-not-available'
-        const imageDir = `${basePath}/images/${match.params.area}`
         const areaName = areaDictionary[match.params.area]
-
-        const restaurantImageDir = `${basePath}/images/restaurants`
         const restaurantImageNames = Array.from(Array(79).keys())
+        const imageDir = `${basePath}/images`
 
         return (
             <>
@@ -73,13 +72,16 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                         以下の情報に誤りがある場合には<a href="mailto:support@tokyo-takeout.com">support@tokyo-takeout.com</a>までお知らせください。
                     </p>
                     <ul className="shop-list">
-                    {shops ? shops.map((shop: Shop, index: number) => (
+                    {shops ? shops.map((shop: Shop, index: number) => {
+                        const shopFolder = atob(shop.id)
+                        const restaurantImageDir = `${basePath}/images/restaurants/${shopFolder}`
+                        return (
                         <li className="shop-item" key={index}>
                             <div className="shop-item-grid">
-                                <a href={shop.image_name != '' ? `${imageDir}/${shop.image_name}.png` : `${imageDir}/${defaultImage}.png`} target="_blank">
+                                <a href={shop.image_name != '' ? `${restaurantImageDir}/${shop.image_name}.png` : `${imageDir}/${defaultImage}.png`} target="_blank">
                                     <picture>
-                                        <source type="image/webp" media="(min-width: 150px)" srcSet={shop.image_name != '' ? `${imageDir}/${shop.image_name}_thumbnail.webp` : `${imageDir}/${defaultImage}_thumbnail.webp`} />
-                                        <img src={shop.image_name != '' ? `${imageDir}/${shop.image_name}_thumbnail.png` : `${imageDir}/${defaultImage}_thumbnail.png`} className="shop-image" alt={shop.name} />
+                                        <source type="image/webp" media="(min-width: 150px)" srcSet={shop.image_name != '' ? `${restaurantImageDir}/${shop.image_name}_thumbnail.webp` : `${imageDir}/${defaultImage}_thumbnail.webp`} />
+                                        <img src={shop.image_name != '' ? `${restaurantImageDir}/${shop.image_name}_thumbnail.png` : `${imageDir}/${defaultImage}_thumbnail.png`} className="shop-image" alt={shop.name} />
                                     </picture>
                                 </a>
                             </div>
@@ -97,20 +99,19 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                             </div>
                             <div className="dish-image-container">
                                 { restaurantImageNames.map((value: number) => {
-                                    const shopFolder = atob(shop.id)
                                     const fileName = (value + 1).toString().padStart(7, '0')
                                     return (
-                                        <a href={`${restaurantImageDir}/${shopFolder}/${fileName}.jpg`} target="_blank">
+                                        <a href={`${restaurantImageDir}/${fileName}.jpg`} target="_blank">
                                             <picture>
-                                                <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${shopFolder}/${fileName}_thumbnail.webp`} />
-                                                <img src={`${restaurantImageDir}/${shopFolder}/${fileName}.jpg`} className="dish-image" alt={`店舗写真${index}`} />
+                                                <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${fileName}_thumbnail.webp`} />
+                                                <img src={`${restaurantImageDir}/${fileName}.jpg`} className="dish-image" alt={`店舗写真${index}`} />
                                             </picture>
                                         </a>
                                     )
                                 })}
                             </div>
                         </li>
-                    )) : <div>Loading...</div>}
+                        )}) : <div>Loading...</div>}
                     </ul>
                 </div> 
                 <footer className="footer">&copy; 2020 東京テイクアウト</footer>
