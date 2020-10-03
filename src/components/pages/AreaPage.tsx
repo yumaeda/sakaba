@@ -24,11 +24,15 @@ interface Photo {
     thumbnail_webp: string
 }
 
+interface ShopImageDictionary {
+    [Key: string]: Photo[]
+}
+
 const AreaPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
     const [error, setError] = React.useState<Error>();
     const [shops, setShops] = React.useState<Shop[]>([])
-    const [shopImages, setShopImages] = React.useState<{[id: string]: Photo[]}>({})
+    const [shopImages, setShopImages] = React.useState<ShopImageDictionary>({})
 
     const areaDictionary : { [id: string]: string } = {
         'ikebukuro': '池袋',
@@ -61,9 +65,9 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                             .then(
                                 (photoData) => {
                                     const photos = JSON.parse(photoData.body)
-                                    console.dir(shopImages)
-                                    console.dir(photos)
-                                    setShopImages({ ...shopImages, shopId: photos })
+                                    let tmpShopImages = shopImages
+                                    shopImages[shopId] = photos
+                                    setShopImages(tmpShopImages)
                                 },
                                 (error: Error) => { setError(error); }
                             )
@@ -120,17 +124,22 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                     <a href={`tel:${shop.tel}`}>{shop.tel}</a>
                                 </p>
                             </div>
-                            <div className="dish-image-container">
-                            {shopImages[shopId] ? shopImages[shopId].map((photo: Photo, index: number) => (
-                                    <a href={`${restaurantImageDir}/${photo.image}`} target="_blank">
-                                        <picture>
-                                            <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
-                                            <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
-                                        </picture>
-                                    </a>
-                                )) : ''
+                            {
+                                (shopId in shopImages) ? (
+                                    <div className="dish-image-container">
+                                    {
+                                        shopImages[shopId].map((photo: Photo, index: number) => (
+                                            <a href={`${restaurantImageDir}/${photo.image}`} target="_blank">
+                                                <picture>
+                                                    <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
+                                                    <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
+                                                </picture>
+                                            </a>
+                                        ))
+                                    }
+                                    </div>
+                                ) : ''
                             }
-                            </div>
                         </li>
                         )}) : <div>Loading...</div>}
                     </ul>
