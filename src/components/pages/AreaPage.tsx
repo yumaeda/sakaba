@@ -31,6 +31,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         'meguro': '目黒',
         'nakaitabashi': '中板橋',
         'otsuka': '大塚',
+        'oyama': '大山',
         'shibuya': '渋谷'
     }
 
