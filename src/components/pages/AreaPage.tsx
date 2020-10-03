@@ -54,7 +54,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                 .then(
                     (data) => {
                         setShops(JSON.parse(data.body).filter((shop: Shop) => shop.area == match.params.area))
-                        console.dir(shops)
+                        console.dir(JSON.parse(data.body).filter((shop: Shop) => shop.area == match.params.area))
                         for (const shop of shops) {
                             console.log('HO')
                             const shopId = atob(shop.id)
