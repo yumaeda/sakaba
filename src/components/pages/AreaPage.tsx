@@ -54,13 +54,16 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                 .then(
                     (data) => {
                         setShops(JSON.parse(data.body).filter((shop: Shop) => shop.area == match.params.area))
+                        console.dir(shops)
                         for (const shop of shops) {
+                            console.log('HO')
                             const shopId = atob(shop.id)
                             fetch(`https://api.tokyo-takeout.com/photos?restaurant_id=${shopId}`, {})
-                            .then(res => res.json())
+                            .then(photoRes => photoRes.json())
                             .then(
-                                (data) => {
-                                    const photos = JSON.parse(data.body)
+                                (photoData) => {
+                                    console.log('HE')
+                                    const photos = JSON.parse(photoData.body)
                                     setShopImages({ shopId: photos, ...shopImages })
                                 },
                                 (error: Error) => { setError(error); }
