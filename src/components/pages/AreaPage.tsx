@@ -68,8 +68,10 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                         for (const retrievedShop of retrievedShops) {
                             console.log('HO')
                             const shopId = atob(retrievedShop.id)
-                            newShops = [...newShops, {...retrievedShop, photos: getPhotos(shopId)}]
-                            console.dir(newShops)
+                            getPhotos(shopId).then((photos: Photo[]) => {
+                                newShops = [...newShops, {...retrievedShop, photos}]
+                                console.dir(newShops)
+                            })
                         }
                         setShops(newShops)
                     },
