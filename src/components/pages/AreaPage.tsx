@@ -15,7 +15,7 @@ interface Shop {
     address: string
     comment: string
     takeout_available: number
-    photos?: Photo[]
+    photos?: any
 }
 
 interface Photo {
@@ -68,10 +68,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                         for (const retrievedShop of retrievedShops) {
                             console.log('HO')
                             const shopId = atob(retrievedShop.id)
-                            getPhotos(shopId).then((photos: Photo[]) => {
-                                newShops = [...newShops, {...retrievedShop, photos}]
-                                console.dir(newShops)
-                            })
+                            newShops = [...newShops, {...retrievedShop, photos: getPhotos(shopId)}]
                         }
                         setShops(newShops)
                     },
@@ -128,14 +125,19 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                             { shop.photos ? (
                                 <div className="dish-image-container">
                                 {
-                                    shop.photos.map((photo: Photo, index: number) => (
-                                        <a href={`${restaurantImageDir}/${photo.image}`} target="_blank">
-                                            <picture>
-                                                <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
-                                                <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
-                                            </picture>
-                                        </a>
-                                    ))
+                                    shop.photos.then((photos: Photo[]) => {
+                                        return photos.map((photo: Photo, index: number) => (
+                                            <a href={`${restaurantImageDir}/${photo.image}`} target="_blank">
+                                                <picture>
+                                                    <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
+                                                    <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
+                                                </picture>
+                                            </a>
+                                        ))
+                                    })
+                                    .catch((error: Error) => {
+                                        return error.message
+                                    })
                                 }
                                 </div>
                                 ) : ''
