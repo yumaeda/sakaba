@@ -28,6 +28,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
     const [error, setError] = React.useState<Error>();
     const [shops, setShops] = React.useState<Shop[]>([])
+    const [shopImages, setShopImages] = React.useState<{[id: string]: Photo[]}>({})
 
     const areaDictionary : { [id: string]: string } = {
         'ikebukuro': '池袋',
@@ -53,6 +54,18 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                 .then(
                     (data) => {
                         setShops(JSON.parse(data.body).filter((shop: Shop) => shop.area == match.params.area))
+                        for (const shop of shops) {
+                            const shopId = atob(shop.id)
+                            fetch(`https://api.tokyo-takeout.com/photos?restaurant_id=${shopId}`, {})
+                            .then(res => res.json())
+                            .then(
+                                (data) => {
+                                    const photos = JSON.parse(data.body)
+                                    setShopImages({ shopId: photos, ...shopImages })
+                                },
+                                (error: Error) => { setError(error); }
+                            )
+                        }
                     },
                     (error: Error) => { setError(error); }
                 )
@@ -80,8 +93,8 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                     </p>
                     <ul className="shop-list">
                     {shops ? shops.map((shop: Shop, index: number) => {
-                        const shopFolder = atob(shop.id)
-                        const restaurantImageDir = `${basePath}/images/restaurants/${shopFolder}`
+                        const shopId = atob(shop.id)
+                        const restaurantImageDir = `${basePath}/images/restaurants/${shopId}`
                         return (
                         <li className="shop-item" key={index}>
                             <div className="shop-item-grid">
@@ -105,27 +118,15 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                 </p>
                             </div>
                             <div className="dish-image-container">
-                                {
-                                    fetch(`https://api.tokyo-takeout.com/photos?restaurant_id=${shopFolder}`, {})
-                                    .then(res => res.json())
-                                    .then(
-                                        (data) => {
-                                            const photos = JSON.parse(data.body)
-                                            photos.map((photo: Photo) => (
-                                                <a href={`${restaurantImageDir}/${photo.image}`} target="_blank">
-                                                    <picture>
-                                                        <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
-                                                        <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
-                                                    </picture>
-                                                </a>
-                                            ))
-                                        },
-                                        (error: Error) => {
-                                            setError(error);
-                                            return <p>Failed to fetch restaurant photos.</p>
-                                        }
-                                    )
-                                }
+                            {shopImages[shopId] ? shopImages[shopId].map((photo: Photo, index: number) => (
+                                    <a href={`${restaurantImageDir}/${photo.image}`} target="_blank">
+                                        <picture>
+                                            <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
+                                            <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
+                                        </picture>
+                                    </a>
+                                )) : ''
+                            }
                             </div>
                         </li>
                         )}) : <div>Loading...</div>}
