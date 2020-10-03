@@ -48,24 +48,6 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         fetch('/api-key.txt')
             .then((r) => r.text())
             .then(text  => {
-                fetch('https://api.tokyo-takeout.com/photos', {
-                })
-                .then(res => res.json())
-                .then(
-                    (data) => {
-                        setPhotos(JSON.parse(data.body))
-                    },
-                    (error: Error) => {
-                        setError(error)
-                    }
-                )
-            })
-    }, [])
- 
-    React.useEffect(() => {
-        fetch('/api-key.txt')
-            .then((r) => r.text())
-            .then(text  => {
                 fetch('https://api.tokyo-takeout.com/restaurants', {
                     headers: { 'X-Api-Key': text }
                 })
@@ -73,6 +55,19 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                 .then(
                     (data) => {
                         setRestaurants(JSON.parse(data.body).filter((restaurant: Restaurant) => restaurant.area == match.params.area))
+                    },
+                    (error: Error) => {
+                        setError(error)
+                    }
+                )
+
+                fetch('https://api.tokyo-takeout.com/photos', {
+                    headers: { 'X-Api-Key': text }
+                })
+                .then(res => res.json())
+                .then(
+                    (data) => {
+                        setPhotos(JSON.parse(data.body))
                     },
                     (error: Error) => {
                         setError(error)
