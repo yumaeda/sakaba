@@ -49,11 +49,10 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
             .then((r) => r.text())
             .then(text  => {
                 fetch('https://api.tokyo-takeout.com/photos', {
-                    headers: { 'X-Api-Key': text }
                 })
                 .then(res => res.json())
-                .then((
-                    data) => {
+                .then(
+                    (data) => {
                         setPhotos(JSON.parse(data.body))
                     },
                     (error: Error) => {
