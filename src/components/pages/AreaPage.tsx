@@ -3,7 +3,7 @@
  */
 import * as React from 'react'
 
-interface Shop {
+interface Restaurant {
     id: string
     area: string
     url: string
@@ -15,10 +15,10 @@ interface Shop {
     address: string
     comment: string
     takeout_available: number
-    photos?: any
 }
 
 interface Photo {
+    restaurant_id: string
     image: string
     image_webp: string
     thumbnail: string
@@ -28,7 +28,8 @@ interface Photo {
 const AreaPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
     const [error, setError] = React.useState<Error>();
-    const [shops, setShops] = React.useState<Shop[]>([])
+    const [restaurants, setRestaurants] = React.useState<Restaurant[]>()
+    const [photos, setPhotos] = React.useState<Photo[]>()
 
     const areaDictionary : { [id: string]: string } = {
         'ikebukuro': '池袋',
@@ -43,16 +44,6 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         'shibuya': '渋谷'
     }
 
-    const getPhotos = (shopId: string) => {
-        return fetch(`https://api.tokyo-takeout.com/photos?restaurant_id=${shopId}`)
-            .then(res => res.json())
-            .then((data) => {
-                return JSON.parse(data.body)
-            })
-            .catch((error: Error) => {
-                setError(error);
-            })
-    }
     React.useEffect(() => {
         fetch('/api-key.txt')
             .then((r) => r.text())
@@ -63,18 +54,26 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                 .then(res => res.json())
                 .then(
                     (data) => {
-                        const retrievedShops = JSON.parse(data.body).filter((shop: Shop) => shop.area == match.params.area)
-                        let newShops: Shop[] = []
-                        for (const retrievedShop of retrievedShops) {
-                            console.log('HO')
-                            const shopId = atob(retrievedShop.id)
-                            newShops = [...newShops, {...retrievedShop, photos: getPhotos(shopId)}]
-                        }
-                        setShops(newShops)
+                        setRestaurants(JSON.parse(data.body).filter((restaurant: Restaurant) => restaurant.area == match.params.area))
                     },
-                    (error: Error) => { setError(error); }
+                    (error: Error) => {
+                        setError(error)
+                    }
                 )
             })
+    }, [])
+
+    React.useEffect(() => {
+        fetch('https://api.tokyo-takeout.com/photos')
+            .then(res => res.json())
+            .then((
+                data) => {
+                    setPhotos(JSON.parse(data.body))
+                },
+                (error: Error) => {
+                    setError(error)
+                }
+            )
     }, [])
   
     if (error) {
@@ -97,51 +96,44 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                         以下の情報に誤りがある場合には<a href="mailto:support@tokyo-takeout.com">support@tokyo-takeout.com</a>までお知らせください。
                     </p>
                     <ul className="shop-list">
-                    {shops ? shops.map((shop: Shop, index: number) => {
-                        const shopId = atob(shop.id)
-                        const restaurantImageDir = `${basePath}/images/restaurants/${shopId}`
+                    {restaurants ? restaurants.map((restaurant: Restaurant, index: number) => {
+                        const restaurantId = atob(restaurant.id)
+                        const restaurantImageDir = `${basePath}/images/restaurants/${restaurantId}`
                         return (
                         <li className="shop-item" key={index}>
                             <div className="shop-item-grid">
-                                <a href={shop.image_name != '' ? `${restaurantImageDir}/${shop.image_name}.png` : `${imageDir}/${defaultImage}.png`} target="_blank">
+                                <a href={restaurant.image_name != '' ? `${restaurantImageDir}/${restaurant.image_name}.png` : `${imageDir}/${defaultImage}.png`} target="_blank">
                                     <picture>
-                                        <source type="image/webp" media="(min-width: 150px)" srcSet={shop.image_name != '' ? `${restaurantImageDir}/${shop.image_name}_thumbnail.webp` : `${imageDir}/${defaultImage}_thumbnail.webp`} />
-                                        <img src={shop.image_name != '' ? `${restaurantImageDir}/${shop.image_name}_thumbnail.png` : `${imageDir}/${defaultImage}_thumbnail.png`} className="shop-image" alt={shop.name} />
+                                        <source type="image/webp" media="(min-width: 150px)" srcSet={restaurant.image_name != '' ? `${restaurantImageDir}/${restaurant.image_name}_thumbnail.webp` : `${imageDir}/${defaultImage}_thumbnail.webp`} />
+                                        <img src={restaurant.image_name != '' ? `${restaurantImageDir}/${restaurant.image_name}_thumbnail.png` : `${imageDir}/${defaultImage}_thumbnail.png`} className="shop-image" alt={restaurant.name} />
                                     </picture>
                                 </a>
                             </div>
                             <div className="shop-item-grid">
                                 <h4>
-                                    <span className="shop-takeout">{shop.takeout_available ? 'テイクアウトあり' : 'イートインのみ'}</span><br />
-                                    <a href={shop.url} rel="nofollow noopener" target="_blank">{shop.name}</a><br />
-                                    <span className="shop-genre">{shop.genre}</span>
+                                    <span className="shop-takeout">{restaurant.takeout_available ? 'テイクアウトあり' : 'イートインのみ'}</span><br />
+                                    <a href={restaurant.url} rel="nofollow noopener" target="_blank">{restaurant.name}</a><br />
+                                    <span className="shop-genre">{restaurant.genre}</span>
                                 </h4>
                                 <p>
-                                    <span>{shop.address}</span><br />
-                                    <span>{shop.open_hours}</span><br />
-                                    <a href={`tel:${shop.tel}`}>{shop.tel}</a>
+                                    <span>{restaurant.address}</span><br />
+                                    <span>{restaurant.open_hours}</span><br />
+                                    <a href={`tel:${restaurant.tel}`}>{restaurant.tel}</a>
                                 </p>
                             </div>
-                            { shop.photos ? (
-                                <div className="dish-image-container">
-                                {
-                                    shop.photos.then((photos: Photo[]) => {
-                                        return photos.map((photo: Photo, index: number) => (
-                                            <a href={`${restaurantImageDir}/${photo.image}`} target="_blank">
-                                                <picture>
-                                                    <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
-                                                    <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
-                                                </picture>
-                                            </a>
-                                        ))
-                                    })
-                                    .catch((error: Error) => {
-                                        return error.message
-                                    })
-                                }
-                                </div>
-                                ) : ''
+                            <div className="dish-image-container">
+                            { photos ? photos
+                                .filter((photo: Photo) => photo.restaurant_id == restaurant.id)
+                                .map((photo: Photo, index: number) => (
+                                    <a href={`${restaurantImageDir}/${photo.image}`} target="_blank">
+                                        <picture>
+                                            <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
+                                            <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
+                                        </picture>
+                                    </a>
+                                )) : ''
                             }
+                            </div>
                         </li>
                         )}) : <div>Loading...</div>}
                     </ul>
