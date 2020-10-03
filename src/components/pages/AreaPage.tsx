@@ -14,7 +14,8 @@ interface Shop {
     open_hours: string
     address: string
     comment: string
-    takeout_available: number 
+    takeout_available: number
+    photos?: Photo[]
 }
 
 interface Photo {
@@ -24,15 +25,10 @@ interface Photo {
     thumbnail_webp: string
 }
 
-interface ShopImageDictionary {
-    [Key: string]: Photo[]
-}
-
 const AreaPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
     const [error, setError] = React.useState<Error>();
     const [shops, setShops] = React.useState<Shop[]>([])
-    const [shopImages, setShopImages] = React.useState<ShopImageDictionary>({})
 
     const areaDictionary : { [id: string]: string } = {
         'ikebukuro': '池袋',
@@ -47,6 +43,16 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         'shibuya': '渋谷'
     }
 
+    const getPhotos = (shopId: string) => {
+        return fetch(`https://api.tokyo-takeout.com/photos?restaurant_id=${shopId}`)
+            .then(res => res.json())
+            .then((data) => {
+                return JSON.parse(data.body)
+            })
+            .catch((error: Error) => {
+                setError(error);
+            })
+    }
     React.useEffect(() => {
         fetch('/api-key.txt')
             .then((r) => r.text())
@@ -57,22 +63,13 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                 .then(res => res.json())
                 .then(
                     (data) => {
-                        const newShops = JSON.parse(data.body).filter((shop: Shop) => shop.area == match.params.area)
-                        for (const shop of newShops) {
-                            const shopId = atob(shop.id)
-                            fetch(`https://api.tokyo-takeout.com/photos?restaurant_id=${shopId}`, {})
-                            .then(photoRes => photoRes.json())
-                            .then(
-                                (photoData) => {
-                                    const photos = JSON.parse(photoData.body)
-                                    let tmpShopImages = shopImages
-                                    shopImages[shopId] = photos
-                                    setShopImages(tmpShopImages)
-                                },
-                                (error: Error) => { setError(error); }
-                            )
+                        const retrievedShops = JSON.parse(data.body).filter((shop: Shop) => shop.area == match.params.area)
+                        for (const retrievedShop of retrievedShops) {
+                            const shopId = atob(retrievedShop.id)
+                            const photos = getPhotos(shopId)
+                            setShops([...shops, { ...retrievedShop, photos }])
+                            console.dir(shops)
                         }
-                        setShops(newShops)
                     },
                     (error: Error) => { setError(error); }
                 )
@@ -124,20 +121,19 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                     <a href={`tel:${shop.tel}`}>{shop.tel}</a>
                                 </p>
                             </div>
-                            {
-                                (shopId in shopImages) ? (
-                                    <div className="dish-image-container">
-                                    {
-                                        shopImages[shopId].map((photo: Photo, index: number) => (
-                                            <a href={`${restaurantImageDir}/${photo.image}`} target="_blank">
-                                                <picture>
-                                                    <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
-                                                    <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
-                                                </picture>
-                                            </a>
-                                        ))
-                                    }
-                                    </div>
+                            { shop.photos ? (
+                                <div className="dish-image-container">
+                                {
+                                    shop.photos.map((photo: Photo, index: number) => (
+                                        <a href={`${restaurantImageDir}/${photo.image}`} target="_blank">
+                                            <picture>
+                                                <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
+                                                <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
+                                            </picture>
+                                        </a>
+                                    ))
+                                }
+                                </div>
                                 ) : ''
                             }
                         </li>
