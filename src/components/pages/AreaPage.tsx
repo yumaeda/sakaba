@@ -64,12 +64,14 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                 .then(
                     (data) => {
                         const retrievedShops = JSON.parse(data.body).filter((shop: Shop) => shop.area == match.params.area)
+                        let newShops: Shop[] = []
                         for (const retrievedShop of retrievedShops) {
+                            console.log('HO')
                             const shopId = atob(retrievedShop.id)
-                            const photos = getPhotos(shopId)
-                            setShops([...shops, { ...retrievedShop, photos }])
-                            console.dir(shops)
+                            newShops = [...newShops, {...retrievedShop, photos: getPhotos(shopId)}]
+                            console.dir(newShops)
                         }
+                        setShops(newShops)
                     },
                     (error: Error) => { setError(error); }
                 )
