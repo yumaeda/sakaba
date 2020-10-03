@@ -17,14 +17,12 @@ interface Shop {
     takeout_available: number 
 }
 
-/*
 interface Photo {
     image: string
     image_webp: string
     thumbnail: string
     thumbnail_webp: string
 }
-*/
 
 const AreaPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
@@ -113,21 +111,19 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                     .then(
                                         (data) => {
                                             const photos = JSON.parse(data.body)
-                                            console.dir(photos)
-                                            /*
-                                            photos.map((photo: Photo) => {
-                                                return (
-                                                    <a href={`${restaurantImageDir}/${photo.image}`} target="_blank">
-                                                        <picture>
-                                                            <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
-                                                            <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
-                                                        </picture>
-                                                    </a>
-                                                )
-                                            })
-                                            */
+                                            photos.map((photo: Photo) => (
+                                                <a href={`${restaurantImageDir}/${photo.image}`} target="_blank">
+                                                    <picture>
+                                                        <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
+                                                        <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
+                                                    </picture>
+                                                </a>
+                                            ))
                                         },
-                                        (error: Error) => { setError(error); }
+                                        (error: Error) => {
+                                            setError(error);
+                                            return <p>Failed to fetch restaurant photos.</p>
+                                        }
                                     )
                                 }
                             </div>
