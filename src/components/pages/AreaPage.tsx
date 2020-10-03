@@ -111,6 +111,8 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                     .then(
                                         (data) => {
                                             const photos = JSON.parse(data.body)
+                                            console.dir(photos)
+                                            /*
                                             photos.map((photo: Photo) => {
                                                 return (
                                                     <a href={`${restaurantImageDir}/${photo.image}`} target="_blank">
@@ -121,6 +123,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                                     </a>
                                                 )
                                             })
+                                            */
                                         },
                                         (error: Error) => { setError(error); }
                                     )
