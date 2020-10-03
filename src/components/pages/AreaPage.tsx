@@ -17,12 +17,14 @@ interface Shop {
     takeout_available: number 
 }
 
+/*
 interface Photo {
     image: string
     image_webp: string
     thumbnail: string
     thumbnail_webp: string
 }
+*/
 
 const AreaPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
