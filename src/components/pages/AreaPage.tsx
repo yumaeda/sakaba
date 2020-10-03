@@ -125,7 +125,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                             { photos ? photos
                                 .filter((photo: Photo) => photo.restaurant_id == restaurant.id)
                                 .map((photo: Photo, index: number) => (
-                                    <a href={`${restaurantImageDir}/${photo.image}`} target="_blank">
+                                    <a href={`${restaurantImageDir}/${photo.image}`} target="_blank" key={`${restaurantId}_${index}`}>
                                         <picture>
                                             <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
                                             <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
