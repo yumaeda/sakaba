@@ -106,7 +106,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                             </div>
                             <div className="dish-image-container">
                                 {
-                                    fetch('https://api.tokyo-takeout.com/photos', {})
+                                    fetch(`https://api.tokyo-takeout.com/photos?restaurant_id=${shopFolder}`, {})
                                     .then(res => res.json())
                                     .then(
                                         (data) => {
