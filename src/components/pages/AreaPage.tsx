@@ -17,6 +17,13 @@ interface Shop {
     takeout_available: number 
 }
 
+interface Photo {
+    image: string
+    image_webp: string
+    thumbnail: string
+    thumbnail_webp: string
+}
+
 const AreaPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
     const [error, setError] = React.useState<Error>();
@@ -58,7 +65,6 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         const basePath = 'https://tokyo-takeout.com'
         const defaultImage = 'image-not-available'
         const areaName = areaDictionary[match.params.area]
-        const restaurantImageNames = Array.from(Array(79).keys())
         const imageDir = `${basePath}/images`
 
         return (
@@ -99,17 +105,26 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                 </p>
                             </div>
                             <div className="dish-image-container">
-                                { restaurantImageNames.map((value: number) => {
-                                    const fileName = (value + 1).toString().padStart(7, '0')
-                                    return (
-                                        <a href={`${restaurantImageDir}/${fileName}.jpg`} target="_blank">
-                                            <picture>
-                                                <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${fileName}_thumbnail.webp`} />
-                                                <img src={`${restaurantImageDir}/${fileName}.jpg`} className="dish-image" alt={`店舗写真${index}`} />
-                                            </picture>
-                                        </a>
+                                {
+                                    fetch('https://api.tokyo-takeout.com/photos', {})
+                                    .then(res => res.json())
+                                    .then(
+                                        (data) => {
+                                            const photos = JSON.parse(data.body)
+                                            photos.map((photo: Photo) => {
+                                                return (
+                                                    <a href={`${restaurantImageDir}/${photo.image}`} target="_blank">
+                                                        <picture>
+                                                            <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
+                                                            <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
+                                                        </picture>
+                                                    </a>
+                                                )
+                                            })
+                                        },
+                                        (error: Error) => { setError(error); }
                                     )
-                                })}
+                                }
                             </div>
                         </li>
                         )}) : <div>Loading...</div>}
