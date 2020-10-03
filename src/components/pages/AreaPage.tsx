@@ -27,7 +27,8 @@ interface Photo {
 
 const AreaPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
-    const [error, setError] = React.useState<Error>();
+    const [apiKey, setApiKey] = React.useState<string>('')
+    const [error, setError] = React.useState<Error>()
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>()
     const [photos, setPhotos] = React.useState<Photo[]>()
 
@@ -47,35 +48,39 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     React.useEffect(() => {
         fetch('/api-key.txt')
             .then((r) => r.text())
-            .then(text  => {
-                fetch('https://api.tokyo-takeout.com/restaurants', {
-                    headers: { 'X-Api-Key': text }
-                })
-                .then(res => res.json())
-                .then(
-                    (data) => {
-                        setRestaurants(JSON.parse(data.body).filter((restaurant: Restaurant) => restaurant.area == match.params.area))
-                    },
-                    (error: Error) => {
-                        setError(error)
-                    }
-                )
-            })
+            .then(text  => setApiKey(text))
     }, [])
 
     React.useEffect(() => {
-        fetch('https://api.tokyo-takeout.com/photos')
-            .then(res => res.json())
-            .then((
-                data) => {
-                    setPhotos(JSON.parse(data.body))
-                },
-                (error: Error) => {
-                    setError(error)
-                }
-            )
+        fetch('https://api.tokyo-takeout.com/photos', {
+            headers: { 'X-Api-Key': apiKey }
+        })
+        .then(res => res.json())
+        .then((
+            data) => {
+                setPhotos(JSON.parse(data.body))
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
     }, [])
-  
+ 
+    React.useEffect(() => {
+        fetch('https://api.tokyo-takeout.com/restaurants', {
+            headers: { 'X-Api-Key': apiKey }
+        })
+        .then(res => res.json())
+        .then(
+            (data) => {
+                setRestaurants(JSON.parse(data.body).filter((restaurant: Restaurant) => restaurant.area == match.params.area))
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
+    }, [])
+
     if (error) {
         return <div>Error: {error.message}</div>;
     } else {
