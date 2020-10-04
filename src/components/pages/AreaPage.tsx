@@ -115,7 +115,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                 <h4>
                                     <a className="shop-name" href={restaurant.url} rel="nofollow noopener" target="_blank">{restaurant.name}</a><br />
                                     <span className="shop-takeout">{restaurant.takeout_available ? 'テイクアウトあり' : 'イートインのみ'}</span><br />
-                                    <span className="shop-genre">{restaurant.genre}</span>
+                                    <div className="shop-genre">{restaurant.genre}</div>
                                 </h4>
                                 <OpenHours openHours={restaurant.open_hours} businessDayJson={restaurant.business_day_info} />
                                 <p>
