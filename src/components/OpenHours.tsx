@@ -16,8 +16,8 @@ const OpenHours: React.FC<Props> = (props) => {
     if (businessDayJson !== '{}') {
         const businessDayObj = JSON.parse(businessDayJson)
         console.dir(businessDayObj)
-        if (businessDayJson.hasOwnProperty(currentDay)) {
-            openHourText = `本日の営業時間：${businessDayObj[currentDay]}`
+        if (businessDayObj.hasOwnProperty(currentDay)) {
+            openHourText = `本日は ${businessDayObj[currentDay]} 営業してます。`
         } else {
             openHourText = '本日は定休日です。'
         }

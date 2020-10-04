@@ -19,6 +19,12 @@
     padding-bottom: 20px;
 }
 
+.shop-name {
+    color: midnightblue;
+    font-size: 22px;
+    text-decoration: none;
+}
+
 .shop-list {
     list-style: none;
 }
