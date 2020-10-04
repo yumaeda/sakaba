@@ -10,12 +10,12 @@ interface Props {
 
 const OpenHours: React.FC<Props> = (props) => {
     const currentDay = ((new Date()).getDay() + 1) + ''
-    console.log(currentDay)
     const { businessDayJson, openHours } = props
 
     let openHourText = openHours
     if (businessDayJson !== '{}') {
         const businessDayObj = JSON.parse(businessDayJson)
+        console.dir(businessDayObj)
         if (businessDayJson.hasOwnProperty(currentDay)) {
             openHourText = `本日の営業時間：${businessDayObj[currentDay]}`
         } else {
@@ -23,7 +23,7 @@ const OpenHours: React.FC<Props> = (props) => {
         }
     }
 
-    return <div>{openHourText}</div>
+    return <div className="open-hour">{openHourText}</div>
 }
 
 export default OpenHours

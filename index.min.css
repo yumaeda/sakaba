@@ -35,6 +35,10 @@
     max-width: 400px;
 }
 
+.open-hour {
+    margin: 5px 0;
+}
+
 .shop-image {
     height: 150px;
 }
