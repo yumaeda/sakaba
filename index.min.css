@@ -62,8 +62,9 @@
 }
 
 .shop-genre {
-    font-size: 12px;
+    font-size: 14px;
     color: darkgray;
+    margin-bottom: 10px;
 }
 
 .shop-takeout {
