@@ -2,6 +2,7 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import OpenHours from '../OpenHours'
 
 interface Restaurant {
     id: string
@@ -12,6 +13,7 @@ interface Restaurant {
     genre: string
     tel: string
     open_hours: string
+    business_day_info: string
     address: string
     comment: string
     takeout_available: number
@@ -117,7 +119,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                 </h4>
                                 <p>
                                     <span>{restaurant.address}</span><br />
-                                    <span>{restaurant.open_hours}</span><br />
+                                    <OpenHours openHours={restaurant.open_hours} businessDayJson={restaurant.business_day_info} />
                                     <a href={`tel:${restaurant.tel}`}>{restaurant.tel}</a>
                                 </p>
                             </div>
