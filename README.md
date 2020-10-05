@@ -21,3 +21,9 @@ cwebp aaa_thumbnail.png -o aaa_thumbnail.webp
 ```
 Cache-Control: max-age=31536000
 ```
+
+## Download Images
+```bash
+aws s3 cp s3://tokyo-takeout.com/images/restaurants . --recursive
+```
+
