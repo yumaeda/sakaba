@@ -64,10 +64,12 @@
 }
 
 .dish-image-wrapper {
+    border: 1px solid floralwhite;
+    display: inline-block;
     height: 150px;
     width: 200px;
     background-color: black;
-    margin: 0 auto;
+    margin: 0 2px;
 }
 
 .dish-image {
