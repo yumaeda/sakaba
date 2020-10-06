@@ -39,6 +39,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         'itabashi-honcho': '板橋本町',
         'kagurazaka': '神楽坂',
         'kanda': '神田',
+        'kasumigaseki': '霞ヶ関',
         'kyodo': '経堂',
         'gokokuji': '護国寺',
         'meguro': '目黒',
