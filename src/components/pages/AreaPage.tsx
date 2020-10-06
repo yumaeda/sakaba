@@ -111,13 +111,13 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                         <source type="image/webp" media="(min-width: 150px)" srcSet={restaurant.image_name != '' ? `${restaurantImageDir}/${restaurant.image_name}_thumbnail.webp` : `${imageDir}/${defaultImage}_thumbnail.webp`} />
                                         <img src={restaurant.image_name != '' ? `${restaurantImageDir}/${restaurant.image_name}_thumbnail.png` : `${imageDir}/${defaultImage}_thumbnail.png`} className="shop-image" alt={restaurant.name} />
                                     </picture>
-                                </a>
+                                </a><br />
+                                <span className="shop-takeout">{restaurant.takeout_available ? 'テイクアウトあり' : 'イートインのみ'}</span>
                             </div>
                             <div className="shop-item-grid">
                                 <h4>
                                     <a className="shop-name" href={restaurant.url} rel="nofollow noopener" target="_blank">{restaurant.name}</a><br />
                                     <div className="shop-genre">{restaurant.genre}</div>
-                                    <span className="shop-takeout">{restaurant.takeout_available ? 'テイクアウトあり' : 'イートインのみ'}</span><br />
                                 </h4>
                                 <OpenHours openHours={restaurant.open_hours} businessDayJson={restaurant.business_day_info} />
                                 <p>
