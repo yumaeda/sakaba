@@ -106,7 +106,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                         const restaurantImageDir = `${basePath}/images/restaurants/${restaurantId}`
                         return (
                         <li className="shop-item" key={index}>
-                            <div className="shop-item-grid">
+                            <div className="shop-item-photo">
                                 <a href={restaurant.image_name != '' ? `${restaurantImageDir}/${restaurant.image_name}.png` : `${imageDir}/${defaultImage}.png`} target="_blank">
                                     <picture>
                                         <source type="image/webp" media="(min-width: 150px)" srcSet={restaurant.image_name != '' ? `${restaurantImageDir}/${restaurant.image_name}_thumbnail.webp` : `${imageDir}/${defaultImage}_thumbnail.webp`} />

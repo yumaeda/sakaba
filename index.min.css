@@ -37,8 +37,15 @@
 .shop-item-grid {
     display: inline-block;
     padding: 5px;
+    max-width: 400px;
+}
+
+.shop-item-photo {
+    display: inline-block;
+    padding: 5px;
     min-width: 200px;
     max-width: 400px;
+    text-align: center;
 }
 
 .open-hour {
