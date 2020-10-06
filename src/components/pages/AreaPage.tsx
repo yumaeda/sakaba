@@ -2,7 +2,9 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import Photo from '../../interfaces/Photo'
 import OpenHours from '../OpenHours'
+import DishPhotoList from '../DishPhotoList'
 
 interface Restaurant {
     id: string
@@ -17,14 +19,6 @@ interface Restaurant {
     address: string
     comment: string
     takeout_available: number
-}
-
-interface Photo {
-    restaurant_id: string
-    image: string
-    image_webp: string
-    thumbnail: string
-    thumbnail_webp: string
 }
 
 const AreaPage: React.FC<{ match: any }> = (props) => {
@@ -126,19 +120,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                     <a href={`tel:${restaurant.tel}`}>{restaurant.tel}</a>
                                 </p>
                             </div>
-                            <div className="dish-image-container">
-                            { photos ? photos
-                                .filter((photo: Photo) => photo.restaurant_id == restaurant.id)
-                                .map((photo: Photo, index: number) => (
-                                    <a href={`${restaurantImageDir}/${photo.image}`} target="_blank" key={`${restaurantId}_${index}`}>
-                                        <picture>
-                                            <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
-                                            <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
-                                        </picture>
-                                    </a>
-                                )) : ''
-                            }
-                            </div>
+                            <DishPhotoList basePath={basePath} restaurantId={restaurantId} photos={photos} />
                         </li>
                         )}) : <div>Loading...</div>}
                     </ul>
