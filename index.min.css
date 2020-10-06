@@ -59,8 +59,9 @@
 .dish-image-container {
     overflow: scroll;
     text-align: center;
-    max-height: 300px;
+    max-height: 320px;
     background-color: darkred;
+    padding: 10px 0;
 }
 
 .dish-image-wrapper {
