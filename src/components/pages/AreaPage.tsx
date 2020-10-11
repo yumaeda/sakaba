@@ -3,6 +3,7 @@
  */
 import * as React from 'react'
 import Photo from '../../interfaces/Photo'
+import Address from '../Address'
 import OpenHours from '../OpenHours'
 import DishPhotoList from '../DishPhotoList'
 
@@ -115,8 +116,8 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                     <div className="shop-genre">{restaurant.genre}</div>
                                 </h4>
                                 <OpenHours openHours={restaurant.open_hours} businessDayJson={restaurant.business_day_info} />
+                                <Address text={restaurant.address} latitude="35.7253734" longitude="139.7160828" />
                                 <p>
-                                    <span>{restaurant.address}</span><br />
                                     <a href={`tel:${restaurant.tel}`}>{restaurant.tel}</a>
                                 </p>
                             </div>
