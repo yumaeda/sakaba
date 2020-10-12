@@ -98,11 +98,11 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                         以下の情報に誤りがある場合には<a href="mailto:support@tokyo-takeout.com">support@tokyo-takeout.com</a>までお知らせください。
                     </p>
                     <ul className="shop-list">
-                    {restaurants ? restaurants.map((restaurant: Restaurant, index: number) => {
+                    {restaurants ? restaurants.map((restaurant: Restaurant) => {
                         const restaurantId = atob(restaurant.id)
                         const restaurantImageDir = `${basePath}/images/restaurants/${restaurantId}`
                         return (
-                        <li className="shop-item" key={index}>
+                        <li className="shop-item" key={restaurantId} id={restaurantId}>
                             <div className="shop-item-photo">
                                 <a href={restaurant.image_name != '' ? `${restaurantImageDir}/${restaurant.image_name}.png` : `${imageDir}/${defaultImage}.png`} target="_blank">
                                     <picture>

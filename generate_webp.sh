@@ -1,6 +1,6 @@
 #!/bin/bash
 
-curIndex=1
+curIndex=13
 for FILE in *.{JPG,jpg}
 do
     if [ -f ${FILE} ]; then
