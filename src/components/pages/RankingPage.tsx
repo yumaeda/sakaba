@@ -54,7 +54,8 @@ const RankingPage: React.FC = () => {
                         return (
                         <li className="ranking-item" key={`${ranking.dish}#${ranking.rank}`}>
                             <div>
-                                <span>{`${ranking.dish} #${ranking.rank} (${ranking.restaurant})`}</span><br />
+                                <span>{`${ranking.dish} #${ranking.rank}`}</span>
+                                <a href={ranking.restaurant_url}>{ranking.restaurant}</a><br />
                                 <img src={`${restaurantImageDir}/${ranking.photo}_thumbnail.jpg`} className="dish-image" alt={`${ranking.dish}#${ranking.rank}`} />
                             </div>
                         </li>
