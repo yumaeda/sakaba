@@ -55,10 +55,7 @@ const RankingPage: React.FC = () => {
                         <li className="ranking-item">
                             <div>
                                 <span>{`${ranking.dish} #${ranking.rank} (${ranking.restaurant})`}</span><br />
-                                <picture>
-                                    <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${ranking.photo}_thumbnail.webp}`} />
-                                    <img src={`${restaurantImageDir}/${ranking.photo}_thumbnail.jpg`} className="dish-image" alt={`${ranking.dish}#${ranking.rank}`} />
-                                </picture>
+                                <img src={`${restaurantImageDir}/${ranking.photo}_thumbnail.jpg`} className="dish-image" alt={`${ranking.dish}#${ranking.rank}`} />
                             </div>
                         </li>
                         )}) : <div>Loading...</div>}
