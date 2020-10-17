@@ -52,7 +52,7 @@ const RankingPage: React.FC = () => {
                         const restaurantId = atob(ranking.restaurant_id)
                         const restaurantImageDir = `${basePath}/images/restaurants/${restaurantId}`
                         return (
-                        <li className="ranking-item">
+                        <li className="ranking-item" key={`${ranking.dish}#${ranking.rank}`}>
                             <div>
                                 <span>{`${ranking.dish} #${ranking.rank} (${ranking.restaurant})`}</span><br />
                                 <img src={`${restaurantImageDir}/${ranking.photo}_thumbnail.jpg`} className="dish-image" alt={`${ranking.dish}#${ranking.rank}`} />
