@@ -1,6 +1,8 @@
 #!/bin/bash
 
-curIndex=13
+curIndex=160
+shopId=da04f5c9-ffb0-11ea-ba65-065a10bcba76
+
 for FILE in *.{JPG,jpg}
 do
     if [ -f ${FILE} ]; then
@@ -14,3 +16,6 @@ do
         let curIndex=curIndex+1
     fi
 done
+
+aws s3 cp . "s3://tokyo-takeout.com/images/restaurants/$shopId" --exclude "*" --include "*.webp" --include "*.jpg" --cache-control "max-age=31536000" --recursive --acl "public-read"
+
