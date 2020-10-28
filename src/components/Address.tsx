@@ -14,9 +14,7 @@ const Address: React.FC<Props> = (props) => {
 
     return (
         <div className="restaurant-adress">
-            <a href={`https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`} target="_blank">
-                {text}
-            </a>
+            <a href={`https://www.google.com/maps/dir/?api=1&destination=${latitude},${longitude}`} target="_blank" title={text}>[Map]</a>
         </div>
     )
 }
