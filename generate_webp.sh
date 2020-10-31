@@ -1,7 +1,9 @@
 #!/bin/bash
 
-curIndex=160
-shopId=da04f5c9-ffb0-11ea-ba65-065a10bcba76
+curIndex=1
+shopId=xxxxxxxx-yyyyyyyyy-xxxx-yyyyyyyyyyyy
+apiUri=https://api.tokyo-takeout.com/photos
+apiKey=xxxxxx
 
 for FILE in *.{JPG,jpg}
 do
@@ -13,6 +15,8 @@ do
         cp "${newfile}.jpg" "${newfile}_thumbnail.jpg"
         sips -z 150 200 "${newfile}_thumbnail.jpg"
 
+        param="{\"restaurant_id\":\"${restaurantId}\", \"name\":\"${newfile}\"}'"
+        curl -X POST -H "x-api-key: ${apiKey}" -H "Content-Type: application/json" -d "${param}" "${apiUri}"
         let curIndex=curIndex+1
     fi
 done
