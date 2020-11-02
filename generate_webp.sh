@@ -1,9 +1,9 @@
 #!/bin/bash
 
-curIndex=29
-restaurantId="xxxxxxxx-yyyy-zzzz-aaaa-bbbbbbbbbbbb"
+curIndex=1
+restaurantId="xxxxxxxx-yyyy-zzzz-zzzz-aaaaaaaaaaaa"
 apiUri="https://api.tokyo-takeout.com/photos"
-apiKey="xxxxxx"
+apiKey="xxxx"
 
 for FILE in *.{JPG,jpg}
 do
@@ -21,5 +21,5 @@ do
     fi
 done
 
-aws s3 cp . "s3://tokyo-takeout.com/images/restaurants/$shopId" --exclude "*" --include "*.webp" --include "*.jpg" --cache-control "max-age=31536000" --recursive --acl "public-read"
+aws s3 cp . "s3://tokyo-takeout.com/images/restaurants/$restaurantId" --exclude "*" --include "*.webp" --include "*.jpg" --cache-control "max-age=31536000" --recursive --acl "public-read"
 
