@@ -1,9 +1,9 @@
 #!/bin/bash
 
-curIndex=1
-shopId=xxxxxxxx-yyyyyyyyy-xxxx-yyyyyyyyyyyy
-apiUri=https://api.tokyo-takeout.com/photos
-apiKey=xxxxxx
+curIndex=29
+restaurantId="xxxxxxxx-yyyy-zzzz-aaaa-bbbbbbbbbbbb"
+apiUri="https://api.tokyo-takeout.com/photos"
+apiKey="xxxxxx"
 
 for FILE in *.{JPG,jpg}
 do
