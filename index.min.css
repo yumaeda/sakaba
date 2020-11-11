@@ -52,16 +52,12 @@
     margin: 5px 0;
 }
 
-.restaurant-address {
-
-}
-
 .shop-image {
     height: 150px;
 }
 
 .map-image {
-    height: 50px;
+    height: 40px;
 }
 
 .dish-image-container {
