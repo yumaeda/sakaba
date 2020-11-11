@@ -48,6 +48,13 @@
     text-align: center;
 }
 
+.shop-phone {
+    display: inline-block;
+    height: 40px;
+    margin: 0 15px;
+    vertical-align: middle;
+}
+
 .open-hour {
     margin: 5px 0;
 }

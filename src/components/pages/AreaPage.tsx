@@ -119,7 +119,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                 </h4>
                                 <OpenHours openHours={restaurant.open_hours} businessDayJson={restaurant.business_day_info} />
                                 <Address text={restaurant.address} latitude={restaurant.latitude} longitude={restaurant.longitude} />
-                                <p>
+                                <p className="shop-phone">
                                     <a href={`tel:${restaurant.tel}`}>{restaurant.tel}</a>
                                 </p>
                             </div>
