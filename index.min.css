@@ -60,6 +60,10 @@
     height: 150px;
 }
 
+.map-image {
+    height: 50px;
+}
+
 .dish-image-container {
     overflow: scroll;
     text-align: center;
