@@ -1,23 +1,20 @@
 #!/bin/bash
 
-curIndex=1
-restaurantId="xxxxxxxx-yyyy-zzzz-zzzz-aaaaaaaaaaaa"
+restaurantId="xxxxxxxx-yyyy-zzzz-0000-111111111111"
 apiUri="https://api.tokyo-takeout.com/photos"
-apiKey="xxxx"
+apiKey="xxx"
 
 for FILE in *.{JPG,jpg}
 do
     if [ -f ${FILE} ]; then
-        newfile=$(printf "%07d" "$curIndex")
+        param="{\"restaurant_id\":\"${restaurantId}\"}"
+        newfile=$(curl -X POST -H "x-api-key: ${apiKey}" -H "Content-Type: application/json" -d "${param}" "${apiUri}" | python3 -c "import sys, json; print(json.load(sys.stdin)['body'])")
+
         cwebp ${FILE} -o "${newfile}.webp"
         cwebp -resize 0 150 ${FILE} -o "${newfile}_thumbnail.webp"
         mv ${FILE} "${newfile}.jpg"
         cp "${newfile}.jpg" "${newfile}_thumbnail.jpg"
         sips -z 150 200 "${newfile}_thumbnail.jpg"
-
-        param="{\"restaurant_id\":\"${restaurantId}\", \"name\":\"${newfile}\"}'"
-        curl -X POST -H "x-api-key: ${apiKey}" -H "Content-Type: application/json" -d "${param}" "${apiUri}"
-        let curIndex=curIndex+1
     fi
 done
 
