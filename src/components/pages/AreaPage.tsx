@@ -89,14 +89,15 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         return (
             <>
                 <header className="header">
-                    <h1 className="header-label">{`${areaName}のお店`}</h1>
-                    <a href={`${basePath}/`}>Back</a>
+                    <a href={`${basePath}/`}>
+                        <picture>
+                            <source type="image/webp" media="(min-width: 150px)" srcSet={`${imageDir}/back.webp`} />
+                            <img src={`${imageDir}/back.png`} className="back-image" alt="Back" />
+                        </picture>
+                    </a>
+                    <h1 className="header-label">{areaName}</h1>
                 </header>
                 <div className="contents">
-                    <p>
-                        ※ テイクアウトの情報は、頻繁に変わる事が予想されます。<br />
-                        以下の情報に誤りがある場合には<a href="mailto:support@tokyo-takeout.com">support@tokyo-takeout.com</a>までお知らせください。
-                    </p>
                     <ul className="shop-list">
                     {restaurants ? restaurants.map((restaurant: Restaurant) => {
                         const restaurantId = atob(restaurant.id)

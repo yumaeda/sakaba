@@ -67,6 +67,10 @@
     height: 40px;
 }
 
+.back-image {
+    height: 40px;
+}
+
 .dish-image-container {
     overflow: scroll;
     text-align: center;
