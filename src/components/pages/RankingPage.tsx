@@ -2,6 +2,7 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import Footer from '../Footer'
 
 interface Ranking {
     dish: string
@@ -64,7 +65,7 @@ const RankingPage: React.FC = () => {
                         )}) : <div>Loading...</div>}
                     </ul>
                 </div> 
-                <footer className="footer">&copy; 2020 東京テイクアウト</footer>
+                <Footer />
             </>
         )
     }

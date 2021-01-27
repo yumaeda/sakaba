@@ -4,8 +4,9 @@
 import * as React from 'react'
 import Photo from '../../interfaces/Photo'
 import Address from '../Address'
-import OpenHours from '../OpenHours'
 import DishPhotoList from '../DishPhotoList'
+import OpenHours from '../OpenHours'
+import Footer from '../Footer'
 
 interface Restaurant {
     id: string
@@ -42,6 +43,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         'meguro': '目黒',
         'nakaitabashi': '中板橋',
         'nishidai': '西台',
+        'nishisugamo': '西巣鴨',
         'otsuka': '大塚',
         'oyama': '大山',
         'shibuya': '渋谷'
@@ -130,7 +132,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                         )}) : <div>Loading...</div>}
                     </ul>
                 </div> 
-                <footer className="footer">&copy; 2020 東京テイクアウト</footer>
+                <Footer />
             </>
         )
     }

@@ -3,6 +3,7 @@
  */
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import Footer from '../Footer'
 
 const HomePage: React.FC<{}> = () => {
     return (
@@ -31,6 +32,7 @@ const HomePage: React.FC<{}> = () => {
                     <Link className="list-item" to="/gokokuji">護国寺</Link>
                     <Link className="list-item" to="/shibuya">渋谷</Link>
                     <Link className="list-item" to="/nakaitabashi">中板橋</Link>
+                    <Link className="list-item" to="/nishisugamo">西巣鴨</Link>
                     <Link className="list-item" to="/nishidai">西台</Link>
                     <Link className="list-item" to="/meguro">目黒</Link>
                 </ul>
@@ -43,7 +45,7 @@ const HomePage: React.FC<{}> = () => {
                     本サイトを利用する事により被った、いかなる被害や損害についても当サイトの管理者は一切の責任を負いません。<br />
                 </p>
             </div>
-            <footer className="footer">&copy; 2020 東京テイクアウト</footer>
+            <Footer />
         </>
     )
 }
