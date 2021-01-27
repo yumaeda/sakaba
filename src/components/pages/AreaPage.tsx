@@ -2,7 +2,6 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
-import { FixedSizeList } from 'react-window'
 import Photo from '../../interfaces/Photo'
 import Address from '../Address'
 import DishPhotoList from '../DishPhotoList'
@@ -24,13 +23,6 @@ interface Restaurant {
     longitude: string
     comment: string
     takeout_available: number
-}
-
-const Row = (props: any) => {
-    const { data, index } = props
-    const basePath = 'https://tokyo-takeout.com'
-
-    return <DishPhotoList basePath={basePath} restaurantId={data.restaurantId} photos={data.photos} key={index} />
 }
 
 const AreaPage: React.FC<{ match: any }> = (props) => {
@@ -135,15 +127,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                     <a href={`tel:${restaurant.tel}`}>{restaurant.tel}</a>
                                 </p>
                             </div>
-                            <FixedSizeList
-                                height={152}
-                                itemCount={photos ? photos.length : 0}
-                                itemSize={35}
-                                layout="horizontal"
-                                width={202}
-                                itemData={{restaurantId, photos}}>
-                                {Row}
-                            </FixedSizeList>
+                            <DishPhotoList basePath={basePath} restaurantId={restaurantId} photos={photos} />
                         </li>
                         )}) : <div>Loading...</div>}
                     </ul>
