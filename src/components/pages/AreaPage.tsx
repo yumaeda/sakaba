@@ -26,6 +26,13 @@ interface Restaurant {
     takeout_available: number
 }
 
+const Row = (props: any) => {
+    const { data, index } = props
+    const basePath = 'https://tokyo-takeout.com'
+
+    return <DishPhotoList basePath={basePath} restaurantId={data.restaurantId} photos={data.photos} key={index} />
+}
+
 const AreaPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
     const [error, setError] = React.useState<Error>()
@@ -128,8 +135,14 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                     <a href={`tel:${restaurant.tel}`}>{restaurant.tel}</a>
                                 </p>
                             </div>
-                            <FixedSizeList>
-                                <DishPhotoList basePath={basePath} restaurantId={restaurantId} photos={photos} />
+                            <FixedSizeList
+                                height={152}
+                                itemCount={photos ? photos.length : 0}
+                                itemSize={35}
+                                layout="horizontal"
+                                width={202}
+                                itemData={{restaurantId, photos}}>
+                                {Row}
                             </FixedSizeList>
                         </li>
                         )}) : <div>Loading...</div>}
