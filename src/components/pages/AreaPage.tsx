@@ -2,6 +2,7 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import { FixedSizeList } from 'react-window'
 import Photo from '../../interfaces/Photo'
 import Address from '../Address'
 import DishPhotoList from '../DishPhotoList'
@@ -127,7 +128,9 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                     <a href={`tel:${restaurant.tel}`}>{restaurant.tel}</a>
                                 </p>
                             </div>
-                            <DishPhotoList basePath={basePath} restaurantId={restaurantId} photos={photos} />
+                            <FixedSizeList>
+                                <DishPhotoList basePath={basePath} restaurantId={restaurantId} photos={photos} />
+                            </FixedSizeList>
                         </li>
                         )}) : <div>Loading...</div>}
                     </ul>
