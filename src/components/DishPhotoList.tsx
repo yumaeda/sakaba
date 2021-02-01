@@ -21,6 +21,8 @@ const Column: React.FC<ColumnStyle> = (props) => {
     const { data, index, style } = props
     const restaurantImageDir = `${data.basePath}/images/restaurants/${data.restaurantId}`
     const photo = data.photos ? data.photos[index] : null
+    console.log(index)
+    console.dir(photo)
 
     return photo ? (
         <div style={style} key={index}>
