@@ -69,11 +69,10 @@
 }
 
 .back-image {
-    height: 20px;
+    height: 30px;
 }
 
 .dish-image-container {
-    overflow: scroll;
     text-align: center;
     max-height: 320px;
     background-color: darkred;
