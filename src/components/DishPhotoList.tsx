@@ -22,11 +22,8 @@ const Column: React.FC<ColumnStyle> = (props) => {
     const restaurantImageDir = `${data.basePath}/images/restaurants/${data.restaurantId}`
     const photo = data.photos ? data.photos.filter((photo: Photo) => atob(photo.restaurant_id) == data.restaurantId)[index] : null
 
-    console.log(index)
-    console.dir(photo)
-
     return photo ? (
-        <div style={style} key={index}>
+        <div className="dish-image-container" style={style} key={index}>
             <div className="dish-image-wrapper">
                 <a href={`${restaurantImageDir}/${photo.image}`} target="_blank" key={`${data.restaurantId}_${index}`}>
                     <picture>
@@ -41,36 +38,17 @@ const Column: React.FC<ColumnStyle> = (props) => {
 
 const DishPhotoList: React.FC<Props> = (props) => {
     const { basePath, restaurantId, photos } = props
-    const restaurantImageDir = `${basePath}/images/restaurants/${restaurantId}`
 
     return (
-        <>
-        <div className="dish-image-container">
-        {
-            photos ? photos
-                .filter((photo: Photo) => atob(photo.restaurant_id) == restaurantId)
-                .map((photo: Photo, index: number) => (
-                    <div className="dish-image-wrapper">
-                        <a href={`${restaurantImageDir}/${photo.image}`} target="_blank" key={`${restaurantId}_${index}`}>
-                            <picture>
-                                <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
-                                <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
-                            </picture>
-                        </a>
-                    </div>
-                )) : ''
-        }
-        </div>
         <FixedSizeList
             height={150}
             itemCount={photos ? photos.length : 0}
             itemSize={200}
-            layout='horizontal'
-            width={600}
+            layout="horizontal"
+            width="100%"
             itemData={{ photos, restaurantId, basePath }}>
             {Column}
         </FixedSizeList>
-        </>
     )
 }
 
