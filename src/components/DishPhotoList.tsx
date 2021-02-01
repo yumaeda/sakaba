@@ -45,7 +45,7 @@ const DishPhotoList: React.FC<Props> = (props) => {
             itemCount={photos ? photos.length : 0}
             itemSize={200}
             layout="horizontal"
-            width={300}
+            width={810}
             itemData={{ photos, restaurantId, basePath }}>
             {Column}
         </FixedSizeList>
