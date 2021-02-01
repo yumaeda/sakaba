@@ -2,6 +2,7 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import { FixedSizeList } from 'react-window'
 import Photo from '../interfaces/Photo'
 
 interface Props {
@@ -10,11 +11,23 @@ interface Props {
     photos?: Photo[]
 }
 
+interface ColumnStyle {
+    index: number
+    style: React.CSSProperties
+}
+
+const Column: React.FC<ColumnStyle> = (props) => {
+    const { index, style } = props
+
+    return <div style={style}>Column {index}</div>
+}
+
 const DishPhotoList: React.FC<Props> = (props) => {
     const { basePath, restaurantId, photos } = props
     const restaurantImageDir = `${basePath}/images/restaurants/${restaurantId}`
 
     return (
+        <>
         <div className="dish-image-container">
         {
             photos ? photos
@@ -31,6 +44,15 @@ const DishPhotoList: React.FC<Props> = (props) => {
                 )) : ''
         }
         </div>
+        <FixedSizeList
+            height={150}
+            itemCount={photos ? photos.length : 0}
+            itemSize={200}
+            layout='horizontal'
+            width={600}>
+            {Column}
+        </FixedSizeList>
+        </>
     )
 }
 
