@@ -8,7 +8,7 @@ import Photo from '../interfaces/Photo'
 interface Props {
     basePath: string
     restaurantId: string
-    photos?: Photo[]
+    photos: Photo[] | null
 }
 
 interface ColumnStyle {
@@ -17,10 +17,10 @@ interface ColumnStyle {
     data: Props
 }
 
-const Column: React.FC<ColumnStyle> = (props) => {
+const DishPhoto: React.FC<ColumnStyle> = (props) => {
     const { data, index, style } = props
     const restaurantImageDir = `${data.basePath}/images/restaurants/${data.restaurantId}`
-    const photo = data.photos ? data.photos.filter((photo: Photo) => atob(photo.restaurant_id) == data.restaurantId)[index] : null
+    const photo = (data.photos && data.photos.length > index) ? data.photos[index] : null
 
     return photo ? (
         <div className="dish-image-container" style={style} key={index}>
@@ -47,7 +47,7 @@ const DishPhotoList: React.FC<Props> = (props) => {
             layout="horizontal"
             width={810}
             itemData={{ photos, restaurantId, basePath }}>
-            {Column}
+            {DishPhoto}
         </FixedSizeList>
     )
 }

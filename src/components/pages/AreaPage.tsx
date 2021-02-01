@@ -127,7 +127,11 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                     <a href={`tel:${restaurant.tel}`}>{restaurant.tel}</a>
                                 </p>
                             </div>
-                            <DishPhotoList basePath={basePath} restaurantId={restaurantId} photos={photos} />
+                            <DishPhotoList
+                                basePath={basePath}
+                                restaurantId={restaurantId}
+                                photos={ photos ? photos.filter((photo: Photo) => atob(photo.restaurant_id) == restaurantId) : null }
+                            />
                         </li>
                         )}) : <div>Loading...</div>}
                     </ul>
