@@ -20,7 +20,8 @@ interface ColumnStyle {
 const Column: React.FC<ColumnStyle> = (props) => {
     const { data, index, style } = props
     const restaurantImageDir = `${data.basePath}/images/restaurants/${data.restaurantId}`
-    const photo = data.photos ? data.photos[index] : null
+    const photo = data.photos ? data.photos.filter((photo: Photo) => atob(photo.restaurant_id) == data.restaurantId)[index] : null
+
     console.log(index)
     console.dir(photo)
 
