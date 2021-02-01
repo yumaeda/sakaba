@@ -14,12 +14,31 @@ interface Props {
 interface ColumnStyle {
     index: number
     style: React.CSSProperties
+    data: Props
 }
 
 const Column: React.FC<ColumnStyle> = (props) => {
-    const { index, style } = props
+    const { data, index, style } = props
+    const restaurantImageDir = `${data.basePath}/images/restaurants/${data.restaurantId}`
 
-    return <div style={style}>Column {index}</div>
+    return (
+        <div style={style} key={index}>
+        {
+            data.photos ? data.photos
+                .filter((photo: Photo) => atob(photo.restaurant_id) == data.restaurantId)
+                .map((photo: Photo, index: number) => (
+                    <div className="dish-image-wrapper">
+                        <a href={`${restaurantImageDir}/${photo.image}`} target="_blank" key={`${data.restaurantId}_${index}`}>
+                            <picture>
+                                <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
+                                <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
+                            </picture>
+                        </a>
+                    </div>
+                )) : ''
+        }
+        </div>
+    )
 }
 
 const DishPhotoList: React.FC<Props> = (props) => {
@@ -49,7 +68,8 @@ const DishPhotoList: React.FC<Props> = (props) => {
             itemCount={photos ? photos.length : 0}
             itemSize={200}
             layout='horizontal'
-            width={600}>
+            width={600}
+            itemData={{photos, restaurantId, basePath}}>
             {Column}
         </FixedSizeList>
         </>
