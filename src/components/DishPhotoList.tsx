@@ -3,6 +3,7 @@
  */
 import * as React from 'react'
 import { FixedSizeList } from 'react-window'
+import AutoSizer from 'react-virtualized-auto-sizer'
 import Photo from '../interfaces/Photo'
 
 interface Props {
@@ -40,15 +41,21 @@ const DishPhotoList: React.FC<Props> = (props) => {
     const { basePath, restaurantId, photos } = props
 
     return (
-        <FixedSizeList
-            height={150}
-            itemCount={photos ? photos.length : 0}
-            itemSize={200}
-            layout="horizontal"
-            width={600}
-            itemData={{ photos, restaurantId, basePath }}>
-            {Column}
-        </FixedSizeList>
+        <AutoSizer>
+        {
+            ({ width }) => (
+                <FixedSizeList
+                    height={170}
+                    itemCount={photos ? photos.length : 0}
+                    itemSize={200}
+                    layout="horizontal"
+                    width={width}
+                    itemData={{ photos, restaurantId, basePath }}>
+                    {Column}
+                </FixedSizeList>
+            )
+        }
+        </AutoSizer>
     )
 }
 
