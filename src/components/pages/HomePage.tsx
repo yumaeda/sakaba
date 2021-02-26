@@ -31,6 +31,7 @@ const HomePage: React.FC<{}> = () => {
                     <Link className="list-item" to="/kyodo">経堂</Link>
                     <Link className="list-item" to="/gokokuji">護国寺</Link>
                     <Link className="list-item" to="/shibuya">渋谷</Link>
+                    <Link className="list-item" to="/sugamo">巣鴨</Link>
                     <Link className="list-item" to="/nakaitabashi">中板橋</Link>
                     <Link className="list-item" to="/nishisugamo">西巣鴨</Link>
                     <Link className="list-item" to="/nishidai">西台</Link>
