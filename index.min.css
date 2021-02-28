@@ -106,7 +106,10 @@
 }
 
 .list-item {
-    padding: 10px;
+    display: block;
+    font-size: 20px;
+    padding: 5px;
+    text-decoration: none;
 }
 
 .ranking-list {

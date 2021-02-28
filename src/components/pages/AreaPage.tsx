@@ -6,6 +6,7 @@ import Photo from '../../interfaces/Photo'
 import Address from '../Address'
 import DishPhotoList from '../DishPhotoList'
 import OpenHours from '../OpenHours'
+import AreaDictionary from '../../AreaDictionary'
 import Footer from '../Footer'
 
 interface Restaurant {
@@ -30,25 +31,6 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     const [error, setError] = React.useState<Error>()
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>()
     const [photos, setPhotos] = React.useState<Photo[]>()
-
-    const areaDictionary : { [id: string]: string } = {
-        'ikebukuro': '池袋',
-        'itabashi': '板橋',
-        'itabashi-honcho': '板橋本町',
-        'kagurazaka': '神楽坂',
-        'kanda': '神田',
-        'kasumigaseki': '霞ヶ関',
-        'kyodo': '経堂',
-        'gokokuji': '護国寺',
-        'meguro': '目黒',
-        'nakaitabashi': '中板橋',
-        'nishidai': '西台',
-        'nishisugamo': '西巣鴨',
-        'otsuka': '大塚',
-        'oyama': '大山',
-        'shibuya': '渋谷',
-        'sugamo': '巣鴨'
-    }
 
     React.useEffect(() => {
         fetch('/api-key.txt')
@@ -87,7 +69,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     } else {
         const basePath = 'https://tokyo-takeout.com'
         const defaultImage = 'image-not-available'
-        const areaName = areaDictionary[match.params.area]
+        const areaName = AreaDictionary[match.params.area]
         const imageDir = `${basePath}/images`
 
         return (
