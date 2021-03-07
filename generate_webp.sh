@@ -6,7 +6,7 @@ apiKey="xxx"
 
 for FILE in *.{JPG,jpg}
 do
-    if [ -f ${FILE} ]; then
+    if [ -f "${FILE}" ]; then
         param="{\"restaurant_id\":\"${restaurantId}\"}"
         newfile=$(curl -X POST -H "x-api-key: ${apiKey}" -H "Content-Type: application/json" -d "${param}" "${apiUri}" | python3 -c "import sys, json; print(json.load(sys.stdin)['body'])")
 
