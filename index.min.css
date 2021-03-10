@@ -57,8 +57,9 @@
 }
 
 .open-hour {
+    color: midnightblue;
     margin: 5px 0;
-    font-size: 30px;
+    font-size: 22px;
     font-weight: bold;
 }
 
@@ -97,7 +98,6 @@
 .shop-genre {
     font-size: 14px;
     color: darkgray;
-    margin-bottom: 10px;
 }
 
 .shop-takeout {
