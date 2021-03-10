@@ -31,6 +31,11 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     const [error, setError] = React.useState<Error>()
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>()
     const [photos, setPhotos] = React.useState<Photo[]>()
+    const areaName = AreaDictionary[match.params.area]
+
+    React.useEffect(() => {
+        document.title = `${areaName}｜東京テイクアウト`
+    }, [])
 
     React.useEffect(() => {
         fetch('/api-key.txt')
@@ -69,7 +74,6 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     } else {
         const basePath = 'https://tokyo-takeout.com'
         const defaultImage = 'image-not-available'
-        const areaName = AreaDictionary[match.params.area]
         const imageDir = `${basePath}/images`
 
         return (
