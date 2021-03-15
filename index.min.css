@@ -34,6 +34,7 @@
 .shop-item {
     border: solid 1px lightblue;
     padding: 5px;
+    overflow-x: hidden;
 }
 
 .shop-item-grid {
