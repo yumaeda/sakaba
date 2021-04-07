@@ -1,4 +1,10 @@
+.body {
+    color: rgb(255, 255, 255);
+    background-color: rgb(237, 28, 36);
+}
+
 .header-label {
+    font-size: 25px;
     margin: 5px 10px;
     display: inline;
 }
@@ -21,7 +27,7 @@
 }
 
 .shop-name {
-    color: midnightblue;
+    color: rgb(255, 255, 255);
     font-size: 22px;
     text-decoration: none;
 }
@@ -52,6 +58,7 @@
 }
 
 .shop-phone {
+    color: rgb(255, 255, 255);
     display: inline-block;
     height: 40px;
     margin: 0 15px;
@@ -59,8 +66,8 @@
 }
 
 .open-hour {
-    color: midnightblue;
-    margin: 5px 0;
+    color: rgb(255, 255, 255);
+    margin: 10px 0 20px 0;
     font-size: 22px;
     font-weight: bold;
 }
@@ -80,7 +87,6 @@
 .dish-image-container {
     text-align: center;
     max-height: 320px;
-    background-color: darkred;
     padding: 10px 0;
 }
 
@@ -98,8 +104,8 @@
 }
 
 .shop-genre {
-    font-size: 14px;
-    color: darkgray;
+    font-size: 16px;
+    color: lightsalmon;
 }
 
 .shop-takeout {
