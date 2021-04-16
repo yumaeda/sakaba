@@ -40,11 +40,11 @@ const HomePage: React.FC<{}> = () => {
         return (
             <>
                 <header className="header">
-                    <h1>東京テイクアウト</h1>
+                    <h1 className="header-label">東京テイクアウト</h1>
                 </header>
                 <div className="contents">
                     <img className="main-image" src="https://cdn.tokyo-hideaway.com/images/cover.jpg" alt="東京テイクアウト・カバー" />
-                    <p>
+                    <p className="main-paragraph">
                         依然として、東京では新型コロナウイルスの影響で減った売上を少しでも補填しようとテイクアウトを続けるお店も多いようです。<br/>
                         消費者としては、<a href="https://demae-can.com/" rel="nofollow noopener">出前館</a>や<a href="https://about.ubereats.com/ja/" rel="nofollow noopener">Uber Eats</a>のような出前の方が手軽ですが、手数料や初期費用がかかるため導入を躊躇するお店は多いと思います。<br/><br/>
                         このサイトでは、そのようなお悩みを抱えていると思われる東京のお店を私の方で勝手に紹介していきます。<br/>

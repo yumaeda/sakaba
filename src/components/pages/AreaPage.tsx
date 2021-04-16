@@ -85,7 +85,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                             <img src={`${imageDir}/back.png`} className="back-image" alt="Back" />
                         </picture>
                     </a>
-                    <h1>{areaName}</h1>
+                    <h1 className="header-label">{areaName}</h1>
                 </header>
                 <div className="contents">
                     <ul className="shop-list">
