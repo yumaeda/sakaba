@@ -99,7 +99,6 @@
 .dish-image-container {
     text-align: center;
     max-height: 320px;
-    padding: 10px 0;
 }
 
 .dish-image-wrapper {
@@ -108,7 +107,6 @@
     height: 150px;
     width: 200px;
     background-color: black;
-    margin: 0 2px;
 }
 
 .dish-image {
