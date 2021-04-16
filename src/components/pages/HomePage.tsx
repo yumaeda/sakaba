@@ -52,7 +52,7 @@ const HomePage: React.FC<{}> = () => {
                     </p>
                     <ul className="town-list">
                     { restaurantInfos ? restaurantInfos.map((info: RestaurantInfo) => (
-                        <li>
+                        <li className="town-item">
                             <span className="town-button">
                                 <Link className="list-item" to={`/${info.area}/`}>{`${AreaDictionary[info.area]} (${info.count})`}</Link>
                             </span>
