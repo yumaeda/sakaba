@@ -56,13 +56,9 @@ const HomePage: React.FC<{}> = () => {
                         <li>Loading...</li>
                     }
                     </ul>
-                    <p>
+                    <p className="main-paragraph">
                         また、個人的に美味しいと思った料理も紹介していきたいと思ってます。<br />
                         <Link className="list-item" to="/ranking">フードランキング</Link>
-                    </p>
-                    <p>
-                        <strong>[免責について]</strong><br /><br />
-                        本サイトを利用する事により被った、いかなる被害や損害についても当サイトの管理者は一切の責任を負いません。<br />
                     </p>
                 </div>
                 <Footer />
