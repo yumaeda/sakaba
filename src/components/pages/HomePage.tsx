@@ -60,7 +60,7 @@ const HomePage: React.FC<{}> = () => {
                         <li>Loading...</li>
                     }
                     </ul>
-                    <p className="main-paragraph">
+                    <p className="second-paragraph">
                         また、個人的に美味しいと思った料理も紹介していきたいと思ってます。<br />
                         <Link className="list-item" to="/ranking">フードランキング</Link>
                     </p>
