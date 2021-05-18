@@ -1,9 +1,9 @@
 /**
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
-import HomePage from 'components/pages/HomePage'
-import AreaPage from 'components/pages/AreaPage'
-import RankingPage from 'components/pages/RankingPage'
+import HomePage from './pages/HomePage'
+import AreaPage from './pages/AreaPage'
+import RankingPage from './pages/RankingPage'
 import * as React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
