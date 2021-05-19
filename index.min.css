@@ -60,6 +60,13 @@
     padding: 0;
 }
 
+.shop-video {
+    width: 869px;
+    height: 489px;
+    left: 0px;
+    top: 0px;
+}
+
 .shop-item {
     border: solid 1px lightblue;
     padding: 5px;
