@@ -10,19 +10,22 @@ interface Props {
 
 const RestaurantVideoList: React.FC<Props> = (props) => {
     const { videos } = props
-    console.dir(videos)
 
-    return (
+    return videos ? (
         <div className="video-container">
-            <iframe width="560"
-                    height="315"
-                    src="https://www.youtube.com/embed/9i8agfKPFHo"
-                    title="YouTube video player"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen></iframe>
-        </div> 
-    )
+        {
+            videos.map((video: Video) => (
+                    <iframe width="200"
+                            height="150"
+                            src={video.url}
+                            title={video.name}
+                            frameBorder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen></iframe>
+            ))
+        }
+        </div>
+    ) : <div></div>
 }
 
 export default RestaurantVideoList
