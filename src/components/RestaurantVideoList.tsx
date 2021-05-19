@@ -9,7 +9,8 @@ interface Props {
 }
 
 const RestaurantVideoList: React.FC<Props> = (props) => {
-    // const { videos } = props
+    const { videos } = props
+    console.dir(videos)
 
     return (
         <div className="video-container">
