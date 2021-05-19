@@ -3,8 +3,10 @@
  */
 import * as React from 'react'
 import Photo from '../../interfaces/Photo'
+import Video from '../../interfaces/Video'
 import Address from '../Address'
 import DishPhotoList from '../DishPhotoList'
+import RestaurantVideoList from '../RestaurantVideoList'
 import OpenHours from '../OpenHours'
 import AreaDictionary from '../../AreaDictionary'
 import Footer from '../Footer'
@@ -31,6 +33,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     const [error, setError] = React.useState<Error>()
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>()
     const [photos, setPhotos] = React.useState<Photo[]>()
+    const [videos, setVideos] = React.useState<Video[]>()
     const areaName = AreaDictionary[match.params.area]
 
     React.useEffect(() => {
@@ -61,6 +64,19 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                 .then(
                     (data) => {
                         setPhotos(JSON.parse(data.body))
+                    },
+                    (error: Error) => {
+                        setError(error)
+                    }
+                )
+
+                fetch('https://api.tokyo-takeout.com/videos', {
+                    headers: { 'X-Api-Key': text }
+                })
+                .then(res => res.json())
+                .then(
+                    (data) => {
+                        setVideos(JSON.parse(data.body))
                     },
                     (error: Error) => {
                         setError(error)
@@ -118,6 +134,9 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                 basePath={basePath}
                                 restaurantId={restaurantId}
                                 photos={ photos ? photos.filter((photo: Photo) => atob(photo.restaurant_id) == restaurantId) : null }
+                            />
+                            <RestaurantVideoList
+                                videos={ videos ? videos.filter((video: Video) => atob(video.restaurant_id) == restaurantId) : null }
                             />
                         </li>
                         )}) : <div>Loading...</div>}
