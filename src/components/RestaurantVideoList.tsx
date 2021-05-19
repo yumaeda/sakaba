@@ -14,10 +14,13 @@ const RestaurantVideoList: React.FC<Props> = (props) => {
 
     return (
         <div className="video-container">
-            <video controlsList="nodownload"
-                   className="shop-video"
-                   src="blob:https://www.youtube.com/6eab3134-16a9-4cf1-91f3-92a51cbdd189">
-            </video>
+            <iframe width="560"
+                    height="315"
+                    src="https://www.youtube.com/embed/9i8agfKPFHo"
+                    title="YouTube video player"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen></iframe>
         </div> 
     )
 }
