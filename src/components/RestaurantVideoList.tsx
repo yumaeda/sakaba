@@ -9,16 +9,10 @@ interface Props {
 }
 
 const RestaurantVideoList: React.FC<Props> = (props) => {
-    const { videos } = props
+    // const { videos } = props
 
-    return videos ? (
+    return (
         <div className="video-container">
-        {
-            videos?.map((video: Video) => <video src={video.url} controls={true} />)
-        }
-        </div>
-    ) : (
-        <div>
             <video controlsList="nodownload"
                    className="shop-video"
                    src="blob:https://www.youtube.com/6eab3134-16a9-4cf1-91f3-92a51cbdd189">
