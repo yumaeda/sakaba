@@ -107,7 +107,6 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                             <div className="shop-item-grid">
                                 <h4>
                                     <RestaurantPageLink id={restaurantId} area={areaName} url={restaurant.url} name={restaurant.name} /><br />
-                                    <a className="shop-name" href={restaurant.url} rel="nofollow noopener" target="_blank">{restaurant.name}</a><br />
                                     <div className="shop-genre">{restaurant.genre}</div>
                                 </h4>
                                 <OpenHours businessDayJson={restaurant.business_day_info} />
