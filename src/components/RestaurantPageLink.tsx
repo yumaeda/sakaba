@@ -12,10 +12,10 @@ interface Props {
 
 const RestaurantPageLink: React.FC<Props> = (props) => {
     const basePath = 'https://tokyo-takeout.com'
-    const { id, area, url, name } = props
+    const { id, area, name } = props
 
-    let pageUrl = ''
-    if (url == '') {
+    let pageUrl = props.url
+    if (pageUrl == '') {
         pageUrl = `${basePath}/${area}/${id}`
     }
 
