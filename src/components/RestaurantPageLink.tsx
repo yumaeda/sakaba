@@ -16,7 +16,7 @@ const RestaurantPageLink: React.FC<Props> = (props) => {
 
     let pageUrl = ''
     if (url == '') {
-        pageUrl = `${basePath}/${area}/${atob(id)}`
+        pageUrl = `${basePath}/${area}/${id}`
     }
 
     return <a className="shop-name" href={pageUrl} rel="nofollow noopener" target="_blank">{name}</a>
