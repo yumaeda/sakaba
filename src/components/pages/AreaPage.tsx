@@ -4,28 +4,13 @@
 import * as React from 'react'
 import Photo from '../../interfaces/Photo'
 import Video from '../../interfaces/Video'
+import Restaurant from '../../interfaces/Restaurant'
 import Address from '../Address'
 import DishPhotoList from '../DishPhotoList'
 import RestaurantVideoList from '../RestaurantVideoList'
 import OpenHours from '../OpenHours'
 import AreaDictionary from '../../AreaDictionary'
 import Footer from '../Footer'
-
-interface Restaurant {
-    id: string
-    area: string
-    url: string
-    image_name: string
-    name: string
-    genre: string
-    tel: string
-    business_day_info: string
-    address: string
-    latitude: string
-    longitude: string
-    comment: string
-    takeout_available: number
-}
 
 const AreaPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
