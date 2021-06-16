@@ -8,7 +8,7 @@ import Footer from '../Footer'
 const RestaurantPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
     const [error, setError] = React.useState<Error>()
-    const [restaurant, setRestaurant] = React.useState<Restaurant>()
+    const [restaurants, setRestaurants] = React.useState<Restaurant[]>()
 
     React.useEffect(() => {
         fetch('/api-key.txt')
@@ -20,8 +20,8 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                 .then(res => res.json())
                 .then(
                     (data) => {
-                        console.dir(match.params)
-                        setRestaurant(JSON.parse(data.body).filter((restaurant: Restaurant) => atob(restaurant.id) == match.params.restaurant))
+                        setRestaurants(JSON.parse(data.body).filter((restaurant: Restaurant) => atob(restaurant.id) == match.params.restaurant))
+                        console.dir(restaurants)
                     },
                     (error: Error) => {
                         setError(error)
@@ -46,7 +46,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                             <img src={`${imageDir}/back.png`} className="back-image" alt="Back" />
                         </picture>
                     </a>
-                    <h1 className="header-label">{restaurant ? restaurant.name : 'N/A'}</h1>
+                    <h1 className="header-label">{restaurants ? restaurants[0].name : 'N/A'}</h1>
                 </header>
                 <div className="contents">To be coming...</div> 
                 <Footer />
