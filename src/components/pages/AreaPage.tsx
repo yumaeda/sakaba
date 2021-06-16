@@ -6,6 +6,7 @@ import Photo from '../../interfaces/Photo'
 import Video from '../../interfaces/Video'
 import Restaurant from '../../interfaces/Restaurant'
 import Address from '../Address'
+import RestaurantPageLink from '../RestaurantPageLink'
 import DishPhotoList from '../DishPhotoList'
 import RestaurantVideoList from '../RestaurantVideoList'
 import OpenHours from '../OpenHours'
@@ -105,6 +106,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                             </div>
                             <div className="shop-item-grid">
                                 <h4>
+                                    <RestaurantPageLink id={restaurantId} area={areaName} url={restaurant.url} name={restaurant.name} /><br />
                                     <a className="shop-name" href={restaurant.url} rel="nofollow noopener" target="_blank">{restaurant.name}</a><br />
                                     <div className="shop-genre">{restaurant.genre}</div>
                                 </h4>
