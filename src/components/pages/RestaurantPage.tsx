@@ -20,6 +20,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                 .then(res => res.json())
                 .then(
                     (data) => {
+                        console.dir(match.params)
                         setRestaurant(JSON.parse(data.body).filter((restaurant: Restaurant) => atob(restaurant.id) == match.params.restaurant))
                     },
                     (error: Error) => {
@@ -45,7 +46,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                             <img src={`${imageDir}/back.png`} className="back-image" alt="Back" />
                         </picture>
                     </a>
-                    <h1 className="header-label">{restaurant?.name}</h1>
+                    <h1 className="header-label">{restaurant ? restaurant.name : 'N/A'}</h1>
                 </header>
                 <div className="contents">To be coming...</div> 
                 <Footer />
