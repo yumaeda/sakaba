@@ -20,7 +20,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                 .then(res => res.json())
                 .then(
                     (data) => {
-                        setRestaurant(JSON.parse(data.body).filter((restaurant: Restaurant) => restaurant.id == match.params.restaurant))
+                        setRestaurant(JSON.parse(data.body).filter((restaurant: Restaurant) => atob(restaurant.id) == match.params.restaurant))
                     },
                     (error: Error) => {
                         setError(error)
