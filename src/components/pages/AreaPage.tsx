@@ -19,7 +19,6 @@ interface Restaurant {
     name: string
     genre: string
     tel: string
-    open_hours: string
     business_day_info: string
     address: string
     latitude: string
@@ -124,7 +123,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                     <a className="shop-name" href={restaurant.url} rel="nofollow noopener" target="_blank">{restaurant.name}</a><br />
                                     <div className="shop-genre">{restaurant.genre}</div>
                                 </h4>
-                                <OpenHours openHours={restaurant.open_hours} businessDayJson={restaurant.business_day_info} />
+                                <OpenHours businessDayJson={restaurant.business_day_info} />
                                 <Address text={restaurant.address} latitude={restaurant.latitude} longitude={restaurant.longitude} />
                                 <p className="shop-phone">
                                     <a className="phone-link" href={`tel:${restaurant.tel}`}>{restaurant.tel}</a>
