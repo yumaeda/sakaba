@@ -106,7 +106,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                             </div>
                             <div className="shop-item-grid">
                                 <h4>
-                                    <RestaurantPageLink id={restaurantId} area={areaName} url={restaurant.url} name={restaurant.name} /><br />
+                                    <RestaurantPageLink id={restaurantId} area={restaurant.area} url={restaurant.url} name={restaurant.name} /><br />
                                     <div className="shop-genre">{restaurant.genre}</div>
                                 </h4>
                                 <OpenHours businessDayJson={restaurant.business_day_info} />
