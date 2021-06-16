@@ -14,8 +14,8 @@ const Root: React.FC<{}> = () => {
             <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route path="/ranking" component={RankingPage} />
-                <Route path="/:area?" component={AreaPage} />
-                <Route path="/:area?/:restaurant?" component={RestaurantPage} />
+                <Route path="/:area/:restaurant" component={RestaurantPage} />
+                <Route path="/:area" component={AreaPage} />
             </Switch>
         </Router>
     )
