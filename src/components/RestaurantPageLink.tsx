@@ -12,14 +12,11 @@ interface Props {
 
 const RestaurantPageLink: React.FC<Props> = (props) => {
     const basePath = 'https://tokyo-takeout.com'
-    const { id, area, name } = props
+    const { id, area, name, url } = props
 
-    let pageUrl = props.url
-    if (pageUrl == '') {
-        pageUrl = `${basePath}/${area}/${id}`
-    }
-
-    return <a className="shop-name" href={pageUrl} rel="nofollow noopener" target="_blank">{name}</a>
+    return (url == '') ? 
+        <a className="shop-name" href={`${basePath}/${area}/${id}`}>{name}</a> :
+        <a className="shop-name" href={url} rel="nofollow noopener" target="_blank">{name}</a>
 }
 
 export default RestaurantPageLink
