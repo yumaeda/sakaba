@@ -14,6 +14,7 @@ interface RestaurantInfo {
 const HomePage: React.FC<{}> = () => {
     const [restaurantInfos, setRestaurantInfos] = React.useState<RestaurantInfo[]>()
     const [error, setError] = React.useState<Error>()
+    const coverImageUrl = 'https://tokyo-takeout.com/images/cover.png'
 
     React.useEffect(() => {
         fetch('/api-key.txt')
@@ -43,7 +44,7 @@ const HomePage: React.FC<{}> = () => {
                     <h1 className="header-label">東京テイクアウト</h1>
                 </header>
                 <div className="contents">
-                    <img className="main-image" src="https://cdn.tokyo-hideaway.com/images/cover.jpg" alt="東京テイクアウト・カバー" />
+                    <img className="main-image" src={coverImageUrl} alt="東京テイクアウト・カバー" />
                     <p className="main-paragraph">
                         依然として、東京では新型コロナウイルスの影響で減った売上を少しでも補填しようとテイクアウトを続けるお店も多いようです。<br/>
                         消費者としては、<a href="https://demae-can.com/" rel="nofollow noopener">出前館</a>や<a href="https://about.ubereats.com/ja/" rel="nofollow noopener">Uber Eats</a>のような出前の方が手軽ですが、手数料や初期費用がかかるため導入を躊躇するお店は多いと思います。<br/><br/>
@@ -61,7 +62,7 @@ const HomePage: React.FC<{}> = () => {
                     }
                     </ul>
                     <p className="second-paragraph">
-                        また、個人的に美味しいと思った料理も紹介していきたいと思ってます。<br />
+                        また、個人的に美味しいと思った料理も紹介していきたいと思ってます。<br /><br />
                         <Link className="list-item" to="/ranking">フードランキング</Link>
                     </p>
                 </div>
