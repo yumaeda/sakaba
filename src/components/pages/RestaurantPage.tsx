@@ -78,12 +78,12 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                         cocktails.map((cocktail) => {
                             return (
                                 <li className="cocktail-item">
-                                    <div className="cocktail-name">
-                                        <span>{cocktail.name}</span>
+                                    <div className="cocktail-name-cell">
+                                        <span className="cocktail-name">{cocktail.name}</span>
                                         <br />
-                                        <span>{cocktail.nameJa}</span>
+                                        <span className="cocktail-name-ja">{cocktail.nameJa}</span>
                                     </div>
-                                    <div className="cocktail-price">{`${cocktail.price} yen`}</div>
+                                    <div className="cocktail-price-cell">{`${cocktail.price} yen`}</div>
                                 </li>
                             )
                         })

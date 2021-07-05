@@ -162,16 +162,26 @@
 
 .cocktail-item {
     list-style: none;
+    padding-bottom: 15px;
+}
+
+.cocktail-name-cell {
+    display: table-cell;
+    text-align: left;
+    width: 80vw;
+}
+
+.cocktail-price-cell {
+    display: table-cell;
+    text-align: right;
+    min-width: 100px;
 }
 
 .cocktail-name {
-    display: table-cell;
-    text-align: left;
-    width: 80%;
+    font-size: 2.0vw;
 }
 
-.cocktail-price {
-    display: table-cell;
-    text-align: right;
-    width: 20%;
+.cocktail-name-ja {
+    font-family: 'Hiragino Mincho ProN';
+    font-size: 1.5vw;
 }
