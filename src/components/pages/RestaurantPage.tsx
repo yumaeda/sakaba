@@ -72,8 +72,8 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                     <h1 className="header-label">{restaurants ? restaurants[0].name : 'N/A'}</h1>
                 </header>
                 <div className="contents">
-                    <h4>COCKTAIL</h4>
-                    <ul>
+                    <h4 className="cocktail-page-title">COCKTAIL</h4>
+                    <ul className="cocktail-list">
                     {
                         cocktails.map((cocktail) => {
                             return (
