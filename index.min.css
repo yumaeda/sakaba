@@ -160,3 +160,18 @@
     padding: 10px;
 }
 
+.cocktail-item {
+    list-style: none;
+}
+
+.cocktail-name {
+    display: table-cell;
+    text-align: left;
+    width: 80%;
+}
+
+.cocktail-price {
+    display: table-cell;
+    text-align: right;
+    width: 20%;
+}
