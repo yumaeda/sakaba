@@ -103,7 +103,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                         <br />
                                         <span className="cocktail-name-ja">{cocktail.nameJa}</span>
                                     </div>
-                                    <div className="cocktail-price-cell">{`${cocktail.price} yen`}</div>
+                                    <div className="cocktail-price-cell">{`${cocktail.price.toLocaleString()} yen`}</div>
                                 </li>
                             )
                         })
