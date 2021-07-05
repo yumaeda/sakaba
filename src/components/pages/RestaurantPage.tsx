@@ -9,7 +9,10 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
     /*
     const cocktailTypes = [
         'WINE BASE',
-        'LIQUEUR BASE'
+        'LIQUEUR BASE',
+        'TEQUILA BASE',
+        'BRANDY BASE',
+        'WHISKY BASE'
     ]
     */
     const cocktails = [
@@ -27,7 +30,24 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
         { name: 'Cacao Fizz', nameJa: 'カカオ・フィズ', price: 850, type: 1 },
         { name: 'Apricot Fizz', nameJa: 'アプリコット・フィズ', price: 850, type: 1 },
         { name: 'Violoet Fizz', nameJa: 'バイオレット・フィズ', price: 850, type: 1 },
-        { name: 'Grasshopper', nameJa: 'グラス・ホッパー', price: 850, type: 1 }
+        { name: 'Grasshopper', nameJa: 'グラス・ホッパー', price: 900, type: 1 },
+        { name: 'Brave Bull', nameJa: 'ブレイブ・ブル', price: 800, type: 2 },
+        { name: 'Paloma', nameJa: 'パロマ', price: 800, type: 2 },
+        { name: 'El Diablo', nameJa: 'エル・ディアブロ', price: 850, type: 2 },
+        { name: 'Mockin\' Bird', nameJa: 'モッキン・バード', price: 900, type: 2 },
+        { name: 'Margarita', nameJa: 'マルガリータ', price: 900, type: 2 },
+        { name: 'French Connection', nameJa: 'フレンチ・コネクション', price: 800, type: 3 },
+        { name: 'Sidecar', nameJa: 'サイドカー', price: 900, type: 3 },
+        { name: 'Alexander', nameJa: 'アレキサンダー', price: 900, type: 3 },
+        { name: 'Cherry Blossom', nameJa: 'チェリー・ブロッサム', price: 900, type: 3 },
+        { name: 'Jackrose', nameJa: 'ジャックローズ', price: 900, type: 3 },
+        { name: 'Godfather', nameJa: 'ゴッドファーザー', price: 800, type: 4 },
+        { name: 'Rusty Nail', nameJa: 'ラスティ・ネイル', price: 800, type: 4 },
+        { name: 'John Collins', nameJa: 'ジョン・コリンズ', price: 850, type: 4 },
+        { name: 'New York', nameJa: 'ニューヨーク', price: 900, type: 4 },
+        { name: 'Hunter', nameJa: 'ハンター', price: 900, type: 4 },
+        { name: 'Manhattan', nameJa: 'マンハッタン', price: 900, type: 4 },
+        { name: 'Rob Roy', nameJa: 'ロブ・ロイ', price: 900, type: 4 }
     ]
 
     const { match } = props
