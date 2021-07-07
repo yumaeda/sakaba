@@ -18,7 +18,8 @@ const AreaDictionary : { [id: string]: string } = {
     'shibuya': '渋谷',
     'shimurasakaue': '志村坂上',
     'shinjukusanchome': '新宿三丁目',
-    'sugamo': '巣鴨'
+    'sugamo': '巣鴨',
+    'tokiwadai': '常盤台'
 }
 
 export default AreaDictionary
