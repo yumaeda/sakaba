@@ -120,7 +120,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                         cocktailTypes.map((cocktailType) => {
                             return (
                                 <div>
-                                    <h4>{cocktailType.label}</h4>
+                                    <h4 className="cocktail-type">{cocktailType.label}</h4>
                                     <ul className="cocktail-list">
                                     {
                                         cocktails.filter((cocktail) => cocktail.type == cocktailType.type).map((cocktail) => {
