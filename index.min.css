@@ -12,6 +12,12 @@
     font-size: 2.5vw;
 }
 
+.menu-header {
+    height: 20vh;
+    text-align: center;
+    background-position: center;
+}
+
 .main-image {
     width: 100%;
     position: absolute;

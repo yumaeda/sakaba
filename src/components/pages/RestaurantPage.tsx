@@ -3,7 +3,6 @@
  */
 import * as React from 'react'
 import Restaurant from '../../interfaces/Restaurant'
-import Footer from '../Footer'
 
 const RestaurantPage: React.FC<{ match: any }> = (props) => {
     const cocktailTypes = [
@@ -104,16 +103,19 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
         const imageDir = `${basePath}/images`
         const area = match.params.area
 
-        return (
+        const restaurant = restaurants ? restaurants[0] : null
+        return (restaurant == null) ? <div>{}</div>
+            : (
             <>
-                <header className="header">
+                <header className="menu-header"
+                        style={{ backgroundImage: `url(${imageDir}/menu-headers/${restaurant.id}.png)`}}>
                     <a href={`${basePath}/${area}`}>
                         <picture>
                             <source type="image/webp" media="(min-width: 150px)" srcSet={`${imageDir}/back.webp`} />
                             <img src={`${imageDir}/back.png`} className="back-image" alt="Back" />
                         </picture>
                     </a>
-                    <h1 className="header-label">{restaurants ? restaurants[0].name : 'N/A'}</h1>
+                    <h1 className="header-label">{restaurant.name}</h1>
                 </header>
                 <div className="contents">
                     {
@@ -142,7 +144,6 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                         })
                     }
                 </div>
-                <Footer />
             </>
         )
     }
