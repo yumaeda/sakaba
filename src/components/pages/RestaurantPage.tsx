@@ -108,7 +108,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
             : (
             <>
                 <header className="menu-header"
-                        style={{ backgroundImage: `url(${imageDir}/menu-headers/${restaurant.id}.png)`}}>
+                        style={{ backgroundImage: `url(${imageDir}/menu-headers/${atob(restaurant.id)}.png)`}}>
                     <a href={`${basePath}/${area}`}>
                         <picture>
                             <source type="image/webp" media="(min-width: 150px)" srcSet={`${imageDir}/back.webp`} />
