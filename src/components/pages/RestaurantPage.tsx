@@ -2,11 +2,13 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
-import Menu from '../../interfaces/Menu'
+// import Menu from '../../interfaces/Menu'
 import Restaurant from '../../interfaces/Restaurant'
+import MenuDictionary from '../../MenuDictionary'
 
 const RestaurantPage: React.FC<{ match: any }> = (props) => {
-    const cocktailTypes = [
+    /*
+    const alcoholTypes = [
         { label: 'GIN BASE', type: 0 },
         { label: 'VODKA BASE', type: 1 },
         { label: 'RUM BASE', type: 2 },
@@ -15,13 +17,25 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
         { label: 'WHISKY BASE', type: 5 },
         { label: 'WINE BASE', type: 6 },
         { label: 'LIQUEUR BASE', type: 7 },
-        { label: 'Speyside-ｽﾍﾟｲｻｲﾄﾞ', type: 8  }
+        { label: 'Speyside-ｽﾍﾟｲｻｲﾄﾞ', type: 8  },
+        { label: 'Highland-ﾊｲﾗﾝﾄﾞ', type: 9  },
+        { label: 'Lowland-ﾛ−ﾗﾝﾄﾞ', type: 10  },
+        { label: 'Islands-ｱｲﾗﾝｽﾞ', type: 11  },
+        { label: 'Islay-ｱｲﾗ', type: 12  },
+        { label: 'Campbeltown-ｷｬﾝﾍﾞﾙﾀｳﾝ', type: 13  },
+        { label: 'Blended-ﾌﾞﾚﾝﾃﾞｯﾄﾞ', type: 14  },
+        { label: 'JAPANESE', type: 15  },
+        { label: 'BOURBON', type: 16  },
+        { label: 'TENNESSEE, CORN, RYE', type: 17  },
+        { label: 'CANADIAN, IRISH', type: 18  },
+        { label: 'OLD BOTTLE', type: 19  }
     ]
+    */
 
     const { match } = props
     const [error, setError] = React.useState<Error>()
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>()
-    const [menus, setMenus] = React.useState<Menu[]>()
+    // const [menus, setMenus] = React.useState<Menu[]>()
 
     React.useEffect(() => {
         fetch('/api-key.txt')
@@ -40,6 +54,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                     }
                 )
 
+                /*
                 fetch('https://api.tokyo-takeout.com/menus', {
                     headers: { 'X-Api-Key': text }
                 })
@@ -52,6 +67,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                         setError(error)
                     }
                 )
+                */
             })
     }, [])
 
@@ -78,14 +94,25 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                 </header>
                 <div className="contents">
                     {
-                        cocktailTypes.map((cocktailType) => {
+                        Object.keys(MenuDictionary).map((category) => {
+                            console.log(category)
                             return (
                                 <div>
-                                    <h4 className="cocktail-type">{cocktailType.label}</h4>
+                                    <h4 className="cocktail-type">{category}</h4>
+                                    <ul className="cocktail-list">
+                                    </ul>
+                                </div>
+                            )
+                        })
+/*
+                        alcoholTypes.map((alcoholType) => {
+                            return (
+                                <div>
+                                    <h4 className="cocktail-type">{alcoholType.label}</h4>
                                     <ul className="cocktail-list">
                                     {
                                         (menus != null) ?
-                                            menus.filter((menu) => menu.category == cocktailType.type).map((menu) => {
+                                            menus.filter((menu) => menu.category == alcoholType.type).map((menu) => {
                                             return (
                                                 <li className="cocktail-item">
                                                     <div className="cocktail-name-cell">
@@ -103,6 +130,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                 </div>
                             )
                         })
+*/
                     }
                 </div>
             </>
