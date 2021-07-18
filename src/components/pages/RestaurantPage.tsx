@@ -73,6 +73,8 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                 .filter((subKey) => subKey != 'text')
                                 .map((key: string) => {
                                     let subCategory = parseInt(key)
+                                    console.log(category)
+                                    console.log(subCategory)
                                     return (
                                         <div>
                                             <h2 className="menu-category">{MenuDictionary[category].text}</h2>
