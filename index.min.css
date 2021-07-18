@@ -195,6 +195,11 @@
 
 .menu-category {
     text-align: center;
+    font-size: 3vw;
+}
+
+.menu-sub-category {
+    text-align: center;
     font-size: 2.5vw;
 }
 

@@ -74,6 +74,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                 return (
                                     <div>
                                         <h2 className="menu-category">{MenuDictionary[category].text}</h2>
+                                        <h4 className="menu-sub-category">{MenuDictionary[category][subCategory].text}</h4>
                                         <ul className="cocktail-list">
                                         {
                                             (menus != null) ? menus
