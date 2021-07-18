@@ -196,17 +196,19 @@
 .menu-category {
     text-align: center;
     font-size: 4vw;
+    margin-bottom: 10px;
 }
 
 .menu-sub-category {
     text-align: center;
-    font-size: 3vw;
+    font-size: 2.5vw;
     margin-top: 0;
 }
 
 .menu-region {
     text-align: center;
-    font-size: 2.5vw;
+    font-size: 2.0vw;
+    margin-top: 0;
 }
 
 .menu-name {
