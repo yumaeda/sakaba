@@ -69,40 +69,37 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                     {
                         Object.keys(MenuDictionary).map((key: string) => {
                             let category = parseInt(key) 
-                            Object.keys(MenuDictionary[category])
-                                .filter((subKey) => subKey != 'text')
-                                .map((key: string) => {
-                                    let subCategory = parseInt(key)
-                                    return (
-                                        <div>
-                                            <h2 className="menu-category">{MenuDictionary[category].text}</h2>
-                                            <h4 className="menu-category">{MenuDictionary[category][subCategory].text}</h4>
-                                            <ul className="cocktail-list">
-                                            {
-                                                (menus != null) ? menus
-                                                    .filter((menu) => {
-                                                        console.log(category)
-                                                        console.log(subCategory)
-                                                        return menu.category == category
-                                                    })
-                                                    .map((menu) => {
-                                                        return (
-                                                            <li className="cocktail-item">
-                                                                <div className="cocktail-name-cell">
-                                                                    <span className="cocktail-name">{menu.name}</span>
-                                                                    <br />
-                                                                    <span className="cocktail-name-ja">{menu.name_jpn}</span>
-                                                                </div>
-                                                                <div className="cocktail-price-cell">{`${menu.price.toLocaleString()} yen`}</div>
-                                                            </li>
-                                                        )
-                                                    }) :
-                                                    ''
-                                            }
-                                            </ul>
-                                        </div>
-                                    )
-
+                            Object.keys(MenuDictionary[category]).map((subKey: string) => {
+                                let subCategory = parseInt(subKey)
+                                console.log(category)
+                                console.log(subCategory)
+                                return (
+                                    <div>
+                                        <h2 className="menu-category">{MenuDictionary[category].text}</h2>
+                                        <h4 className="menu-category">{MenuDictionary[category][subCategory].text}</h4>
+                                        <ul className="cocktail-list">
+                                        {
+                                            (menus != null) ? menus
+                                                .filter((menu) => {
+                                                    return menu.category == category
+                                                })
+                                                .map((menu) => {
+                                                    return (
+                                                        <li className="cocktail-item">
+                                                            <div className="cocktail-name-cell">
+                                                                <span className="cocktail-name">{menu.name}</span>
+                                                                <br />
+                                                                <span className="cocktail-name-ja">{menu.name_jpn}</span>
+                                                            </div>
+                                                            <div className="cocktail-price-cell">{`${menu.price.toLocaleString()} yen`}</div>
+                                                        </li>
+                                                    )
+                                                }) :
+                                                ''
+                                        }
+                                        </ul>
+                                    </div>
+                                )
                             })
                         })
                     }
