@@ -82,7 +82,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                             {
                                                 (menus != null) ? menus
                                                     .filter((menu) => {
-                                                        return menu.category == category && menu.sub_category == subCategory
+                                                        return menu.category == category && menu.sub_category == subCategory && menu.region == region
                                                     })
                                                     .map((menu) => {
                                                         return (
