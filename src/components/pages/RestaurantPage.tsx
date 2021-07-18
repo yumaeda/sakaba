@@ -69,19 +69,20 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                     {
                         Object.keys(MenuDictionary).map((key: string) => {
                             let category = parseInt(key) 
-                            Object.keys(MenuDictionary[category]).filter((subKey: string) => subKey != 'text').map((subKey: string) => {
+                            // Object.keys(MenuDictionary[category]).filter((subKey: string) => subKey != 'text').map((subKey: string) => {
+                                /*
                                 let subCategory = parseInt(subKey)
                                 console.log(category)
                                 console.log(subCategory)
+                                */
                                 return (
                                     <div>
                                         <h2 className="menu-category">{MenuDictionary[category].text}</h2>
-                                        <h4 className="menu-category">{MenuDictionary[category][subCategory].text}</h4>
                                         <ul className="cocktail-list">
                                         {
                                             (menus != null) ? menus
                                                 .filter((menu) => {
-                                                    return menu.category == category && menu.sub_category == subCategory
+                                                    return menu.category == category
                                                 })
                                                 .map((menu) => {
                                                     return (
@@ -100,7 +101,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                         </ul>
                                     </div>
                                 )
-                            })
+                            // })
                         })
                     }
                 </div>
