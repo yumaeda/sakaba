@@ -75,7 +75,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                     <div>
                                         <h2 className="menu-category">{MenuDictionary[category].text}</h2>
                                         <h4 className="menu-sub-category">{MenuDictionary[category][subCategory].text}</h4>
-                                        <ul className="cocktail-list">
+                                        <ul className="menu-list">
                                         {
                                             (menus != null) ? menus
                                                 .filter((menu) => {
@@ -83,13 +83,13 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                                 })
                                                 .map((menu) => {
                                                     return (
-                                                        <li className="cocktail-item">
-                                                            <div className="cocktail-name-cell">
-                                                                <span className="cocktail-name">{menu.name}</span>
+                                                        <li className="menu-item">
+                                                            <div className="menu-name-cell">
+                                                                <span className="menu-name">{menu.name}</span>
                                                                 <br />
-                                                                <span className="cocktail-name-ja">{menu.name_jpn}</span>
+                                                                <span className="menu-name-ja">{menu.name_jpn}</span>
                                                             </div>
-                                                            <div className="cocktail-price-cell">{`${menu.price.toLocaleString()} yen`}</div>
+                                                            <div className="menu-price-cell">{`${menu.price.toLocaleString()} yen`}</div>
                                                         </li>
                                                     )
                                                 }) :

@@ -166,27 +166,27 @@
     padding: 10px;
 }
 
-.cocktail-page-title {
+.menu-page-title {
     text-align: center;
     font-size: 3.0vw;
 }
 
-.cocktail-list {
-    padding: 0 60px;
+.menu-list {
+    padding: 0 20vw;
 }
 
-.cocktail-item {
+.menu-item {
     list-style: none;
     padding-bottom: 15px;
 }
 
-.cocktail-name-cell {
+.menu-name-cell {
     display: table-cell;
     text-align: left;
     width: 80vw;
 }
 
-.cocktail-price-cell {
+.menu-price-cell {
     display: table-cell;
     text-align: right;
     min-width: 100px;
@@ -203,11 +203,11 @@
     font-size: 2.5vw;
 }
 
-.cocktail-name {
+.menu-name {
     font-size: 2.0vw;
 }
 
-.cocktail-name-ja {
+.menu-name-ja {
     font-family: 'Hiragino Mincho ProN';
     font-size: 1.5vw;
 }
