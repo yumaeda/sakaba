@@ -6,4 +6,5 @@ export default interface Menu {
     sub_category: number
     region: number
     price: number
+    is_min_price: boolean
 }

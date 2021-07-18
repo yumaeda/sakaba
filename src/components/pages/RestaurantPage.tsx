@@ -5,6 +5,7 @@ import * as React from 'react'
 import Menu from '../../interfaces/Menu'
 import Restaurant from '../../interfaces/Restaurant'
 import MenuDictionary from '../../MenuDictionary'
+import MenuPrice from '../MenuPrice'
 
 const RestaurantPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
@@ -92,7 +93,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                                                     <br />
                                                                     <span className="menu-name-ja">{menu.name_jpn}</span>
                                                                 </div>
-                                                                <div className="menu-price-cell">{`${menu.price.toLocaleString()} yen`}</div>
+                                                                <MenuPrice price={menu.price} isMinPrice={menu.is_min_price} />
                                                             </li>
                                                         )
                                                     }) :
