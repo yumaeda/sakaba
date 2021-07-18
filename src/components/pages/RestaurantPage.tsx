@@ -73,8 +73,6 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                 .filter((subKey) => subKey != 'text')
                                 .map((key: string) => {
                                     let subCategory = parseInt(key)
-                                    console.log(category)
-                                    console.log(subCategory)
                                     return (
                                         <div>
                                             <h2 className="menu-category">{MenuDictionary[category].text}</h2>
@@ -83,7 +81,9 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                             {
                                                 (menus != null) ? menus
                                                     .filter((menu) => {
-                                                        return menu.category == category && menu.sub_category == subCategory
+                                                        console.log(category)
+                                                        console.log(subCategory)
+                                                        return menu.category == category
                                                     })
                                                     .map((menu) => {
                                                         return (
