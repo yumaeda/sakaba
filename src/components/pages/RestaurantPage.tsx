@@ -71,33 +71,37 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                             let category = parseInt(key) 
                             return Object.keys(MenuDictionary[category]).filter((subKey: string) => subKey != 'text').map((subKey: string) => {
                                 let subCategory = parseInt(subKey)
-                                return (
-                                    <div>
-                                        <h2 className="menu-category">{MenuDictionary[category].text}</h2>
-                                        <h4 className="menu-sub-category">{MenuDictionary[category][subCategory].text}</h4>
-                                        <ul className="menu-list">
-                                        {
-                                            (menus != null) ? menus
-                                                .filter((menu) => {
-                                                    return menu.category == category && menu.sub_category == subCategory
-                                                })
-                                                .map((menu) => {
-                                                    return (
-                                                        <li className="menu-item">
-                                                            <div className="menu-name-cell">
-                                                                <span className="menu-name">{menu.name}</span>
-                                                                <br />
-                                                                <span className="menu-name-ja">{menu.name_jpn}</span>
-                                                            </div>
-                                                            <div className="menu-price-cell">{`${menu.price.toLocaleString()} yen`}</div>
-                                                        </li>
-                                                    )
-                                                }) :
-                                                ''
-                                        }
-                                        </ul>
-                                    </div>
-                                )
+                                return Object.keys(MenuDictionary[category][subCategory]).filter((regionKey: string) => regionKey != 'text').map((regionKey: string) => {
+                                    let region = parseInt(regionKey)
+                                    return (
+                                        <div>
+                                            <h2 className="menu-category">{MenuDictionary[category].text}</h2>
+                                            <h4 className="menu-sub-category">{MenuDictionary[category][subCategory].text}</h4>
+                                            <h6 className="menu-region">{MenuDictionary[category][subCategory][region]}</h6>
+                                            <ul className="menu-list">
+                                            {
+                                                (menus != null) ? menus
+                                                    .filter((menu) => {
+                                                        return menu.category == category && menu.sub_category == subCategory
+                                                    })
+                                                    .map((menu) => {
+                                                        return (
+                                                            <li className="menu-item">
+                                                                <div className="menu-name-cell">
+                                                                    <span className="menu-name">{menu.name}</span>
+                                                                    <br />
+                                                                    <span className="menu-name-ja">{menu.name_jpn}</span>
+                                                                </div>
+                                                                <div className="menu-price-cell">{`${menu.price.toLocaleString()} yen`}</div>
+                                                            </li>
+                                                        )
+                                                    }) :
+                                                    ''
+                                            }
+                                            </ul>
+                                        </div>
+                                    )
+                                })
                             })
                         })
                     }
