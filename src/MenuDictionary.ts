@@ -1,7 +1,6 @@
 const MenuDictionary : { [id: number]: { text: string, [id: number]: { text: string, [id: number]: string } } } = {
     1: {
         text: 'COCKTAIL',
-        0: { text: '', 0: '' },
         1: { text: 'GIN BASE', 0: '' },
         2: { text: 'VODKA BASE', 0: '' },
         3: { text: 'RUM BASE', 0: '' },
@@ -15,7 +14,6 @@ const MenuDictionary : { [id: number]: { text: string, [id: number]: { text: str
         text: 'WHISKY',
         1: {
             text: 'SCOTCH',
-            0: '',
             1: 'Speyside-ｽﾍﾟｲｻｲﾄﾞ',
             2: 'Highland-ﾊｲﾗﾝﾄﾞ',
             3: 'Lowland-ﾛ−ﾗﾝﾄﾞ',
@@ -31,7 +29,6 @@ const MenuDictionary : { [id: number]: { text: string, [id: number]: { text: str
         6: { text: 'OLD BOTTLE', 0: '' },
         7: {
             text: 'SCOTCH BOTTLER\'S BRAND',
-            0: '',
             1: 'Whisk-e Oceans Series-ｵｰｼｬﾝｽﾞｼﾘｰｽﾞ',
             2: 'Whisky Mew-ｳｲｽｷｰﾐｭｳ',
             3: 'Maltoyama-ﾓﾙﾄﾔﾏ',
@@ -53,7 +50,6 @@ const MenuDictionary : { [id: number]: { text: string, [id: number]: { text: str
     },
     6: {
         text: 'SPIRITS',
-        0: { text: '', 0: '' },
         1: { text: 'GIN', 0: '' },
         2: { text: 'VODKA', 0: '' },
         3: { text: 'RUM', 0: '' },

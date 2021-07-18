@@ -3,5 +3,7 @@ export default interface Menu {
     name: string
     name_jpn: string
     category: number
+    sub_category: number
+    region: number
     price: number
 }
