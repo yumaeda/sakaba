@@ -1,4 +1,4 @@
-# sakaba
+# sakaba-front
 Repository for Sakaba Frontend
 
 ## Deploy
