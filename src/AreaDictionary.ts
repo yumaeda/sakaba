@@ -1,4 +1,5 @@
 const AreaDictionary : { [id: string]: string } = {
+    // Tokyo
     'akabane': '赤羽',
     'ikebukuro': '池袋',
     'itabashi': '板橋',
@@ -21,7 +22,10 @@ const AreaDictionary : { [id: string]: string } = {
     'shimurasakaue': '志村坂上',
     'shinjukusanchome': '新宿三丁目',
     'sugamo': '巣鴨',
-    'tokiwadai': '常盤台'
+    'tokiwadai': '常盤台',
+
+    // Niigata
+    'muikamachi': '六日町'
 }
 
 export default AreaDictionary
