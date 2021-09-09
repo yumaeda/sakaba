@@ -1,5 +1,5 @@
-# tokyo-takeout
-Repository for Tokyo Takeout Frontend
+# sakaba
+Repository for Sakaba Frontend
 
 ## Deploy
 - Automatically deployed by GitHub action upon commit to main branch.
