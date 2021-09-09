@@ -35,5 +35,12 @@ jobs:
           aws s3 cp "robots.txt" "s3://tokyo-takeout.com/robots.txt"
           aws s3 cp "sitemap.xml" "s3://tokyo-takeout.com/sitemap.xml"
           aws s3 cp "favicon.ico" "s3://tokyo-takeout.com/favicon.ico"
+
+          aws s3 cp "dist/bundle.js" "s3://sakaba.link/dist/bundle.js"
+          aws s3 cp "index.html" "s3://sakaba.link/index.html"
+          aws s3 cp "index.min.css" "s3://sakaba.link/index.min.css"
+          aws s3 cp "robots.txt" "s3://sakaba.link/robots.txt"
+          aws s3 cp "sitemap.xml" "s3://sakaba.link/sitemap.xml"
+          aws s3 cp "favicon.ico" "s3://sakaba.link/favicon.ico"
     - name: CloudFront Invalidation
       run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CF_DISTRIBUTION_ID }} --paths "/*"
