@@ -73,9 +73,10 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else {
-        const basePath = 'https://tokyo-takeout.com'
+        const basePath = 'https://sakaba.link'
+        const imageBasePath = 'https://tokyo-takeout.com'
         const defaultImage = 'image-not-available'
-        const imageDir = `${basePath}/images`
+        const imageDir = `${imageBasePath}/images`
 
         return (
             <>
@@ -92,7 +93,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                     <ul className="shop-list">
                     {restaurants ? restaurants.map((restaurant: Restaurant) => {
                         const restaurantId = atob(restaurant.id)
-                        const restaurantImageDir = `${basePath}/images/restaurants/${restaurantId}`
+                        const restaurantImageDir = `${imageDir}/restaurants/${restaurantId}`
                         return (
                         <li className="shop-item" key={restaurantId} id={restaurantId}>
                             <div className="shop-item-photo">
@@ -116,7 +117,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                 </p>
                             </div>
                             <DishPhotoList
-                                basePath={basePath}
+                                basePath={imageBasePath}
                                 restaurantId={restaurantId}
                                 photos={ photos ? photos.filter((photo: Photo) => atob(photo.restaurant_id) == restaurantId) : null }
                             />

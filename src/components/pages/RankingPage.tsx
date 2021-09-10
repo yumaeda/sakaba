@@ -39,7 +39,8 @@ const RankingPage: React.FC = () => {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else {
-        const basePath = 'https://tokyo-takeout.com'
+        const basePath = 'https://sakaba.link'
+        const baseImagePath = 'https://tokyo-takeout.com'
 
         return (
             <>
@@ -51,7 +52,7 @@ const RankingPage: React.FC = () => {
                     <ul className="ranking-list">
                     {rankings ? rankings.map((ranking: Ranking) => {
                         const restaurantId = atob(ranking.restaurant_id)
-                        const restaurantImageDir = `${basePath}/images/restaurants/${restaurantId}`
+                        const restaurantImageDir = `${baseImagePath}/images/restaurants/${restaurantId}`
                         return (
                         <li className="ranking-item" key={`${ranking.dish}#${ranking.rank}`}>
                             <div>

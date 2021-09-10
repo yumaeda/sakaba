@@ -11,7 +11,7 @@ interface Props {
 }
 
 const RestaurantPageLink: React.FC<Props> = (props) => {
-    const basePath = 'https://tokyo-takeout.com'
+    const basePath = 'https://sakaba.link'
     const { id, area, name, url } = props
 
     return (url == '') ? 

@@ -48,8 +48,9 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else {
-        const basePath = 'https://tokyo-takeout.com'
-        const imageDir = `${basePath}/images`
+        const basePath = 'https://sakaba.link'
+        const baseImagePath = 'https://tokyo-takeout.com'
+        const imageDir = `${baseImagePath}/images`
         const area = match.params.area
 
         const restaurant = restaurants ? restaurants[0] : null
