@@ -22,7 +22,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     const areaName = AreaDictionary[match.params.area]
 
     React.useEffect(() => {
-        document.title = `${areaName}｜東京テイクアウト`
+        document.title = `${areaName}｜酒場リンク`
     }, [])
 
     React.useEffect(() => {
