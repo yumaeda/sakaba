@@ -20,7 +20,7 @@ const HomePage: React.FC<{}> = () => {
         fetch('/api-key.txt')
             .then((r) => r.text())
             .then(text  => {
-                fetch('https://api.tokyo-takeout.com/restaurant-counts', {
+                fetch('https://api.sakaba.link/restaurant-counts', {
                     headers: { 'X-Api-Key': text }
                 })
                 .then(res => res.json())

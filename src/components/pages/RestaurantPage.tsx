@@ -12,12 +12,13 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
     const [error, setError] = React.useState<Error>()
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>()
     const [menus, setMenus] = React.useState<Menu[]>()
+    const apiUrl = 'https://api.sakaba.link'
 
     React.useEffect(() => {
         fetch('/api-key.txt')
             .then((r) => r.text())
             .then(text  => {
-                fetch('https://api.tokyo-takeout.com/restaurants', {
+                fetch(`${apiUrl}/restaurants`, {
                     headers: { 'X-Api-Key': text }
                 })
                 .then(res => res.json())
@@ -30,7 +31,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                     }
                 )
 
-                fetch('https://api.tokyo-takeout.com/menus', {
+                fetch(`${apiUrl}/menus`, {
                     headers: { 'X-Api-Key': text }
                 })
                 .then(res => res.json())

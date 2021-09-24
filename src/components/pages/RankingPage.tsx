@@ -21,7 +21,7 @@ const RankingPage: React.FC = () => {
         fetch('/api-key.txt')
             .then((r) => r.text())
             .then(text  => {
-                fetch('https://api.tokyo-takeout.com/rankings', {
+                fetch('https://api.sakaba.link/rankings', {
                     headers: { 'X-Api-Key': text }
                 })
                 .then(res => res.json())

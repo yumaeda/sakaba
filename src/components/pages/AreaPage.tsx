@@ -20,6 +20,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     const [photos, setPhotos] = React.useState<Photo[]>()
     const [videos, setVideos] = React.useState<Video[]>()
     const areaName = AreaDictionary[match.params.area]
+    const apiUrl = 'https://api.sakaba.link'
 
     React.useEffect(() => {
         document.title = `${areaName}｜酒場リンク`
@@ -29,7 +30,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         fetch('/api-key.txt')
             .then((r) => r.text())
             .then(text  => {
-                fetch('https://api.tokyo-takeout.com/restaurants', {
+                fetch(`${apiUrl}/restaurants`, {
                     headers: { 'X-Api-Key': text }
                 })
                 .then(res => res.json())
@@ -42,7 +43,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                     }
                 )
 
-                fetch('https://api.tokyo-takeout.com/photos', {
+                fetch(`${apiUrl}/photos`, {
                     headers: { 'X-Api-Key': text }
                 })
                 .then(res => res.json())
@@ -55,7 +56,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                     }
                 )
 
-                fetch('https://api.tokyo-takeout.com/videos', {
+                fetch(`${apiUrl}/videos`, {
                     headers: { 'X-Api-Key': text }
                 })
                 .then(res => res.json())
