@@ -1,5 +1,6 @@
 .DS_Store
-api-key.txt
 package-lock.json
 node_modules
 dist
+index.min.js
+index.min.js.LICENSE.txt

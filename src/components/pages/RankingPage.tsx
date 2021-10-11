@@ -18,22 +18,18 @@ const RankingPage: React.FC = () => {
     const [rankings, setRankings] = React.useState<Ranking[]>()
 
     React.useEffect(() => {
-        fetch('/api-key.txt')
-            .then((r) => r.text())
-            .then(text  => {
-                fetch('https://api.sakaba.link/rankings', {
-                    headers: { 'X-Api-Key': text }
-                })
-                .then(res => res.json())
-                .then(
-                    (data) => {
-                        setRankings(JSON.parse(data.body))
-                    },
-                    (error: Error) => {
-                        setError(error)
-                    }
-                )
-            })
+        fetch('https://api.sakaba.link/rankings', {
+            headers: {}
+        })
+        .then(res => res.json())
+        .then(
+            (data) => {
+                setRankings(JSON.parse(data.body))
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
     }, [])
 
     if (error) {

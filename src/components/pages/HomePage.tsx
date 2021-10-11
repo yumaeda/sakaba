@@ -17,22 +17,18 @@ const HomePage: React.FC<{}> = () => {
     const coverImageUrl = 'https://tokyo-takeout.com/images/cover.png'
 
     React.useEffect(() => {
-        fetch('/api-key.txt')
-            .then((r) => r.text())
-            .then(text  => {
-                fetch('https://api.sakaba.link/restaurant-counts', {
-                    headers: { 'X-Api-Key': text }
-                })
-                .then(res => res.json())
-                .then(
-                    (data) => {
-                        setRestaurantInfos(JSON.parse(data.body))
-                    },
-                    (error: Error) => {
-                        setError(error)
-                    }
-                )
-            })
+        fetch('https://api.sakaba.link/restaurant-counts', {
+            headers: {}
+        })
+        .then(res => res.json())
+        .then(
+            (data) => {
+                setRestaurantInfos(JSON.parse(data.body))
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
     }, [])
 
     if (error) {

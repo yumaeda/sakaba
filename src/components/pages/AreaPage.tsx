@@ -27,48 +27,44 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     }, [])
 
     React.useEffect(() => {
-        fetch('/api-key.txt')
-            .then((r) => r.text())
-            .then(text  => {
-                fetch(`${apiUrl}/restaurants`, {
-                    headers: { 'X-Api-Key': text }
-                })
-                .then(res => res.json())
-                .then(
-                    (data) => {
-                        setRestaurants(JSON.parse(data.body).filter((restaurant: Restaurant) => restaurant.area == match.params.area))
-                    },
-                    (error: Error) => {
-                        setError(error)
-                    }
-                )
+        fetch(`${apiUrl}/restaurants`, {
+            headers: {}
+        })
+        .then(res => res.json())
+        .then(
+            (data) => {
+                setRestaurants(JSON.parse(data.body).filter((restaurant: Restaurant) => restaurant.area == match.params.area))
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
 
-                fetch(`${apiUrl}/photos`, {
-                    headers: { 'X-Api-Key': text }
-                })
-                .then(res => res.json())
-                .then(
-                    (data) => {
-                        setPhotos(JSON.parse(data.body))
-                    },
-                    (error: Error) => {
-                        setError(error)
-                    }
-                )
+        fetch(`${apiUrl}/photos`, {
+            headers: {}
+        })
+        .then(res => res.json())
+        .then(
+            (data) => {
+                setPhotos(JSON.parse(data.body))
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
 
-                fetch(`${apiUrl}/videos`, {
-                    headers: { 'X-Api-Key': text }
-                })
-                .then(res => res.json())
-                .then(
-                    (data) => {
-                        setVideos(JSON.parse(data.body))
-                    },
-                    (error: Error) => {
-                        setError(error)
-                    }
-                )
-            })
+        fetch(`${apiUrl}/videos`, {
+            headers: {}
+        })
+        .then(res => res.json())
+        .then(
+            (data) => {
+                setVideos(JSON.parse(data.body))
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
     }, [])
 
     if (error) {
