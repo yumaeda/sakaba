@@ -15,35 +15,31 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
     const apiUrl = 'https://api.sakaba.link'
 
     React.useEffect(() => {
-        fetch('/api-key.txt')
-            .then((r) => r.text())
-            .then(text  => {
-                fetch(`${apiUrl}/restaurants`, {
-                    headers: {}
-                })
-                .then(res => res.json())
-                .then(
-                    (data) => {
-                        setRestaurants(JSON.parse(data.body).filter((restaurant: Restaurant) => atob(restaurant.id) == match.params.restaurant))
-                    },
-                    (error: Error) => {
-                        setError(error)
-                    }
-                )
+        fetch(`${apiUrl}/restaurants`, {
+            headers: {}
+        })
+        .then(res => res.json())
+        .then(
+            (data) => {
+                setRestaurants(JSON.parse(data.body).filter((restaurant: Restaurant) => atob(restaurant.id) == match.params.restaurant))
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
 
-                fetch(`${apiUrl}/menus`, {
-                    headers: {}
-                })
-                .then(res => res.json())
-                .then(
-                    (data) => {
-                        setMenus(JSON.parse(data.body).filter((menu: Menu) => atob(menu.restaurant_id) == match.params.restaurant))
-                    },
-                    (error: Error) => {
-                        setError(error)
-                    }
-                )
-            })
+        fetch(`${apiUrl}/menus`, {
+            headers: {}
+        })
+        .then(res => res.json())
+        .then(
+            (data) => {
+                setMenus(JSON.parse(data.body).filter((menu: Menu) => atob(menu.restaurant_id) == match.params.restaurant))
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
     }, [])
 
     if (error) {
