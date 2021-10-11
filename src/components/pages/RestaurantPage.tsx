@@ -45,10 +45,8 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else {
-        const basePath = 'https://sakaba.link'
         const baseImagePath = 'https://tokyo-takeout.com'
         const imageDir = `${baseImagePath}/images`
-        const area = match.params.area
 
         const restaurant = restaurants ? restaurants[0] : null
         return (restaurant == null) ? <div>{}</div>
@@ -56,12 +54,6 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
             <>
                 <header className="menu-header"
                         style={{ backgroundImage: `url(${imageDir}/menu-headers/${atob(restaurant.id)}.png)`}}>
-                    <a href={`${basePath}/${area}`}>
-                        <picture>
-                            <source type="image/webp" media="(min-width: 150px)" srcSet={`${imageDir}/back.webp`} />
-                            <img src={`${imageDir}/back.png`} className="back-image" alt="Back" />
-                        </picture>
-                    </a>
                     <h1 className="header-label">{restaurant.name}</h1>
                 </header>
                 <div className="contents">

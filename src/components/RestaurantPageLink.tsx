@@ -15,7 +15,7 @@ const RestaurantPageLink: React.FC<Props> = (props) => {
     const { id, area, name, url } = props
 
     return (url == '') ? 
-        <a className="shop-name" href={`${basePath}/${area}/${id}`}>{name}</a> :
+        <a className="shop-name" href={`${basePath}/${area}/${id}`} target="_blank">{name}</a> :
         <a className="shop-name" href={url} rel="nofollow noopener" target="_blank">{name}</a>
 }
 
