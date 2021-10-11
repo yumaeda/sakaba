@@ -9,13 +9,17 @@
 }
 
 .header-label {
-    font-size: 2.5vw;
+    font-size: 4.0vw;
 }
 
 .menu-header {
     height: 20vh;
     text-align: center;
     background-position: center;
+}
+
+.category-switch {
+    margin-top: 50px;
 }
 
 .main-image {

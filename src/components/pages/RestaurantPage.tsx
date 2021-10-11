@@ -5,6 +5,7 @@ import * as React from 'react'
 import Menu from '../../interfaces/Menu'
 import Restaurant from '../../interfaces/Restaurant'
 import MenuDictionary from '../../MenuDictionary'
+import CategorySwitch from '../CategorySwitch'
 import MenuPrice from '../MenuPrice'
 
 const RestaurantPage: React.FC<{ match: any }> = (props) => {
@@ -55,6 +56,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                 <header className="menu-header"
                         style={{ backgroundImage: `url(${imageDir}/menu-headers/${atob(restaurant.id)}.png)`}}>
                     <h1 className="header-label">{restaurant.name}</h1>
+                    <CategorySwitch />
                 </header>
                 <div className="contents">
                     {
