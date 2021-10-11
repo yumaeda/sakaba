@@ -19,7 +19,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
             .then((r) => r.text())
             .then(text  => {
                 fetch(`${apiUrl}/restaurants`, {
-                    headers: { 'X-Api-Key': text }
+                    headers: {}
                 })
                 .then(res => res.json())
                 .then(
@@ -32,7 +32,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                 )
 
                 fetch(`${apiUrl}/menus`, {
-                    headers: { 'X-Api-Key': text }
+                    headers: {}
                 })
                 .then(res => res.json())
                 .then(
