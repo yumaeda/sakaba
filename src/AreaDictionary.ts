@@ -23,6 +23,7 @@ const AreaDictionary : { [id: string]: string } = {
     'shinjukusanchome': '新宿三丁目',
     'sugamo': '巣鴨',
     'tokiwadai': '常盤台',
+    'takashimadaira': '高島平',
 
     // Niigata
     'muikamachi': '六日町'
