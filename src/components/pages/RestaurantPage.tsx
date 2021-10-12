@@ -11,7 +11,7 @@ import MenuPrice from '../MenuPrice'
 const RestaurantPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
     const [error, setError] = React.useState<Error>()
-    const [restaurants, setRestaurants] = React.useState<Restaurant[]>()
+    const [restaurant, setRestaurant] = React.useState<Restaurant>()
     const [menus, setMenus] = React.useState<Menu[]>()
     const apiUrl = 'https://api.sakaba.link'
 
@@ -22,20 +22,20 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
         .then(res => res.json())
         .then(
             (data) => {
-                setRestaurants(JSON.parse(data.body).filter((restaurant: Restaurant) => atob(restaurant.id) == match.params.restaurant))
+                setRestaurant(JSON.parse(data.body).filter((restaurant: Restaurant) => window.atob(restaurant.id) == match.params.restaurant)[0])
             },
             (error: Error) => {
                 setError(error)
             }
         )
 
-        fetch(`${apiUrl}/menus`, {
+        fetch(`${apiUrl}/menus?restaurant_id=${match.params.restaurant}`, {
             headers: {}
         })
         .then(res => res.json())
         .then(
             (data) => {
-                setMenus(JSON.parse(data.body).filter((menu: Menu) => atob(menu.restaurant_id) == match.params.restaurant))
+                setMenus(JSON.parse(data.body))
             },
             (error: Error) => {
                 setError(error)
@@ -49,12 +49,11 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
         const baseImagePath = 'https://tokyo-takeout.com'
         const imageDir = `${baseImagePath}/images`
 
-        const restaurant = restaurants ? restaurants[0] : null
         return (restaurant == null) ? <div>{}</div>
             : (
             <>
                 <header className="menu-header"
-                        style={{ backgroundImage: `url(${imageDir}/menu-headers/${atob(restaurant.id)}.png)`}}>
+                        style={{ backgroundImage: `url(${imageDir}/menu-headers/${window.atob(restaurant.id)}.png)`}}>
                     <h1 className="header-label">{restaurant.name}</h1>
                     <CategorySwitch />
                 </header>
