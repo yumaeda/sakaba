@@ -112,10 +112,6 @@
     filter: invert(1);
 }
 
-.latest-image-container {
-    display: inline-block;
-}
-
 .dish-image-container {
     text-align: center;
     max-height: 320px;
@@ -131,13 +127,17 @@
 
 .latest-image-wrapper {
     display: inline-block;
-    background-color: black;
     width: 25%;
     text-align: center;
 }
 
 .dish-image {
     height: 150px;
+}
+
+.latest-image {
+    width: 100%;
+    vertical-align: middle;
 }
 
 .shop-genre {

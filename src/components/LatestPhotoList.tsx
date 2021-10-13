@@ -11,7 +11,7 @@ interface Props {
 
 const LatestPhotoList: React.FC<Props> = (props) => {
     const { basePath, photos } = props
-    const photoCount = 20;
+    const photoCount = 12;
 
     return (
         <div className="latest-image-container">
@@ -20,7 +20,7 @@ const LatestPhotoList: React.FC<Props> = (props) => {
                 <div className="latest-image-wrapper">
                     <picture>
                         <source type="image/webp" media="(min-width: 150px)" srcSet={`${basePath}/images/restaurants/${window.atob(photo.restaurant_id)}/${photo.thumbnail_webp}`} />
-                        <img src={`${basePath}/images/restaurants/${window.atob(photo.restaurant_id)}/${photo.thumbnail}`} alt={`店舗写真${index}`} />
+                        <img src={`${basePath}/images/restaurants/${window.atob(photo.restaurant_id)}/${photo.thumbnail}`} className="latest-image" alt={`店舗写真${index}`} />
                     </picture>
                 </div>
             ))
