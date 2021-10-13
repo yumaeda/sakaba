@@ -3,24 +3,21 @@
  */
 import * as React from 'react'
 
-const CategorySwitch: React.FC = () => {
+interface Props {
+    onCategoryClick: React.MouseEventHandler<HTMLSpanElement>
+}
+
+const CategorySwitch: React.FC<Props> = (props) => {
+    const { onCategoryClick } = props
+
     return (
         <div className="category-switch">
-            <span className="town-button">
-                <a href="#cocktail" className="list-item">Cocktail</a>
-            </span>
-            <span className="town-button">
-                <a href="#whisky" className="list-item">Whisky</a>
-            </span>
-            <span className="town-button">
-                <a href="#original" className="list-item">Original</a>
-            </span>
-            <span className="town-button">
-                <a href="#beer" className="list-item">Beer</a>
-            </span>
-            <span className="town-button">
-                <a href="#spirits" className="list-item">Spirits</a>
-            </span>
+            <span id="1" className="town-button" onClick={onCategoryClick}>Cocktail</span>
+            <span id="2" className="town-button" onClick={onCategoryClick}>Whisky</span>
+            <span id="3" className="town-button" onClick={onCategoryClick}>Brandy</span>
+            <span id="4" className="town-button" onClick={onCategoryClick}>Original</span>
+            <span id="5" className="town-button" onClick={onCategoryClick}>Beer</span>
+            <span id="6" className="town-button" onClick={onCategoryClick}>Spirits</span>
         </div>
     )
 }

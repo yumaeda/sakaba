@@ -5,15 +5,22 @@ import * as React from 'react'
 import Menu from '../../interfaces/Menu'
 import Restaurant from '../../interfaces/Restaurant'
 import MenuDictionary from '../../MenuDictionary'
+import CategoryList from '../CategoryList'
 import CategorySwitch from '../CategorySwitch'
-import MenuPrice from '../MenuPrice'
 
 const RestaurantPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
     const [error, setError] = React.useState<Error>()
     const [restaurant, setRestaurant] = React.useState<Restaurant>()
-    const [menus, setMenus] = React.useState<Menu[]>()
+    const [menus, setMenus] = React.useState<Menu[]>([])
+    const [selectedMenus, setSelectedMenus] = React.useState<Menu[]>([])
+    const defaultCategory = 1
     const apiUrl = 'https://api.sakaba.link'
+
+    const handleCategoryClick = (event: React.MouseEvent<HTMLSpanElement>) => {
+        const category = Number(event.currentTarget.id)
+        setSelectedMenus(menus?.filter((menu: Menu) => menu.category == category))
+    }
 
     React.useEffect(() => {
         fetch(`${apiUrl}/restaurants`, {
@@ -35,7 +42,9 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
         .then(res => res.json())
         .then(
             (data) => {
-                setMenus(JSON.parse(data.body))
+                const parsedMenu = JSON.parse(data.body)
+                setMenus(parsedMenu)
+                setSelectedMenus(parsedMenu.filter((menu: Menu) => menu.category == defaultCategory))
             },
             (error: Error) => {
                 setError(error)
@@ -55,7 +64,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                 <header className="menu-header"
                         style={{ backgroundImage: `url(${imageDir}/menu-headers/${window.atob(restaurant.id)}.png)`}}>
                     <h1 className="header-label">{restaurant.name}</h1>
-                    <CategorySwitch />
+                    <CategorySwitch onCategoryClick={ handleCategoryClick } />
                 </header>
                 <div className="contents">
                     {
@@ -66,32 +75,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                 return Object.keys(MenuDictionary[category][subCategory]).filter((regionKey: string) => regionKey != 'text').map((regionKey: string) => {
                                     let region = parseInt(regionKey)
                                     return (
-                                        <div>
-                                            <h2 className="menu-category">{MenuDictionary[category].text}</h2>
-                                            <h4 className="menu-sub-category">{MenuDictionary[category][subCategory].text}</h4>
-                                            <h6 className="menu-region">{MenuDictionary[category][subCategory][region]}</h6>
-                                            <ul className="menu-list">
-                                            {
-                                                (menus != null) ? menus
-                                                    .filter((menu) => {
-                                                        return menu.category == category && menu.sub_category == subCategory && menu.region == region
-                                                    })
-                                                    .map((menu) => {
-                                                        return (
-                                                            <li className="menu-item">
-                                                                <div className="menu-name-cell">
-                                                                    <span className="menu-name">{menu.name}</span>
-                                                                    <br />
-                                                                    <span className="menu-name-ja">{menu.name_jpn}</span>
-                                                                </div>
-                                                                <MenuPrice price={menu.price} isMinPrice={menu.is_min_price} />
-                                                            </li>
-                                                        )
-                                                    }) :
-                                                    ''
-                                            }
-                                            </ul>
-                                        </div>
+                                        <CategoryList menus={ selectedMenus.filter((menu) => menu.category == category && menu.sub_category == subCategory && menu.region == region) } category={category} subCategory={subCategory} region={region} />
                                     )
                                 })
                             })
