@@ -97,17 +97,6 @@
     text-align: center;
 }
 
-.shop-phone {
-    display: inline-block;
-    height: 40px;
-    margin: 0 15px;
-    vertical-align: middle;
-}
-
-.phone-link {
-    color: rgb(255, 255, 255);
-}
-
 .open-hour {
     color: rgb(255, 255, 255);
     margin: 10px 0 20px 0;
@@ -121,6 +110,11 @@
 
 .map-image {
     height: 40px;
+}
+
+.tel-image {
+    height: 40px;
+    margin-left: 20px;
 }
 
 .back-image {

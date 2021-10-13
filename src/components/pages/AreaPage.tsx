@@ -6,6 +6,7 @@ import Photo from '../../interfaces/Photo'
 import Video from '../../interfaces/Video'
 import Restaurant from '../../interfaces/Restaurant'
 import Address from '../Address'
+import PhoneNumber from '../PhoneNumber'
 import RestaurantPageLink from '../RestaurantPageLink'
 import DishPhotoList from '../DishPhotoList'
 import RestaurantVideoList from '../RestaurantVideoList'
@@ -109,9 +110,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                 </h4>
                                 <OpenHours businessDayJson={restaurant.business_day_info} />
                                 <Address text={restaurant.address} latitude={restaurant.latitude} longitude={restaurant.longitude} />
-                                <p className="shop-phone">
-                                    <a className="phone-link" href={`tel:${restaurant.tel}`}>{restaurant.tel}</a>
-                                </p>
+                                <PhoneNumber tel={restaurant.tel} />
                             </div>
                             <DishPhotoList
                                 basePath={imageBasePath}
