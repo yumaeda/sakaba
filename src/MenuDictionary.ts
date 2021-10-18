@@ -54,6 +54,16 @@ const MenuDictionary : { [id: number]: { text: string, [id: number]: { text: str
         2: { text: 'VODKA', 0: '' },
         3: { text: 'RUM', 0: '' },
         4: { text: 'TEQUILA', 0: '' }
+    },
+    7: {
+        text: 'WINE',
+        1: { text: 'Sparkling', 0: '' },
+        2: { text: 'White', 0: '' },
+        3: { text: 'Red', 0: '' }
+    },
+    8: {
+        text: 'FOOD',
+        0: { text: '', 0: '' }
     }
 }
 

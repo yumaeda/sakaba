@@ -12,12 +12,14 @@ const CategorySwitch: React.FC<Props> = (props) => {
 
     return (
         <div className="category-switch">
-            <span id="1" className="town-button" onClick={onCategoryClick}>Cocktail</span>
-            <span id="2" className="town-button" onClick={onCategoryClick}>Whisky</span>
-            <span id="3" className="town-button" onClick={onCategoryClick}>Brandy</span>
-            <span id="4" className="town-button" onClick={onCategoryClick}>Original</span>
-            <span id="5" className="town-button" onClick={onCategoryClick}>Beer</span>
-            <span id="6" className="town-button" onClick={onCategoryClick}>Spirits</span>
+            <span id="1" className="category-button" onClick={onCategoryClick}>Cocktail</span>
+            <span id="2" className="category-button" onClick={onCategoryClick}>Whisky</span>
+            <span id="3" className="category-button" onClick={onCategoryClick}>Brandy</span>
+            <span id="4" className="category-button" onClick={onCategoryClick}>Original</span>
+            <span id="5" className="category-button" onClick={onCategoryClick}>Beer</span>
+            <span id="6" className="category-button" onClick={onCategoryClick}>Spirits</span>
+            <span id="7" className="category-button" onClick={onCategoryClick}>Wine</span>
+            <span id="8" className="category-button" onClick={onCategoryClick}>Food</span>
         </div>
     )
 }
