@@ -4,14 +4,12 @@
 import * as React from 'react'
 import Category from '../../interfaces/Category'
 import Menu from '../../interfaces/Menu'
-import Restaurant from '../../interfaces/Restaurant'
 import CategoryList from '../CategoryList'
 import CategorySwitch from '../CategorySwitch'
 
 const RestaurantPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
     const [error, setError] = React.useState<Error>()
-    const [restaurant, setRestaurant] = React.useState<Restaurant>()
     const [category, setCategory] = React.useState<number>(1)
     const [categories, setCategories] = React.useState<Category[]>([])
     const [menus, setMenus] = React.useState<Menu[]>([])
@@ -25,19 +23,6 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
     }
 
     React.useEffect(() => {
-        fetch(`${apiUrl}/restaurants`, {
-            headers: {}
-        })
-        .then(res => res.json())
-        .then(
-            (data) => {
-                setRestaurant(JSON.parse(data.body).filter((restaurant: Restaurant) => window.atob(restaurant.id) == match.params.restaurant)[0])
-            },
-            (error: Error) => {
-                setError(error)
-            }
-        )
-
         fetch(`${apiUrl}/categories?restaurant_id=${match.params.restaurant}`, {
             headers: {}
         })
@@ -73,12 +58,10 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
         const baseImagePath = 'https://tokyo-takeout.com'
         const imageDir = `${baseImagePath}/images`
 
-        return (restaurant == null) ? <div>{}</div>
-            : (
+        return (
             <>
                 <header className="menu-header"
-                        style={{ backgroundImage: `url(${imageDir}/menu-headers/${window.atob(restaurant.id)}.png)`}}>
-                    <h1 className="header-label">{restaurant.name}</h1>
+                        style={{ backgroundImage: `url(${imageDir}/menu-headers/${match.params.restaurant}.png)`}}>
                     <CategorySwitch onCategoryClick={ handleCategoryClick } />
                 </header>
                 <div className="contents">

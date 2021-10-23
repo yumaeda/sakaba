@@ -13,8 +13,9 @@
 }
 
 .menu-header {
-    height: 20vh;
+    height: 120px;
     text-align: center;
+    padding-top: 5px;
     background-position: center;
 }
 
