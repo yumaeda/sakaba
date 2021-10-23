@@ -20,6 +20,7 @@ const CategorySwitch: React.FC<Props> = (props) => {
             <span id="6" className="category-button" onClick={onCategoryClick}>Spirits</span>
             <span id="7" className="category-button" onClick={onCategoryClick}>Wine</span>
             <span id="8" className="category-button" onClick={onCategoryClick}>Food</span>
+            <span id="9" className="category-button" onClick={onCategoryClick}>Others</span>
         </div>
     )
 }
