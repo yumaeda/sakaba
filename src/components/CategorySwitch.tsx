@@ -2,25 +2,39 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import Category from '../interfaces/Category'
 
 interface Props {
     onCategoryClick: React.MouseEventHandler<HTMLSpanElement>
+    restaurantId: string
 }
 
 const CategorySwitch: React.FC<Props> = (props) => {
-    const { onCategoryClick } = props
+    const { onCategoryClick, restaurantId } = props
+    const [categories, setCategories] = React.useState<Category[]>([])
+
+    React.useEffect(() => {
+        fetch(`https://api.sakaba.link/categories?restaurant_id=${restaurantId}`, {
+            headers: {}
+        })
+        .then(res => res.json())
+        .then(
+            (data) => {
+                setCategories(JSON.parse(data.body))
+            },
+            (error: Error) => {
+                console.dir(error)
+            }
+        )
+    }, [])
 
     return (
         <div className="category-switch">
-            <div id="1" className="category-button" onClick={onCategoryClick}>Cocktail</div>
-            <div id="2" className="category-button" onClick={onCategoryClick}>Whisky</div>
-            <div id="3" className="category-button" onClick={onCategoryClick}>Brandy</div>
-            <div id="4" className="category-button" onClick={onCategoryClick}>Original</div>
-            <div id="5" className="category-button" onClick={onCategoryClick}>Beer</div>
-            <div id="6" className="category-button" onClick={onCategoryClick}>Spirits</div>
-            <div id="7" className="category-button" onClick={onCategoryClick}>Wine</div>
-            <div id="8" className="category-button" onClick={onCategoryClick}>Food</div>
-            <div id="9" className="category-button" onClick={onCategoryClick}>Others</div>
+        {
+            categories?.filter((category: Category) => category.parent_id == null).map((category: Category) => (
+                <div id={category.id.toString()} className="category-button" onClick={onCategoryClick}>{category.name}</div>
+            ))
+        }
         </div>
     )
 }
