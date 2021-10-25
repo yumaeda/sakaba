@@ -12,15 +12,15 @@ const CategorySwitch: React.FC<Props> = (props) => {
 
     return (
         <div className="category-switch">
-            <span id="1" className="category-button" onClick={onCategoryClick}>Cocktail</span>
-            <span id="2" className="category-button" onClick={onCategoryClick}>Whisky</span>
-            <span id="3" className="category-button" onClick={onCategoryClick}>Brandy</span>
-            <span id="4" className="category-button" onClick={onCategoryClick}>Original</span>
-            <span id="5" className="category-button" onClick={onCategoryClick}>Beer</span>
-            <span id="6" className="category-button" onClick={onCategoryClick}>Spirits</span>
-            <span id="7" className="category-button" onClick={onCategoryClick}>Wine</span>
-            <span id="8" className="category-button" onClick={onCategoryClick}>Food</span>
-            <span id="9" className="category-button" onClick={onCategoryClick}>Others</span>
+            <div id="1" className="category-button" onClick={onCategoryClick}>Cocktail</div>
+            <div id="2" className="category-button" onClick={onCategoryClick}>Whisky</div>
+            <div id="3" className="category-button" onClick={onCategoryClick}>Brandy</div>
+            <div id="4" className="category-button" onClick={onCategoryClick}>Original</div>
+            <div id="5" className="category-button" onClick={onCategoryClick}>Beer</div>
+            <div id="6" className="category-button" onClick={onCategoryClick}>Spirits</div>
+            <div id="7" className="category-button" onClick={onCategoryClick}>Wine</div>
+            <div id="8" className="category-button" onClick={onCategoryClick}>Food</div>
+            <div id="9" className="category-button" onClick={onCategoryClick}>Others</div>
         </div>
     )
 }

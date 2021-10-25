@@ -13,14 +13,9 @@
 }
 
 .menu-header {
-    height: 120px;
     text-align: center;
     padding-top: 5px;
     background-position: center;
-}
-
-.category-switch {
-    margin-top: 50px;
 }
 
 .second-paragraph {
@@ -196,10 +191,11 @@
 }
 
 .category-button {
+    display: inline-block;
     border-radius: 4px;
     border: 1px solid white;
     padding: 20px 30px;
-    margin: 10px;
+    margin: 15px;
 }
 
 .menu-category {
