@@ -103,7 +103,7 @@ const HomePage: React.FC<{}> = () => {
                         <li>Loading...</li>
                     }
                     </ul>
-                    <p className="send-paragraph">
+                    <p className="second-paragraph">
                         <span>{`Latitude: ${latitude}`}</span>
                         <span>{`Longitude: ${longitude}`}</span>
                     </p>
