@@ -16,23 +16,31 @@ interface RestaurantInfo {
 const HomePage: React.FC<{}> = () => {
     const [photos, setPhotos] = React.useState<Photo[]>([])
     const [restaurantInfos, setRestaurantInfos] = React.useState<RestaurantInfo[]>()
+    const [latitude, setLatitude] = React.useState<number>(0)
+    const [longitude, setLongitude] = React.useState<number>(0)
     const [error, setError] = React.useState<Error>()
     const apiUrl = 'https://api.sakaba.link'
     const imageBasePath = 'https://tokyo-takeout.com'
 
-    const showMap = (position: GeolocationPosition) => {
-        console.dir(position)
-        alert(`Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`)
+    const getCurrentPosition = (position: GeolocationPosition) => {
+        setLatitude(position.coords.latitude)
+        setLongitude(position.coords.longitude)
     }
 
     const handleError = (error: GeolocationPositionError) => {
-        alert(`Error Code: ${error.code}`)
-    }
-
-    const options = {
-        enableHighAccuracy: true,
-        timeout: 5000,
-        maximumAge: 0
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                alert(`PERMISSION_DENIEDE: ${error.message}`)
+                break
+            case error.POSITION_UNAVAILABLE:
+                alert(`POSITION_UNAVAILABLE: ${error.message}`)
+                break
+            case error.TIMEOUT:
+                alert(`TIMEOUT: ${error.message}`)
+                break
+            default:
+                alert('Unknown Error')
+        }
     }
 
     React.useEffect(() => {
@@ -63,7 +71,15 @@ const HomePage: React.FC<{}> = () => {
         )
 
         if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(showMap, handleError, options)
+            navigator.geolocation.getCurrentPosition(
+                getCurrentPosition,
+                handleError,
+                {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                }
+            )
         }
     }, [])
 
@@ -87,6 +103,7 @@ const HomePage: React.FC<{}> = () => {
                         <li>Loading...</li>
                     }
                     </ul>
+                    <p className="send-paragraph>">{`Latitude: ${latitude}, Longitude: ${longitude}`}</p>
                     <p className="second-paragraph">
                         <Link className="list-item" to="/ranking">フードランキング</Link>
                     </p>
