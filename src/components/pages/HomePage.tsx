@@ -21,7 +21,19 @@ const HomePage: React.FC<{}> = () => {
     const imageBasePath = 'https://tokyo-takeout.com'
 
     const showMap = (position: GeolocationPosition) => {
+        console.dir(position)
         alert(`Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`)
+    }
+
+    const handleError = (error: any) => {
+        console.dir(error)
+        alert('Error')
+    }
+
+    const options = {
+        enableHighAccuracy: true,
+        timeout: 5000,
+        maximumAge: 0
     }
 
     React.useEffect(() => {
@@ -50,11 +62,11 @@ const HomePage: React.FC<{}> = () => {
                 setError(error)
             }
         )
-    }, [])
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(showMap)
-    }
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(showMap, handleError, options)
+        }
+    }, [])
 
     if (error) {
         return <div>Error: {error.message}</div>
