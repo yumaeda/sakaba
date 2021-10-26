@@ -25,9 +25,8 @@ const HomePage: React.FC<{}> = () => {
         alert(`Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`)
     }
 
-    const handleError = (error: any) => {
-        console.dir(error)
-        alert('Error')
+    const handleError = (error: GeolocationPositionError) => {
+        alert(`Error Code: ${error.code}`)
     }
 
     const options = {
