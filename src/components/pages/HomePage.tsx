@@ -20,6 +20,10 @@ const HomePage: React.FC<{}> = () => {
     const apiUrl = 'https://api.sakaba.link'
     const imageBasePath = 'https://tokyo-takeout.com'
 
+    const showMap = (position: GeolocationPosition) => {
+        alert(`Latitude: ${position.coords.latitude}, Longitude: ${position.coords.longitude}`)
+    }
+
     React.useEffect(() => {
         fetch(`${apiUrl}/photos`, {
             headers: {}
@@ -47,6 +51,10 @@ const HomePage: React.FC<{}> = () => {
             }
         )
     }, [])
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showMap)
+    }
 
     if (error) {
         return <div>Error: {error.message}</div>
