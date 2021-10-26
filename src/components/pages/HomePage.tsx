@@ -30,7 +30,7 @@ const HomePage: React.FC<{}> = () => {
     const handleError = (error: GeolocationPositionError) => {
         switch (error.code) {
             case error.PERMISSION_DENIED:
-                alert(`PERMISSION_DENIEDE: ${error.message}`)
+                alert(`PERMISSION_DENIED: ${error.message}`)
                 break
             case error.POSITION_UNAVAILABLE:
                 alert(`POSITION_UNAVAILABLE: ${error.message}`)
@@ -103,7 +103,10 @@ const HomePage: React.FC<{}> = () => {
                         <li>Loading...</li>
                     }
                     </ul>
-                    <p className="send-paragraph>">{`Latitude: ${latitude}, Longitude: ${longitude}`}</p>
+                    <p className="send-paragraph">
+                        <span>{`Latitude: ${latitude}`}</span>
+                        <span>{`Longitude: ${longitude}`}</span>
+                    </p>
                     <p className="second-paragraph">
                         <Link className="list-item" to="/ranking">フードランキング</Link>
                     </p>
