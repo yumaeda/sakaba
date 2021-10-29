@@ -107,7 +107,6 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     } else {
         const basePath = 'https://sakaba.link'
         const imageBasePath = 'https://tokyo-takeout.com'
-        const defaultImage = 'image-not-available'
         const imageDir = `${imageBasePath}/images`
 
         return (
@@ -125,24 +124,9 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                     <ul className="shop-list">
                     {restaurants ? restaurants.map((restaurant: Restaurant) => {
                         const restaurantId = atob(restaurant.id)
-                        const restaurantImageDir = `${imageDir}/restaurants/${restaurantId}`
                         return (
                         <li className="shop-item" key={restaurantId} id={restaurantId}>
                             <div className="shop-item-photo">
-                                <a href={restaurant.image_name != '' ? `${restaurantImageDir}/${restaurant.image_name}.png` : `${imageDir}/${defaultImage}.png`} target="_blank">
-                                    <picture>
-                                        <source type="image/webp" media="(min-width: 150px)" srcSet={restaurant.image_name != '' ? `${restaurantImageDir}/${restaurant.image_name}_thumbnail.webp` : `${imageDir}/${defaultImage}_thumbnail.webp`} />
-                                        <img src={restaurant.image_name != '' ? `${restaurantImageDir}/${restaurant.image_name}_thumbnail.png` : `${imageDir}/${defaultImage}_thumbnail.png`} className="shop-image" alt={restaurant.name} />
-                                    </picture>
-                                </a><br />
-                                <span className="shop-takeout">{restaurant.takeout_available ? 'テイクアウトあり' : 'イートインのみ'}</span>
-                            </div>
-                            <div className="shop-item-grid">
-                                <h4>
-                                    <RestaurantPageLink id={restaurantId} area={restaurant.area} url={restaurant.url} name={restaurant.name} /><br />
-                                    <div className="shop-genre">{restaurant.genre}</div>
-                                </h4>
-                                <OpenHours businessDayJson={restaurant.business_day_info} />
                                 <Address text={restaurant.address} latitude={restaurant.latitude} longitude={restaurant.longitude} />
                                 <PhoneNumber tel={restaurant.tel} />
                                 <p>
@@ -150,6 +134,13 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                     `${getDistance({ latitude, longitude }, { latitude: Number(restaurant.latitude), longitude: Number(restaurant.longitude) })} km`
                                 }
                                 </p>
+                            </div>
+                            <div className="shop-item-grid">
+                                <h4>
+                                    <RestaurantPageLink id={restaurantId} area={restaurant.area} url={restaurant.url} name={restaurant.name} /><br />
+                                    <div className="shop-genre">{restaurant.genre}</div>
+                                </h4>
+                                <OpenHours businessDayJson={restaurant.business_day_info} />
                             </div>
                             <DishPhotoList
                                 basePath={imageBasePath}

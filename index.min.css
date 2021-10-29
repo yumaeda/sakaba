@@ -92,10 +92,6 @@
     font-weight: bold;
 }
 
-.shop-image {
-    height: 150px;
-}
-
 .map-image {
     height: 40px;
 }
@@ -141,13 +137,6 @@
 .shop-genre {
     font-size: 16px;
     color: lightsalmon;
-}
-
-.shop-takeout {
-    font-size: 12px;
-    padding: 5px;
-    color: white;
-    background-color: green;
 }
 
 .list-item {
