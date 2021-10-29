@@ -5,6 +5,7 @@ import * as React from 'react'
 import Photo from '../../interfaces/Photo'
 import Video from '../../interfaces/Video'
 import Restaurant from '../../interfaces/Restaurant'
+import { getDistance } from '../../utils/GeoLocationUtility'
 import Address from '../Address'
 import PhoneNumber from '../PhoneNumber'
 import RestaurantPageLink from '../RestaurantPageLink'
@@ -17,17 +18,35 @@ import Footer from '../Footer'
 const AreaPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
     const [error, setError] = React.useState<Error>()
+    const [latitude, setLatitude] = React.useState<number>(0)
+    const [longitude, setLongitude] = React.useState<number>(0)
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>()
     const [photos, setPhotos] = React.useState<Photo[]>()
     const [videos, setVideos] = React.useState<Video[]>()
     const areaName = AreaDictionary[match.params.area]
     const apiUrl = 'https://api.sakaba.link'
 
-    React.useEffect(() => {
-        document.title = `${areaName}｜酒場リンク`
-    }, [])
+    const getCurrentPosition = (position: GeolocationPosition) => {
+        setLatitude(position.coords.latitude)
+        setLongitude(position.coords.longitude)
+    }
 
     React.useEffect(() => {
+        document.title = `${areaName}｜酒場リンク`
+
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                getCurrentPosition,
+                (error: GeolocationPositionError) => { console.dir(error) },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 5000,
+                    maximumAge: 0
+                }
+            )
+        }
+
+
         fetch(`${apiUrl}/restaurants`, {
             headers: {}
         })
@@ -111,6 +130,11 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                 <OpenHours businessDayJson={restaurant.business_day_info} />
                                 <Address text={restaurant.address} latitude={restaurant.latitude} longitude={restaurant.longitude} />
                                 <PhoneNumber tel={restaurant.tel} />
+                                <p>
+                                {
+                                    `${getDistance({ latitude, longitude }, { latitude: Number(restaurant.latitude), longitude: Number(restaurant.longitude) })} km`
+                                }
+                                </p>
                             </div>
                             <DishPhotoList
                                 basePath={imageBasePath}
