@@ -16,32 +16,9 @@ interface RestaurantInfo {
 const HomePage: React.FC<{}> = () => {
     const [photos, setPhotos] = React.useState<Photo[]>([])
     const [restaurantInfos, setRestaurantInfos] = React.useState<RestaurantInfo[]>()
-    const [latitude, setLatitude] = React.useState<number>(0)
-    const [longitude, setLongitude] = React.useState<number>(0)
     const [error, setError] = React.useState<Error>()
     const apiUrl = 'https://api.sakaba.link'
     const imageBasePath = 'https://tokyo-takeout.com'
-
-    const getCurrentPosition = (position: GeolocationPosition) => {
-        setLatitude(position.coords.latitude)
-        setLongitude(position.coords.longitude)
-    }
-
-    const handleError = (error: GeolocationPositionError) => {
-        switch (error.code) {
-            case error.PERMISSION_DENIED:
-                alert(`PERMISSION_DENIED: ${error.message}`)
-                break
-            case error.POSITION_UNAVAILABLE:
-                alert(`POSITION_UNAVAILABLE: ${error.message}`)
-                break
-            case error.TIMEOUT:
-                alert(`TIMEOUT: ${error.message}`)
-                break
-            default:
-                alert('Unknown Error')
-        }
-    }
 
     React.useEffect(() => {
         fetch(`${apiUrl}/photos`, {
@@ -69,18 +46,6 @@ const HomePage: React.FC<{}> = () => {
                 setError(error)
             }
         )
-
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                getCurrentPosition,
-                handleError,
-                {
-                    enableHighAccuracy: true,
-                    timeout: 5000,
-                    maximumAge: 0
-                }
-            )
-        }
     }, [])
 
     if (error) {
@@ -103,10 +68,6 @@ const HomePage: React.FC<{}> = () => {
                         <li>Loading...</li>
                     }
                     </ul>
-                    <p className="second-paragraph">
-                        <span>{`Latitude: ${latitude}`}</span>
-                        <span>{`Longitude: ${longitude}`}</span>
-                    </p>
                     <p className="second-paragraph">
                         <Link className="list-item" to="/ranking">フードランキング</Link>
                     </p>

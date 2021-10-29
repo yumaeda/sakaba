@@ -18,7 +18,7 @@ import Footer from '../Footer'
 const AreaPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
     const [error, setError] = React.useState<Error>()
-    const [latitude, setLatitude] = React.useState<number>(0)
+    const [ latitude, setLatitude] = React.useState<number>(0)
     const [longitude, setLongitude] = React.useState<number>(0)
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>()
     const [photos, setPhotos] = React.useState<Photo[]>()
@@ -31,13 +31,29 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         setLongitude(position.coords.longitude)
     }
 
+    const handleGeolocationError = (error: GeolocationPositionError) => {
+        switch (error.code) {
+            case error.PERMISSION_DENIED:
+                alert(`PERMISSION_DENIED: ${error.message}`)
+                break
+            case error.POSITION_UNAVAILABLE:
+                alert(`POSITION_UNAVAILABLE: ${error.message}`)
+                break
+            case error.TIMEOUT:
+                alert(`TIMEOUT: ${error.message}`)
+                break
+            default:
+                alert('Unknown Error')
+        }
+    }
+
     React.useEffect(() => {
         document.title = `${areaName}｜酒場リンク`
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 getCurrentPosition,
-                (error: GeolocationPositionError) => { console.dir(error) },
+                handleGeolocationError,
                 {
                     enableHighAccuracy: true,
                     timeout: 5000,
@@ -45,7 +61,6 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                 }
             )
         }
-
 
         fetch(`${apiUrl}/restaurants`, {
             headers: {}
