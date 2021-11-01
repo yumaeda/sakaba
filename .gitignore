@@ -4,3 +4,5 @@ node_modules
 dist
 index.min.js
 index.min.js.LICENSE.txt
+main.css
+index.css
