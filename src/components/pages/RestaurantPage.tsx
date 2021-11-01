@@ -66,7 +66,6 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                 <div className="contents">
                 {
                     <>
-                        <h2 className="menu-category">{category.name}</h2>
                         <div>
                         {
                             (categories.filter((currentCategory: Category) => currentCategory.parent_id == category.id).length == 0) ? (
