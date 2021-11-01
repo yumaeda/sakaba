@@ -15,7 +15,7 @@ const Distance: React.FC<Props> = (props) => {
     const distance = getDistance(from, to)
 
     return (
-        <p className="distance">{ `${distance.toFixed(1)} km` }</p>
+        <p className="distance">{ `${distance.toFixed(2)} km` }</p>
     )
 }
 
