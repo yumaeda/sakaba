@@ -31,7 +31,7 @@ jobs:
       run: |
           aws s3 cp "index.min.js" "s3://sakaba.link/index.min.js"
           aws s3 cp "index.html" "s3://sakaba.link/index.html"
-          aws s3 cp "index.min.css" "s3://sakaba.link/index.min.css"
+          aws s3 cp "main.css" "s3://sakaba.link/index.min.css"
           aws s3 cp "robots.txt" "s3://sakaba.link/robots.txt"
           aws s3 cp "sitemap.xml" "s3://sakaba.link/sitemap.xml"
           aws s3 cp "favicon.ico" "s3://sakaba.link/favicon.ico"
