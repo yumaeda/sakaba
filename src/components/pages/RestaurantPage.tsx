@@ -76,7 +76,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                 {
                                     categories.filter((currentCategory: Category) => currentCategory.parent_id == category.id).map((subCategory: Category) => {
                                         const regions = categories.filter((currentCategory: Category) => currentCategory.parent_id == subCategory.id)
-                                        return (
+                                        return (menus.filter((menu: Menu) => menu.category == category.id && menu.sub_category == subCategory.id).length > 0) ? (
                                             <>
                                                 <h4 className="menu-sub-category">{subCategory.name}</h4>
                                                 <div>
@@ -86,21 +86,23 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                                     ) : (
                                                         <div>
                                                         {
-                                                            regions.map((region: Category) => (
+                                                            regions.map((region: Category) => {
+                                                                return (menus.filter((menu: Menu) => menu.category == category.id && menu.sub_category == subCategory.id && menu.region == region.id).length > 0) ? (
                                                                 <>
                                                                     <h6 className="menu-region">{region.name}</h6>
                                                                     <div>
                                                                         <CategoryList menus={menus.filter((menu: Menu) => menu.category == category.id)} subCategory={subCategory.id} region={region.id} />
                                                                     </div>
                                                                 </>
-                                                            ))
+                                                                ) : ''
+                                                            })
                                                         }
                                                         </div>
                                                     )
                                                 }
                                                 </div>
                                             </>
-                                        )
+                                        ) : ''
                                     })
                                 }
                                 </>
