@@ -16,6 +16,8 @@
     text-align: center;
     padding: 30px;
     background-position: center;
+    top: 0;
+    position: sticky;
 }
 
 .second-paragraph {
