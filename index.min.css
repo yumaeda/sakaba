@@ -92,6 +92,10 @@
     font-weight: bold;
 }
 
+.distance {
+    font-size: 20px;
+}
+
 .map-image {
     height: 40px;
 }

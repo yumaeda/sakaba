@@ -5,8 +5,8 @@ import * as React from 'react'
 import Photo from '../../interfaces/Photo'
 import Video from '../../interfaces/Video'
 import Restaurant from '../../interfaces/Restaurant'
-import { getDistance } from '../../utils/GeoLocationUtility'
 import Address from '../Address'
+import Distance from '../Distance'
 import PhoneNumber from '../PhoneNumber'
 import RestaurantPageLink from '../RestaurantPageLink'
 import DishPhotoList from '../DishPhotoList'
@@ -129,11 +129,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                             <div className="shop-item-photo">
                                 <Address text={restaurant.address} latitude={restaurant.latitude} longitude={restaurant.longitude} />
                                 <PhoneNumber tel={restaurant.tel} />
-                                <p>
-                                {
-                                    `${getDistance({ latitude, longitude }, { latitude: Number(restaurant.latitude), longitude: Number(restaurant.longitude) })} km`
-                                }
-                                </p>
+                                <Distance from={{ latitude, longitude }} to={{ latitude: Number(restaurant.latitude), longitude: Number(restaurant.longitude) }} />
                             </div>
                             <div className="shop-item-grid">
                                 <h4>
