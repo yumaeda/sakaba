@@ -4,7 +4,7 @@
 import * as React from 'react'
 import Category from '../../interfaces/Category'
 import Menu from '../../interfaces/Menu'
-import CategoryList from '../CategoryList'
+import MenuList from '../MenuList'
 import CategorySwitch from '../CategorySwitch'
 
 const RestaurantPage: React.FC<{ match: any }> = (props) => {
@@ -70,7 +70,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                         <div>
                         {
                             (categories.filter((currentCategory: Category) => currentCategory.parent_id == category.id).length == 0) ? (
-                                <CategoryList menus={menus.filter((menu: Menu) => menu.category == category.id)} subCategory={0} region={0} />
+                                <MenuList menus={menus.filter((menu: Menu) => menu.category == category.id && menu.sub_category == 0 && menu.region == 0)} />
                             ) : (
                                 <>
                                 {
@@ -82,7 +82,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                                 <div>
                                                 {
                                                     (regions.length == 0) ? (
-                                                        <CategoryList menus={menus.filter((menu: Menu) => menu.category == category.id)} subCategory={subCategory.id} region={0} />
+                                                        <MenuList menus={menus.filter((menu: Menu) => menu.category == category.id && menu.sub_category == subCategory.id && menu.region == 0)} />
                                                     ) : (
                                                         <div>
                                                         {
@@ -91,7 +91,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                                                                 <>
                                                                     <h6 className="menu-region">{region.name}</h6>
                                                                     <div>
-                                                                        <CategoryList menus={menus.filter((menu: Menu) => menu.category == category.id)} subCategory={subCategory.id} region={region.id} />
+                                                                        <MenuList menus={menus.filter((menu: Menu) => menu.category == category.id && menu.sub_category == subCategory.id && menu.region == region.id)} />
                                                                     </div>
                                                                 </>
                                                                 ) : ''

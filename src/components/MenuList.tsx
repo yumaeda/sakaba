@@ -7,21 +7,18 @@ import MenuPrice from './MenuPrice'
 
 interface Props {
     menus: Menu[]
-    subCategory: number
-    region: number
 }
 
-const CategoryList: React.FC<Props> = (props) => {
-    const { menus, region, subCategory } = props
+const MenuList: React.FC<Props> = (props) => {
+    const { menus } = props
 
     return (menus.length > 0) ?  (
         <div>
-            <h6 className="menu-region">{}</h6>
             <ul className="menu-list">
             {
-                menus.filter((menu: Menu) => menu.sub_category == subCategory && menu.region == region).map((menu) => {
+                menus.map((menu) => {
                     return (
-                        <li className="menu-item">
+                        <li className="menu-item" key={menu.name}>
                             <div className="menu-name-cell">
                                 <span className="menu-name">{menu.name}</span>
                                 <br />
@@ -37,4 +34,4 @@ const CategoryList: React.FC<Props> = (props) => {
     ) : <></>
 }
 
-export default CategoryList
+export default MenuList
