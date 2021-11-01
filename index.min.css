@@ -195,6 +195,18 @@
     margin: 15px;
 }
 
+.category-button--selected {
+    display: inline-block;
+    font-size: 3.0vw;
+    font-weight: bold;
+    border-radius: 4px;
+    border: 2px solid black;
+    padding: 20px 30px;
+    margin: 15px;
+    background-color: white;
+    color: black;
+}
+
 .menu-category {
     text-align: center;
     font-size: 4vw;

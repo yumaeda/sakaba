@@ -61,11 +61,11 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
             <>
                 <header className="menu-header"
                         style={{ backgroundImage: `url(${imageDir}/menu-headers/${match.params.restaurant}.png)`}}>
-                    <CategorySwitch onCategoryClick={ handleCategoryClick } restaurantId={match.params.restaurant} />
+                    <CategorySwitch categoryId={ category.id } onCategoryClick={ handleCategoryClick } restaurantId={match.params.restaurant} />
                 </header>
                 <div className="contents">
                 {
-                    <div>
+                    <>
                         <h2 className="menu-category">{category.name}</h2>
                         <div>
                         {
@@ -109,7 +109,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                             )
                         }
                         </div>
-                    </div>
+                    </>
                 }
                 </div>
             </>

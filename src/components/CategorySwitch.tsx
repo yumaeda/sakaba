@@ -5,12 +5,13 @@ import * as React from 'react'
 import Category from '../interfaces/Category'
 
 interface Props {
+    categoryId: number
     onCategoryClick: React.MouseEventHandler<HTMLSpanElement>
     restaurantId: string
 }
 
 const CategorySwitch: React.FC<Props> = (props) => {
-    const { onCategoryClick, restaurantId } = props
+    const { categoryId, onCategoryClick, restaurantId } = props
     const [categories, setCategories] = React.useState<Category[]>([])
 
     React.useEffect(() => {
@@ -32,7 +33,7 @@ const CategorySwitch: React.FC<Props> = (props) => {
         <div className="category-switch">
         {
             categories?.filter((category: Category) => category.parent_id == null).map((category: Category) => (
-                <div id={category.id.toString()} className="category-button" onClick={onCategoryClick}>{category.name}</div>
+                <div id={category.id.toString()} className={ (category.id == categoryId) ? 'category-button--selected' : 'category-button' } onClick={onCategoryClick}>{category.name}</div>
             ))
         }
         </div>
