@@ -45,18 +45,13 @@
     margin: 15px;
     background-color: black;
     opacity: 0.5;
-}
 
-.category-button--selected {
-    display: inline-block;
-    font-size: 3.0vw;
-    font-weight: bold;
-    border-radius: 4px;
-    border: 2px solid black;
-    padding: 20px 30px;
-    margin: 15px;
-    background-color: white;
-    color: black;
+    &--selected {
+        @extend .category-button;
+        opacity: 1;
+        background-color: white;
+        color: black;
+    }
 }
 
 .menu-sub-category {
