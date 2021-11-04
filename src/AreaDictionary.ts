@@ -12,6 +12,7 @@ const AreaDictionary : { [id: string]: string } = {
     'kyodo': '経堂',
     'gokokuji': '護国寺',
     'meguro': '目黒',
+    'motohasunuma': '本蓮沼',
     'nakaitabashi': '中板橋',
     'nishidai': '西台',
     'nishisugamo': '西巣鴨',
