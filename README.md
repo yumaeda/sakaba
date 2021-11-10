@@ -6,7 +6,7 @@ Repository for Sakaba Frontend
 
 ## Run locally
 ```sh
-export NODE_AUTH_TOKEN={GITHUB_TOKEN}
+export NODE_AUTH_TOKEN={GITHUB_PERSONAL_ACCESS_TOKEN}
 npm install
 npm run build
 npm start
