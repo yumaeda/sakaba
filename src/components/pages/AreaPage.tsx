@@ -2,9 +2,10 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import { Restaurant } from '@yumaeda/sakaba-interface'
+import camelcaseKeys = require('camelcase-keys')
 import Photo from '../../interfaces/Photo'
 import Video from '../../interfaces/Video'
-import Restaurant from '../../interfaces/Restaurant'
 import Address from '../Address'
 import Distance from '../Distance'
 import PhoneNumber from '../PhoneNumber'
@@ -68,7 +69,11 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
         .then(res => res.json())
         .then(
             (data) => {
-                setRestaurants(JSON.parse(data.body).filter((restaurant: Restaurant) => restaurant.area == match.params.area))
+                setRestaurants(
+                    camelcaseKeys(JSON.parse(data.body)
+                        .filter((restaurant: Restaurant) => restaurant.area == match.params.area)
+                    )
+                )
             },
             (error: Error) => {
                 setError(error)
@@ -136,7 +141,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                     <RestaurantPageLink id={restaurantId} area={restaurant.area} url={restaurant.url} name={restaurant.name} /><br />
                                     <div className="shop-genre">{restaurant.genre}</div>
                                 </h4>
-                                <OpenHours businessDayJson={restaurant.business_day_info} />
+                                <OpenHours businessDayJson={restaurant.businessDayInfo} />
                             </div>
                             <DishPhotoList
                                 basePath={imageBasePath}
