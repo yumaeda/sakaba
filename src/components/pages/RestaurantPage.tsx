@@ -2,7 +2,8 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
-import Category from '../../interfaces/Category'
+import camelcaseKeys = require('camelcase-keys')
+import { Category } from '@yumaeda/sakaba-interface'
 import Menu from '../../interfaces/Menu'
 import MenuList from '../MenuList'
 import CategorySwitch from '../CategorySwitch'
@@ -28,7 +29,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
         .then(res => res.json())
         .then(
             (data) => {
-                const tmpCategories = JSON.parse(data.body)
+                const tmpCategories = camelcaseKeys(JSON.parse(data.body))
                 setCategory(tmpCategories[0])
                 setCategories(tmpCategories)
             },
@@ -68,13 +69,13 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
                     <>
                         <div>
                         {
-                            (categories.filter((currentCategory: Category) => currentCategory.parent_id == category.id).length == 0) ? (
+                            (categories.filter((currentCategory: Category) => currentCategory.parentId == category.id).length == 0) ? (
                                 <MenuList menus={menus.filter((menu: Menu) => menu.category == category.id && menu.sub_category == 0 && menu.region == 0)} />
                             ) : (
                                 <>
                                 {
-                                    categories.filter((currentCategory: Category) => currentCategory.parent_id == category.id).map((subCategory: Category) => {
-                                        const regions = categories.filter((currentCategory: Category) => currentCategory.parent_id == subCategory.id)
+                                    categories.filter((currentCategory: Category) => currentCategory.parentId == category.id).map((subCategory: Category) => {
+                                        const regions = categories.filter((currentCategory: Category) => currentCategory.parentId == subCategory.id)
                                         return (menus.filter((menu: Menu) => menu.category == category.id && menu.sub_category == subCategory.id).length > 0) ? (
                                             <>
                                                 <h4 className="menu-sub-category">{subCategory.name}</h4>

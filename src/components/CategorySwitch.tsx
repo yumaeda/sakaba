@@ -2,7 +2,8 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
-import Category from '../interfaces/Category'
+import camelcaseKeys = require('camelcase-keys')
+import { Category } from '@yumaeda/sakaba-interface'
 
 interface Props {
     categoryId: number
@@ -21,7 +22,7 @@ const CategorySwitch: React.FC<Props> = (props) => {
         .then(res => res.json())
         .then(
             (data) => {
-                setCategories(JSON.parse(data.body))
+                setCategories(camelcaseKeys(JSON.parse(data.body)))
             },
             (error: Error) => {
                 console.dir(error)
@@ -32,7 +33,7 @@ const CategorySwitch: React.FC<Props> = (props) => {
     return (
         <div className="category-switch">
         {
-            categories?.filter((category: Category) => category.parent_id == null).map((category: Category) => (
+            categories?.filter((category: Category) => category.parentId == null).map((category: Category) => (
                 <div id={category.id.toString()}
                      key={category.id.toString()}
                      className={ (category.id == categoryId) ? 'category-button--selected' : 'category-button' }
