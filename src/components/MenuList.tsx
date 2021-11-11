@@ -2,7 +2,7 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
-import Menu from '../interfaces/Menu'
+import { Menu } from '@yumaeda/sakaba-interface'
 import MenuPrice from './MenuPrice'
 
 interface Props {
@@ -22,9 +22,9 @@ const MenuList: React.FC<Props> = (props) => {
                             <div className="menu-name-cell">
                                 <span className="menu-name">{menu.name}</span>
                                 <br />
-                                <span className="menu-name-ja">{menu.name_jpn}</span>
+                                <span className="menu-name-ja">{menu.nameJpn}</span>
                             </div>
-                            <MenuPrice price={menu.price} isMinPrice={menu.is_min_price} />
+                            <MenuPrice price={menu.price} isMinPrice={menu.isMinPrice} />
                         </li>
                     )
                 })

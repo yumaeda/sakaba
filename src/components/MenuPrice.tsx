@@ -5,7 +5,7 @@ import * as React from 'react'
 
 interface Props {
     price: number
-    isMinPrice: boolean
+    isMinPrice: number
 }
 
 const MenuPrice: React.FC<Props> = (props) => {
