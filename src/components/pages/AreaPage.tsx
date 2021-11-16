@@ -4,6 +4,7 @@
 import * as React from 'react'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import camelcaseKeys = require('camelcase-keys')
+import ImageViewer from 'react-simple-image-viewer'
 import Photo from '../../interfaces/Photo'
 import Video from '../../interfaces/Video'
 import Address from '../Address'
@@ -19,17 +20,39 @@ import Footer from '../Footer'
 const AreaPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
     const [error, setError] = React.useState<Error>()
-    const [ latitude, setLatitude] = React.useState<number>(0)
+    const [latitude, setLatitude] = React.useState<number>(0)
     const [longitude, setLongitude] = React.useState<number>(0)
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>()
-    const [photos, setPhotos] = React.useState<Photo[]>()
+    const [photos, setPhotos] = React.useState<Photo[]>([])
     const [videos, setVideos] = React.useState<Video[]>()
     const areaName = AreaDictionary[match.params.area]
     const apiUrl = 'https://api.sakaba.link'
+    const [ imageUrls, setImageUrls ] = React.useState<string[]>([])
+    const [ imageIndex, setImageIndex ] = React.useState<number>(0)
+    const [ isViewerOpen, setIsViewerOpen ] = React.useState<boolean>(false)
+    const basePath = 'https://sakaba.link'
+    const imageBasePath = 'https://tokyo-takeout.com'
+    const imageDir = `${imageBasePath}/images`
+
+    const closeImageViewer = () => {
+        setImageUrls([])
+        setImageIndex(0)
+        setIsViewerOpen(false)
+    }
 
     const getCurrentPosition = (position: GeolocationPosition) => {
         setLatitude(position.coords.latitude)
         setLongitude(position.coords.longitude)
+    }
+
+    const openImageViewer = (restaurantId: string, index: number) => {
+        const restaurantImageDir = `${imageDir}/restaurants/${restaurantId}`
+        const tmpImageUrls = photos
+            .filter((photo: Photo) => window.atob(photo.restaurant_id) == restaurantId)
+            .map((photo: Photo) => `${restaurantImageDir}/${photo.image}`)
+        setImageUrls(tmpImageUrls)
+        setImageIndex(index)
+        setIsViewerOpen(true)
     }
 
     const handleGeolocationError = (error: GeolocationPositionError) => {
@@ -110,10 +133,6 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else {
-        const basePath = 'https://sakaba.link'
-        const imageBasePath = 'https://tokyo-takeout.com'
-        const imageDir = `${imageBasePath}/images`
-
         return (
             <>
                 <header className="header">
@@ -144,6 +163,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                 <OpenHours businessDayJson={restaurant.businessDayInfo} />
                             </div>
                             <DishPhotoList
+                                openImageViewer={openImageViewer}
                                 basePath={imageBasePath}
                                 restaurantId={restaurantId}
                                 photos={ photos ? photos.filter((photo: Photo) => atob(photo.restaurant_id) == restaurantId) : null }
@@ -153,6 +173,14 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                             />
                         </li>
                         )}) : <div>Loading...</div>}
+                        { isViewerOpen &&
+                          <ImageViewer
+                              src={ imageUrls }
+                              currentIndex={ imageIndex }
+                              disableScroll={ false }
+                              closeOnClickOutside={ true }
+                              onClose={ closeImageViewer } />
+                        }
                     </ul>
                 </div> 
                 <Footer />
