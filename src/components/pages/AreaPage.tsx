@@ -116,7 +116,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
             }
         )
 
-        fetch(`${apiUrl}/videos`, {
+        fetch('https://api.tokyo-dinner.com/videos', {
             headers: {}
         })
         .then(res => res.json())
