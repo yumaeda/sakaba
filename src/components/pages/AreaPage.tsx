@@ -116,13 +116,13 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
             }
         )
 
-        fetch(`${apiUrl}/videos`, {
+        fetch('https://api.tokyo-dinner.com/videos/', {
             headers: {}
         })
         .then(res => res.json())
         .then(
             (data) => {
-                setVideos(JSON.parse(data.body))
+                setVideos(JSON.parse(JSON.stringify(data.body)))
             },
             (error: Error) => {
                 setError(error)
@@ -169,7 +169,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                 photos={ photos ? photos.filter((photo: Photo) => atob(photo.restaurant_id) == restaurantId) : null }
                             />
                             <RestaurantVideoList
-                                videos={ videos ? videos.filter((video: Video) => atob(video.restaurant_id) == restaurantId) : null }
+                                videos={ videos ? videos.filter((video: Video) => video.restaurant_id == restaurantId) : null }
                             />
                         </li>
                         )}) : <div>Loading...</div>}
