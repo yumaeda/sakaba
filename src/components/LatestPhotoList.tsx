@@ -19,8 +19,8 @@ const LatestPhotoList: React.FC<Props> = (props) => {
             photos?.slice(0, photoCount).map((photo: Photo, index: number) => (
                 <div className="latest-image-wrapper">
                     <picture>
-                        <source type="image/webp" media="(min-width: 150px)" srcSet={`${basePath}/images/restaurants/${window.atob(photo.restaurant_id)}/${photo.thumbnail_webp}`} />
-                        <img src={`${basePath}/images/restaurants/${window.atob(photo.restaurant_id)}/${photo.thumbnail}`} className="latest-image" alt={`店舗写真${index}`} />
+                        <source type="image/webp" media="(min-width: 150px)" srcSet={`${basePath}/images/restaurants/${photo.restaurant_id}/${photo.thumbnail_webp}`} />
+                        <img src={`${basePath}/images/restaurants/${photo.restaurant_id}/${photo.thumbnail}`} className="latest-image" alt={`店舗写真${index}`} />
                     </picture>
                 </div>
             ))

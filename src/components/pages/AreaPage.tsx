@@ -27,6 +27,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     const [videos, setVideos] = React.useState<Video[]>()
     const areaName = AreaDictionary[match.params.area]
     const apiUrl = 'https://api.sakaba.link'
+    const newApiUrl = 'https://api.tokyo-dinner.com'
     const [ imageUrls, setImageUrls ] = React.useState<string[]>([])
     const [ imageIndex, setImageIndex ] = React.useState<number>(0)
     const [ isViewerOpen, setIsViewerOpen ] = React.useState<boolean>(false)
@@ -103,20 +104,20 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
             }
         )
 
-        fetch(`${apiUrl}/photos`, {
+        fetch(`${newApiUrl}/photos/`, {
             headers: {}
         })
         .then(res => res.json())
         .then(
             (data) => {
-                setPhotos(JSON.parse(data.body))
+                setPhotos(JSON.parse(JSON.stringify(data.body)))
             },
             (error: Error) => {
                 setError(error)
             }
         )
 
-        fetch('https://api.tokyo-dinner.com/videos/', {
+        fetch(`${newApiUrl}/videos/`, {
             headers: {}
         })
         .then(res => res.json())
@@ -166,7 +167,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                                 openImageViewer={openImageViewer}
                                 basePath={imageBasePath}
                                 restaurantId={restaurantId}
-                                photos={ photos ? photos.filter((photo: Photo) => atob(photo.restaurant_id) == restaurantId) : null }
+                                photos={ photos ? photos.filter((photo: Photo) => photo.restaurant_id == restaurantId) : null }
                             />
                             <RestaurantVideoList
                                 videos={ videos ? videos.filter((video: Video) => video.restaurant_id == restaurantId) : null }

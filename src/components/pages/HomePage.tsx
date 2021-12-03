@@ -17,17 +17,16 @@ const HomePage: React.FC<{}> = () => {
     const [photos, setPhotos] = React.useState<Photo[]>([])
     const [restaurantInfos, setRestaurantInfos] = React.useState<RestaurantInfo[]>()
     const [error, setError] = React.useState<Error>()
-    const apiUrl = 'https://api.sakaba.link'
     const imageBasePath = 'https://tokyo-takeout.com'
 
     React.useEffect(() => {
-        fetch(`${apiUrl}/photos`, {
+        fetch('https://api.tokyo-dinner.com/photos', {
             headers: {}
         })
         .then(res => res.json())
         .then(
             (data) => {
-                setPhotos(JSON.parse(data.body))
+                setPhotos(JSON.parse(JSON.stringify(data.body)))
             },
             (error: Error) => {
                 setError(error)
