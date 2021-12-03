@@ -20,7 +20,7 @@ const HomePage: React.FC<{}> = () => {
     const imageBasePath = 'https://tokyo-takeout.com'
 
     React.useEffect(() => {
-        fetch('https://api.tokyo-dinner.com/photos', {
+        fetch('https://api.tokyo-dinner.com/photos/', {
             headers: {}
         })
         .then(res => res.json())
