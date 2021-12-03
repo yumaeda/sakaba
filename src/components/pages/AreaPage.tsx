@@ -49,7 +49,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     const openImageViewer = (restaurantId: string, index: number) => {
         const restaurantImageDir = `${imageDir}/restaurants/${restaurantId}`
         const tmpImageUrls = photos
-            .filter((photo: Photo) => window.atob(photo.restaurant_id) == restaurantId)
+            .filter((photo: Photo) => photo.restaurant_id == restaurantId)
             .map((photo: Photo) => `${restaurantImageDir}/${photo.image}`)
         setImageUrls(tmpImageUrls)
         setImageIndex(index)
