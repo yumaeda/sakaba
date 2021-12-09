@@ -18,13 +18,13 @@ const RankingPage: React.FC = () => {
     const [rankings, setRankings] = React.useState<Ranking[]>()
 
     React.useEffect(() => {
-        fetch('https://api.sakaba.link/rankings', {
+        fetch('https://api.tokyo-dinner.com/rankings/', {
             headers: {}
         })
         .then(res => res.json())
         .then(
             (data) => {
-                setRankings(JSON.parse(data.body))
+                setRankings(JSON.parse(JSON.stringify(data.body)))
             },
             (error: Error) => {
                 setError(error)
@@ -47,7 +47,7 @@ const RankingPage: React.FC = () => {
                 <div className="contents">
                     <ul className="ranking-list">
                     {rankings ? rankings.map((ranking: Ranking) => {
-                        const restaurantId = atob(ranking.restaurant_id)
+                        const restaurantId = ranking.restaurant_id
                         const restaurantImageDir = `${baseImagePath}/images/restaurants/${restaurantId}`
                         return (
                         <li className="ranking-item" key={`${ranking.dish}#${ranking.rank}`}>
