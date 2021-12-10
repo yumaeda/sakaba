@@ -26,7 +26,6 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
     const [photos, setPhotos] = React.useState<Photo[]>([])
     const [videos, setVideos] = React.useState<Video[]>()
     const areaName = AreaDictionary[match.params.area]
-    const apiUrl = 'https://api.sakaba.link'
     const newApiUrl = 'https://api.tokyo-dinner.com'
     const [ imageUrls, setImageUrls ] = React.useState<string[]>([])
     const [ imageIndex, setImageIndex ] = React.useState<number>(0)
@@ -87,14 +86,14 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
             )
         }
 
-        fetch(`${apiUrl}/restaurants`, {
+        fetch(`${newApiUrl}/restaurants/`, {
             headers: {}
         })
         .then(res => res.json())
         .then(
             (data) => {
                 setRestaurants(
-                    camelcaseKeys(JSON.parse(data.body)
+                    camelcaseKeys(JSON.parse(JSON.stringify(data.body))
                         .filter((restaurant: Restaurant) => restaurant.area == match.params.area)
                     )
                 )
@@ -148,7 +147,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
                 <div className="contents">
                     <ul className="shop-list">
                     {restaurants ? restaurants.map((restaurant: Restaurant) => {
-                        const restaurantId = atob(restaurant.id)
+                        const restaurantId = restaurant.id
                         return (
                         <li className="shop-item" key={restaurantId} id={restaurantId}>
                             <div className="shop-item-photo">
