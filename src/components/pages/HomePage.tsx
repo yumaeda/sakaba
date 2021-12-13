@@ -34,7 +34,7 @@ const HomePage: React.FC<{}> = () => {
             }
         )
 
-        fetch(`${apiBasePath}/restaurant-counts`, {
+        fetch(`${apiBasePath}/restaurant-counts/`, {
             headers: {}
         })
         .then(res => res.json())
