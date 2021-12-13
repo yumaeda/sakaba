@@ -17,10 +17,11 @@ const HomePage: React.FC<{}> = () => {
     const [photos, setPhotos] = React.useState<Photo[]>([])
     const [restaurantInfos, setRestaurantInfos] = React.useState<RestaurantInfo[]>()
     const [error, setError] = React.useState<Error>()
+    const apiBasePath = 'https://api.tokyo-dinner.com'
     const imageBasePath = 'https://tokyo-takeout.com'
 
     React.useEffect(() => {
-        fetch('https://api.tokyo-dinner.com/photos/', {
+        fetch(`${apiBasePath}/photos/`, {
             headers: {}
         })
         .then(res => res.json())
@@ -33,13 +34,13 @@ const HomePage: React.FC<{}> = () => {
             }
         )
 
-        fetch('https://api.sakaba.link/restaurant-counts', {
+        fetch(`${apiBasePath}/restaurant-counts`, {
             headers: {}
         })
         .then(res => res.json())
         .then(
             (data) => {
-                setRestaurantInfos(JSON.parse(data.body))
+                setRestaurantInfos(JSON.parse(JSON.stringify(data.body)))
             },
             (error: Error) => {
                 setError(error)
