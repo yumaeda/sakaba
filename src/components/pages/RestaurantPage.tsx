@@ -15,6 +15,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
     const [categories, setCategories] = React.useState<Category[]>([])
     const [menus, setMenus] = React.useState<Menu[]>([])
     const apiUrl = 'https://api.sakaba.link'
+    const newApiUrl = 'https://api.tokyo-dinner.com'
 
     const handleCategoryClick = (event: React.MouseEvent<HTMLSpanElement>) => {
         const selectedCategoryId = Number(event.currentTarget.id)
@@ -22,13 +23,13 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
     }
 
     React.useEffect(() => {
-        fetch(`${apiUrl}/categories?restaurant_id=${match.params.restaurant}`, {
+        fetch(`${newApiUrl}/categories/${match.params.restaurant}`, {
             headers: {}
         })
         .then(res => res.json())
         .then(
             (data) => {
-                const tmpCategories = camelcaseKeys(JSON.parse(data.body))
+                const tmpCategories = camelcaseKeys(JSON.parse(JSON.stringify(data.body)))
                 setCategory(tmpCategories[0])
                 setCategories(tmpCategories)
             },

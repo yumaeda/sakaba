@@ -16,13 +16,14 @@ const CategorySwitch: React.FC<Props> = (props) => {
     const [categories, setCategories] = React.useState<Category[]>([])
 
     React.useEffect(() => {
-        fetch(`https://api.sakaba.link/categories?restaurant_id=${restaurantId}`, {
+        fetch(`https://api.tokyo-dinner.com/categories/${restaurantId}`, {
             headers: {}
         })
         .then(res => res.json())
         .then(
             (data) => {
-                setCategories(camelcaseKeys(JSON.parse(data.body)))
+                const tmpCategories = camelcaseKeys(JSON.parse(JSON.stringify(data.body)))
+                setCategories(tmpCategories)
             },
             (error: Error) => {
                 console.dir(error)
