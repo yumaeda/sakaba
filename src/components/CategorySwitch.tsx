@@ -34,7 +34,7 @@ const CategorySwitch: React.FC<Props> = (props) => {
     return (
         <div className="category-switch">
         {
-            categories?.filter((category: Category) => category.parentId == null).map((category: Category) => (
+            categories?.filter((category: Category) => category.parentId === 0).map((category: Category) => (
                 <div id={category.id.toString()}
                      key={category.id.toString()}
                      className={ (category.id == categoryId) ? 'category-button--selected' : 'category-button' }
