@@ -30,7 +30,10 @@ const AreaDictionary : { [id: string]: string } = {
     'muikamachi': '六日町',
 
     // Fukuoka
-    'nakasu-kawabata': '中洲川端'
+    'nakasu-kawabata': '中洲川端',
+
+    // Kumamoto
+    'kumamoto-jyou': '熊本城'
 }
 
 export default AreaDictionary
