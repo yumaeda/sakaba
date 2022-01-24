@@ -11,7 +11,7 @@ const Footer: React.FC = () => {
         <p>
             本サイトを利用する事により被った、いかなる被害や損害についても当サイトの管理者は一切の責任を負いません。
         </p>
-        <span>{`&copy; ${(new Date).getFullYear() } 酒場リンク`}</span>
+        <span>{`© ${(new Date).getFullYear() } 酒場リンク`}</span>
     </footer>
     )
 }
