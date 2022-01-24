@@ -3,6 +3,7 @@
  */
 import HomePage from './pages/HomePage'
 import AreaPage from './pages/AreaPage'
+import GenrePage from './pages/GenrePage'
 import RankingPage from './pages/RankingPage'
 import RestaurantPage from './pages/RestaurantPage'
 import * as React from 'react'
@@ -13,6 +14,7 @@ const Root: React.FC<{}> = () => {
         <Router>
             <Switch>
                 <Route exact path="/" component={HomePage} />
+                <Route path="/genres" component={GenrePage} />
                 <Route path="/ranking" component={RankingPage} />
                 <Route path="/:area/:restaurant" component={RestaurantPage} />
                 <Route path="/:area" component={AreaPage} />

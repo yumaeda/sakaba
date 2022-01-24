@@ -71,6 +71,9 @@ const HomePage: React.FC<{}> = () => {
                     <p className="second-paragraph">
                         <Link className="list-item" to="/ranking">フードランキング</Link>
                     </p>
+                    <p className="second-paragraph">
+                        <Link className="list-item" to="/genres">ジャンル一覧</Link>
+                    </p>
                 </div>
                 <Footer />
             </>
