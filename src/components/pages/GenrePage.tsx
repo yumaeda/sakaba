@@ -39,7 +39,7 @@
                      { genres ? genres.map((genre: Genre) => (
                          <li className="town-item">
                              <span className="town-button">
-                                 <Link className="list-item" to={`/${genre.id}/`}>{genre.name}</Link>
+                                 <Link className="list-item" to={`/genres/${genre.id}/`}>{genre.name}</Link>
                              </span>
                          </li>)) :
                          <li>Loading...</li>
