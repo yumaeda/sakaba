@@ -3,7 +3,6 @@
  */
 import HomePage from './pages/HomePage'
 import AreaPage from './pages/AreaPage'
-import GenrePage from './pages/GenrePage'
 import RankingPage from './pages/RankingPage'
 import RestaurantPage from './pages/RestaurantPage'
 import GenreRestaurantPage from './pages/GenreRestaurantPage'
@@ -16,7 +15,6 @@ const Root: React.FC<{}> = () => {
             <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route path="/genres/:id" component={GenreRestaurantPage} />
-                <Route path="/genres" component={GenrePage} />
                 <Route path="/ranking" component={RankingPage} />
                 <Route path="/:area/:restaurant" component={RestaurantPage} />
                 <Route path="/:area" component={AreaPage} />

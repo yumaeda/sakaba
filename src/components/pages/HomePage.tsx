@@ -2,6 +2,7 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+ import Genre from '../../interfaces/Genre'
 import Photo from '../../interfaces/Photo'
 import { Link } from 'react-router-dom'
 import AreaDictionary from '../../AreaDictionary'
@@ -14,6 +15,7 @@ interface RestaurantInfo {
 }
  
 const HomePage: React.FC<{}> = () => {
+    const [genres, setGenres] = React.useState<Genre[]>([])
     const [photos, setPhotos] = React.useState<Photo[]>([])
     const [restaurantInfos, setRestaurantInfos] = React.useState<RestaurantInfo[]>()
     const [error, setError] = React.useState<Error>()
@@ -21,6 +23,19 @@ const HomePage: React.FC<{}> = () => {
     const imageBasePath = 'https://tokyo-takeout.com'
 
     React.useEffect(() => {
+         fetch(`${apiBasePath}/genres/`, {
+             headers: {}
+         })
+         .then(res => res.json())
+         .then(
+             (data) => {
+                 setGenres(JSON.parse(JSON.stringify(data.body)))
+             },
+             (error: Error) => {
+                 setError(error)
+             }
+         )
+
         fetch(`${apiBasePath}/photos/`, {
             headers: {}
         })
@@ -71,9 +86,16 @@ const HomePage: React.FC<{}> = () => {
                     <p className="second-paragraph">
                         <Link className="list-item" to="/ranking">フードランキング</Link>
                     </p>
-                    <p className="second-paragraph">
-                        <Link className="list-item" to="/genres">ジャンル一覧</Link>
-                    </p>
+                    <ul className="town-list">
+                    { genres ? genres.map((genre: Genre) => (
+                        <li className="town-item">
+                            <span className="town-button">
+                                <Link className="list-item" to={`/genres/${genre.id}/`}>{genre.name}</Link>
+                            </span>
+                        </li>)) :
+                        <li>Loading...</li>
+                    }
+                    </ul>
                 </div>
                 <Footer />
             </>
