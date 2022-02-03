@@ -2,7 +2,7 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
- import Genre from '../../interfaces/Genre'
+import Genre from '../../interfaces/Genre'
 import Photo from '../../interfaces/Photo'
 import { Link } from 'react-router-dom'
 import AreaDictionary from '../../AreaDictionary'
@@ -23,18 +23,15 @@ const HomePage: React.FC<{}> = () => {
     const imageBasePath = 'https://tokyo-takeout.com'
 
     React.useEffect(() => {
-         fetch(`${apiBasePath}/genres/`, {
-             headers: {}
-         })
-         .then(res => res.json())
-         .then(
-             (data) => {
-                 setGenres(JSON.parse(JSON.stringify(data.body)))
-             },
-             (error: Error) => {
-                 setError(error)
-             }
-         )
+        fetch(`${apiBasePath}/genres/`, { headers: {} })
+            .then(res => res.json())
+            .then((data) => {
+                setGenres(JSON.parse(JSON.stringify(data.body)))
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
 
         fetch(`${apiBasePath}/photos/`, {
             headers: {}

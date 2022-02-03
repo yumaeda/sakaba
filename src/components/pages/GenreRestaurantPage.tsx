@@ -4,12 +4,14 @@
 import * as React from 'react'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import camelcaseKeys = require('camelcase-keys')
+import Genre from '../../interfaces/Genre'
 import RestaurantList from '../RestaurantList'
 import Footer from '../Footer'
 
 const GenreRestaurantPage: React.FC<{ match: any }> = (props) => {
     const { match } = props
     const [error, setError] = React.useState<Error>()
+    const [genre, setGenre] = React.useState<Genre>({name: '', id: 0})
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
     const genreId = match.params.id
     const newApiUrl = 'https://api.tokyo-dinner.com'
@@ -30,6 +32,16 @@ const GenreRestaurantPage: React.FC<{ match: any }> = (props) => {
                 setError(error)
             }
         )
+
+        fetch(`${newApiUrl}/genres/${genreId}`, { headers: {} })
+            .then(res => res.json())
+            .then((data) => {
+                setGenre(JSON.parse(JSON.stringify(data.body)))
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
     }, [])
 
     if (error) {
@@ -44,7 +56,7 @@ const GenreRestaurantPage: React.FC<{ match: any }> = (props) => {
                             <img src={`${imageDir}/back.png`} className="back-image" alt="Back" />
                         </picture>
                     </a>
-                    <h1 className="header-label">{genreId}</h1>
+                    <h1 className="header-label">{`${genre.id}:${genre.name}`}</h1>
                 </header>
                 <div className="contents">
                     <RestaurantList restaurants={restaurants} />
