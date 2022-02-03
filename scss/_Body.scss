@@ -25,17 +25,21 @@
     margin: 25px 30px;
 }
 
-.town-list {
+.navigation-label {
+    font-size: 4.0vw;
+}
+
+.navigation-list {
     padding: 30px;
 }
 
-.town-item {
+.navigation-item {
     font-size: 3.0vw;
     display: inline-block;
     margin: 40px 20px;
 }
 
-.town-button {
+.navigation-button {
     border-radius: 4px;
     border: 1px solid white;
     padding: 20px 30px;

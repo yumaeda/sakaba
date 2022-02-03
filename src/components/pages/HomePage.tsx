@@ -70,11 +70,23 @@ const HomePage: React.FC<{}> = () => {
                 </header>
                 <div className="contents">
                     <LatestPhotoList basePath={imageBasePath} photos={photos} />
-                    <ul className="town-list">
+                    <h4 className="navigation-label">Area</h4>
+                    <ul className="navigation-list">
                     { restaurantInfos ? restaurantInfos.map((info: RestaurantInfo) => (
-                        <li className="town-item">
-                            <span className="town-button">
+                        <li className="navigation-item">
+                            <span className="navigation-button">
                                 <Link className="list-item" to={`/${info.area}/`}>{`${AreaDictionary[info.area]} (${info.count})`}</Link>
+                            </span>
+                        </li>)) :
+                        <li>Loading...</li>
+                    }
+                    </ul>
+                    <h4 className="navigation-label">Genre</h4>
+                    <ul className="navigation-list">
+                    { genres ? genres.map((genre: Genre) => (
+                        <li className="navigation-item">
+                            <span className="navigation-button">
+                                <Link className="list-item" to={`/genres/${genre.id}/`}>{genre.name}</Link>
                             </span>
                         </li>)) :
                         <li>Loading...</li>
@@ -83,16 +95,6 @@ const HomePage: React.FC<{}> = () => {
                     <p className="second-paragraph">
                         <Link className="list-item" to="/ranking">フードランキング</Link>
                     </p>
-                    <ul className="town-list">
-                    { genres ? genres.map((genre: Genre) => (
-                        <li className="town-item">
-                            <span className="town-button">
-                                <Link className="list-item" to={`/genres/${genre.id}/`}>{genre.name}</Link>
-                            </span>
-                        </li>)) :
-                        <li>Loading...</li>
-                    }
-                    </ul>
                 </div>
                 <Footer />
             </>
