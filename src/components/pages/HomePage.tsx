@@ -2,6 +2,7 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import Dish from '../../interfaces/Dish'
 import Genre from '../../interfaces/Genre'
 import Photo from '../../interfaces/Photo'
 import { Link } from 'react-router-dom'
@@ -15,6 +16,7 @@ interface RestaurantInfo {
 }
  
 const HomePage: React.FC<{}> = () => {
+    const [dishes, setDishes] = React.useState<Dish[]>([])
     const [genres, setGenres] = React.useState<Genre[]>([])
     const [photos, setPhotos] = React.useState<Photo[]>([])
     const [restaurantInfos, setRestaurantInfos] = React.useState<RestaurantInfo[]>()
@@ -23,6 +25,16 @@ const HomePage: React.FC<{}> = () => {
     const imageBasePath = 'https://tokyo-takeout.com'
 
     React.useEffect(() => {
+        fetch(`${apiBasePath}/dishes/`, { headers: {} })
+            .then(res => res.json())
+            .then((data) => {
+                setDishes(JSON.parse(JSON.stringify(data.body)))
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
+
         fetch(`${apiBasePath}/genres/`, { headers: {} })
             .then(res => res.json())
             .then((data) => {
@@ -87,6 +99,17 @@ const HomePage: React.FC<{}> = () => {
                         <li className="navigation-item">
                             <span className="navigation-button">
                                 <Link className="list-item" to={`/genres/${genre.id}/`}>{genre.name}</Link>
+                            </span>
+                        </li>)) :
+                        <li>Loading...</li>
+                    }
+                    </ul>
+                    <h4 className="navigation-label">Dish</h4>
+                    <ul className="navigation-list">
+                    { dishes ? dishes.map((dish: Dish) => (
+                        <li className="navigation-item">
+                            <span className="navigation-button">
+                                <Link className="list-item" to={`/dishes/${dish.id}/`}>{dish.name}</Link>
                             </span>
                         </li>)) :
                         <li>Loading...</li>
