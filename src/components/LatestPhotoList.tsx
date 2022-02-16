@@ -11,7 +11,7 @@ interface Props {
 
 const LatestPhotoList: React.FC<Props> = (props) => {
     const { basePath, photos } = props
-    const photoCount = 40;
+    const photoCount = 12;
 
     return (
         <div className="latest-image-container">
