@@ -15,7 +15,7 @@ const Root: React.FC<{}> = () => {
         <Router>
             <Switch>
                 <Route exact path="/" component={HomePage} />
-                <Route path="/dish/:id" component={DishRestaurantPage} />
+                <Route path="/dishes/:id" component={DishRestaurantPage} />
                 <Route path="/genres/:id" component={GenreRestaurantPage} />
                 <Route path="/ranking" component={RankingPage} />
                 <Route path="/:area/:restaurant" component={RestaurantPage} />
