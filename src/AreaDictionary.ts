@@ -1,6 +1,7 @@
 const AreaDictionary : { [id: string]: string } = {
     // Tokyo
     'akabane': '赤羽',
+    'akasaka': '赤坂',
     'ikebukuro': '池袋',
     'itabashi': '板橋',
     'itabashi-honcho': '板橋本町',
