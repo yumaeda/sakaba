@@ -6,6 +6,7 @@ const AreaDictionary : { [id: string]: string } = {
     'itabashi': '板橋',
     'itabashi-honcho': '板橋本町',
     'ueno': '上野',
+    'ukimafunado': '浮間舟渡',
     'kagurazaka': '神楽坂',
     'kamiitabashi': '上板橋',
     'kanda': '神田',
