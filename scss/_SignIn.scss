@@ -1,0 +1,35 @@
+.signin {
+    &-header {
+        color: white;
+        text-align: center;
+        margin: 0;
+        padding: 20px 0;
+    
+        width: 100%;
+        position: fixed;
+        top: 0;
+
+        &-title {
+            margin: 0;
+        }
+    }
+
+    &-contents {
+        text-align: center;
+        padding: 120px 40px 40px 40px;
+    }
+
+    &-input {
+        width: 180px;
+        margin-bottom: 20px;
+        padding: 10px;
+    }
+
+    &-button {
+        width: 200px;
+        padding: 10px;
+        -webkit-appearance: none;
+        background-color: darkred;
+        color: whitesmoke;
+    }
+}
