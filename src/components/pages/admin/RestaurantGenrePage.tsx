@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import RestaurantDropDown from '../../RestaurantDropdown'
 import camelcaseKeys = require('camelcase-keys')
+import { getCookie } from '../../../utils/CookieUtility'
  
 const RestaurantGenrePage: React.FC = () => {
     const [token, setToken] = React.useState<string>('')
@@ -14,6 +15,7 @@ const RestaurantGenrePage: React.FC = () => {
     const [restaurantId, setRestaurantId] = React.useState<string>('')
  
     React.useEffect(() => {
+        setToken(getCookie('jtw'))
         fetch('https://api.tokyo-dinner.com/restaurants/', { headers: {} })
             .then(res => res.json())
             .then(
@@ -35,7 +37,12 @@ const RestaurantGenrePage: React.FC = () => {
     const handleSubmit = (event: React.SyntheticEvent) => {
         event.preventDefault()
 
-        if (token == '' || restaurantId === '' || genre === 0) {
+        if (token == '') {
+            alert('Token is expired or invalid!')
+            return
+        }
+
+        if (restaurantId === '' || genre === 0) {
             alert('Please fillout the required fields!')
             return
         }
@@ -68,7 +75,6 @@ const RestaurantGenrePage: React.FC = () => {
                 <div className="admin-contents">
                     <RestaurantDropDown onSelect={handleSelect} restaurantId={restaurantId} restaurants={restaurants} /><br />
                     <div>
-                        <input className="admin-input" placeholder="Token" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setToken(event.currentTarget.value) } /><br />
                         <input className="admin-input" placeholder="Genre" type="number" onChange={ (event: React.FormEvent<HTMLInputElement>) => setGenre(Number(event.currentTarget.value)) } /><br />
                         <button className="admin-button" type="submit" onClick={handleSubmit}>Save</button>
                     </div>
