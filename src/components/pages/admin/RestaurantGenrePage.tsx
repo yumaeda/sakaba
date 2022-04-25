@@ -15,7 +15,7 @@ const RestaurantGenrePage: React.FC = () => {
     const [restaurantId, setRestaurantId] = React.useState<string>('')
  
     React.useEffect(() => {
-        setToken(getCookie('jtw'))
+        setToken(getCookie('jwt'))
         fetch('https://api.tokyo-dinner.com/restaurants/', { headers: {} })
             .then(res => res.json())
             .then(
