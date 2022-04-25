@@ -20,16 +20,18 @@ const SignInPage: React.FC = () => {
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
 
-    const postOptions = {
+    const postOptions: RequestInit = {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
+      credentials: 'same-origin',
       body: JSON.stringify({ email, password })
     }
     fetch('https://api.tokyo-dinner.com/login', postOptions)
       .then((respose: Response) => {
         alert(JSON.stringify(respose))
+        alert(JSON.stringify(respose.headers))
         if (respose.ok) {
           document.cookie = `jwt=abcdefg;max-age=3600;domain=sakaba.link`
           setRedirectToReferrer(true)
