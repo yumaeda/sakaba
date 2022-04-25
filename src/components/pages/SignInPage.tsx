@@ -25,7 +25,7 @@ const SignInPage: React.FC = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      credentials: 'same-origin',
+      credentials: 'include',
       body: JSON.stringify({ email, password })
     }
     fetch('https://api.tokyo-dinner.com/login', postOptions)
