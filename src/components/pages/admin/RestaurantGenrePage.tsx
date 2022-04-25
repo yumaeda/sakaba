@@ -52,7 +52,7 @@ const RestaurantGenrePage: React.FC = () => {
             },
             body: JSON.stringify(restaurant_genre)
         }
-        fetch('https://api.tokyo-dinner.com/auth/restaurant-genre', postOptions)
+        fetch('https://api.tokyo-dinner.com/auth/restaurant-genre/', postOptions)
             .then((res) => res.json())
             .then((data) => {
                 alert(JSON.stringify(data))
