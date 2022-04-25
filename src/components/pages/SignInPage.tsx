@@ -28,11 +28,10 @@ const SignInPage: React.FC = () => {
       body: JSON.stringify({ email, password })
     }
     fetch('https://api.tokyo-dinner.com/login', postOptions)
-      .then((res) => res.json())
-      .then((data) => {
-        console.dir(data)
-        if (data.code == 200) {
-          alert(data.token)
+      .then((respose: Response) => {
+        if (respose.ok) {
+          const setCookie = respose.headers.get('set-cookie') ?? ''
+          document.cookie = setCookie
           setRedirectToReferrer(true)
         }
       })
