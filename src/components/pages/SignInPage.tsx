@@ -33,7 +33,8 @@ const SignInPage: React.FC = () => {
           const domain = 'sakaba.link'
           const maxAge = 3600
           if (data.code == 200) {
-            document.cookie = `jwt=${data.token};Max-Age=${maxAge};Domain=${domain};Secure;HttpOnly`
+            alert(data.token)
+            document.cookie = `jwt=${data.token}; max-Age=${maxAge}; domain=${domain}`
             setRedirectToReferrer(true)
         }
       })
