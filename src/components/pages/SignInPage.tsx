@@ -2,15 +2,10 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
-import { Redirect, useLocation } from 'react-router-dom'
-
-interface LocationState {
-    from: { pathname: string }
-}
+import { Redirect } from 'react-router-dom'
 
 const SignInPage: React.FC = () => {
   const [redirectToReferrer, setRedirectToReferrer] = React.useState<boolean>(false)
-  const { state } = useLocation<LocationState>()
   const [email, setEmail] = React.useState<string>('')
   const [password, setPassword] = React.useState<string>('')
 
@@ -37,27 +32,28 @@ const SignInPage: React.FC = () => {
       .then((data) => {
         console.dir(data)
         if (data.code == 200) {
+          alert(data.token)
           setRedirectToReferrer(true)
         }
       })
   } 
 
   if (redirectToReferrer === true) {
-    return <Redirect to={state?.from || '/'} />
+    return <Redirect to={'/admin/restaurant-genre'} />
   }
 
   return (
     <>
-      <header className="signin-header">
-        <h1 className="signin-header-title">Sign In</h1>
+      <header className="admin-header">
+        <h1 className="admin-header-title">Sign In</h1>
       </header>
-      <div className="signin-contents">
+      <div className="admin-contents">
         <form onSubmit={handleSubmit}>
-          <input className="signin-input" type="text" value={email} onChange={handleEmailChange} placeholder="ログインID" />
+          <input className="admin-input" type="text" value={email} onChange={handleEmailChange} placeholder="ログインID" />
           <br />
-          <input className="signin-input" type="password" value={password} onChange={handlePasswordChange} placeholder="パスワード" />
+          <input className="admin-input" type="password" value={password} onChange={handlePasswordChange} placeholder="パスワード" />
           <br />
-          <input className="signin-button" type="submit" value="サインイン" />
+          <input className="admin-button" type="submit" value="サインイン" />
         </form>
       </div>
     </>
