@@ -30,8 +30,8 @@ const SignInPage: React.FC = () => {
     fetch('https://api.tokyo-dinner.com/login', postOptions)
       .then((respose: Response) => {
         if (respose.ok) {
-          const setCookie = respose.headers.get('set-cookie') ?? ''
-          document.cookie = setCookie
+          alert(respose.headers.get('set-cookie'))
+          document.cookie = `jwt=abcdefg;max-age=3600;domain=sakaba.link`
           setRedirectToReferrer(true)
         }
       })
