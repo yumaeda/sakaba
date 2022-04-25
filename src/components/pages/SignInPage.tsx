@@ -25,16 +25,16 @@ const SignInPage: React.FC = () => {
       headers: {
         'Content-Type': 'application/json'
       },
-      credentials: 'include',
       body: JSON.stringify({ email, password })
     }
     fetch('https://api.tokyo-dinner.com/login', postOptions)
-      .then((respose: Response) => {
-        alert(JSON.stringify(respose))
-        alert(JSON.stringify(respose.headers))
-        if (respose.ok) {
-          document.cookie = `jwt=abcdefg;max-age=3600;domain=sakaba.link`
-          setRedirectToReferrer(true)
+        .then((res) => res.json())
+        .then((data) => {
+          const domain = 'sakaba.link'
+          const maxAge = 3600
+          if (data.code == 200) {
+            document.cookie = `jwt=${data.token};Max-Age=${maxAge};Domain=${domain};Secure;HttpOnly`
+            setRedirectToReferrer(true)
         }
       })
   } 
