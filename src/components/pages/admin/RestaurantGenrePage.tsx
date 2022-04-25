@@ -42,7 +42,7 @@ const RestaurantGenrePage: React.FC = () => {
 
         const restaurant_genre = {
             restaurant_id: restaurantId,
-            genre_id: genre
+            genre_id: genre.toString()
         }
         const postOptions = {
             method: 'POST',
