@@ -34,7 +34,7 @@ const SignInPage: React.FC = () => {
           const maxAge = 3600
           if (data.code == 200) {
             alert(data.token)
-            document.cookie = `jwt=${data.token}; max-Age=${maxAge}; domain=${domain}`
+            document.cookie = `jwt=${data.token}; max-Age=${maxAge}; domain=${domain}; secure`
             setRedirectToReferrer(true)
         }
       })
