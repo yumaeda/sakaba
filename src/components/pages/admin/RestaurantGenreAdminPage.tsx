@@ -8,7 +8,7 @@ import RestaurantDropDown from '../../RestaurantDropdown'
 import camelcaseKeys = require('camelcase-keys')
 import { getCookie } from '../../../utils/CookieUtility'
  
-const RestaurantGenrePage: React.FC = () => {
+const RestaurantGenreAdminPage: React.FC = () => {
     const [token, setToken] = React.useState<string>('')
     const [genre, setGenre] = React.useState<number>(0)
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
@@ -83,5 +83,5 @@ const RestaurantGenrePage: React.FC = () => {
      )
  }
  
- export default RestaurantGenrePage
+ export default RestaurantGenreAdminPage
  

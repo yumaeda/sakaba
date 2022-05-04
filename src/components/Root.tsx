@@ -1,12 +1,13 @@
 /**
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
+import RestaurantAdminPage from './pages/admin/RestaurantAdminPage'
+import RestaurantGenreAdminPage from './pages/admin/RestaurantGenreAdminPage'
 import AreaPage from './pages/AreaPage'
 import DishRestaurantPage from './pages/DishRestaurantPage'
 import GenreRestaurantPage from './pages/GenreRestaurantPage'
 import HomePage from './pages/HomePage'
 import RankingPage from './pages/RankingPage'
-import RestaurantGenrePage from './pages/admin/RestaurantGenrePage'
 import RestaurantPage from './pages/RestaurantPage'
 import SignInPage from './pages/SignInPage'
 import * as React from 'react'
@@ -17,7 +18,8 @@ const Root: React.FC<{}> = () => {
         <Router>
             <Switch>
                 <Route path="/signin" component={SignInPage} />
-                <Route path="/admin/restaurant-genre" component={RestaurantGenrePage} />
+                <Route path="/admin/restaurant" component={RestaurantAdminPage} />
+                <Route path="/admin/restaurant-genre" component={RestaurantGenreAdminPage} />
                 <Route exact path="/" component={HomePage} />
                 <Route path="/dishes/:id" component={DishRestaurantPage} />
                 <Route path="/genres/:id" component={GenreRestaurantPage} />
