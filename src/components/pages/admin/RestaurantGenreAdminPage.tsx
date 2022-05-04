@@ -70,7 +70,7 @@ const RestaurantGenreAdminPage: React.FC = () => {
             <>
                 <header className="admin-header">
                     <h1 className="admin-header-title">{`管理者ページ`}</h1>
-                    <Link to="/">Home</Link>
+                    <Link to="/admin/index">Home</Link>
                 </header>
                 <div className="admin-contents">
                     <RestaurantDropDown onSelect={handleSelect} restaurantId={restaurantId} restaurants={restaurants} /><br />
