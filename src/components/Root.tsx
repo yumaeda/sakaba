@@ -1,6 +1,7 @@
 /**
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
+import HomeAdminPage from './pages/admin/HomeAdminPage'
 import RestaurantAdminPage from './pages/admin/RestaurantAdminPage'
 import RestaurantGenreAdminPage from './pages/admin/RestaurantGenreAdminPage'
 import AreaPage from './pages/AreaPage'
@@ -18,6 +19,7 @@ const Root: React.FC<{}> = () => {
         <Router>
             <Switch>
                 <Route path="/signin" component={SignInPage} />
+                <Route path="/admin/index" component={HomeAdminPage} />
                 <Route path="/admin/restaurant" component={RestaurantAdminPage} />
                 <Route path="/admin/restaurant-genre" component={RestaurantGenreAdminPage} />
                 <Route exact path="/" component={HomePage} />

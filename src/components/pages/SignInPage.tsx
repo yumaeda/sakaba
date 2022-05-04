@@ -40,7 +40,7 @@ const SignInPage: React.FC = () => {
   } 
 
   if (redirectToReferrer === true) {
-    return <Redirect to={'/admin/restaurant-genre'} />
+    return <Redirect to={'/admin/index'} />
   }
 
   return (
