@@ -70,8 +70,8 @@ const RestaurantAdminPage: React.FC = () => {
             .then((data) => {
                 const result = JSON.parse(JSON.stringify(data))
                 const coordinates = result[0]['geometry']['coordinates']
-                const latitude: string = coordinates[1]
-                const longitude: string = coordinates[0]
+                const latitude = coordinates[1]
+                const longitude = coordinates[0]
                 const restaurant = {
                     url,
                     name,
@@ -80,8 +80,8 @@ const RestaurantAdminPage: React.FC = () => {
                     address: `${address} ${building}`,
                     area,
                     business_day_info: generateBusinessDayInfo(),
-                    latitude,
-                    longitude
+                    latitude: `${latitude}`,
+                    longitude: `${longitude}`
                 }
                 const postOptions = {
                     method: 'POST',
