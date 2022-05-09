@@ -9,6 +9,7 @@ const HomeAdminPage: React.FC = () => {
             </header>
             <div className="admin-contents">
                 <ul>
+                    <li><Link to="/admin/photo">写真を登録</Link></li>
                     <li><Link to="/admin/restaurant-genre">レストランのジャンルを登録</Link></li>
                     <li><Link to="/admin/restaurant">レストランを登録</Link></li>
                 </ul>

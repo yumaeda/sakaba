@@ -13,6 +13,7 @@ import RestaurantPage from './pages/RestaurantPage'
 import SignInPage from './pages/SignInPage'
 import * as React from 'react'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import PhotoAdminPage from './pages/admin/PhotoAdminPage'
 
 const Root: React.FC<{}> = () => {
     return (
@@ -20,6 +21,7 @@ const Root: React.FC<{}> = () => {
             <Switch>
                 <Route path="/signin" component={SignInPage} />
                 <Route path="/admin/index" component={HomeAdminPage} />
+                <Route path="/admin/photo" component={PhotoAdminPage} />
                 <Route path="/admin/restaurant" component={RestaurantAdminPage} />
                 <Route path="/admin/restaurant-genre" component={RestaurantGenreAdminPage} />
                 <Route exact path="/" component={HomePage} />
