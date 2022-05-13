@@ -79,10 +79,10 @@ const PhotoAdminPage: React.FC = () => {
                 fetch('https://api.tokyo-dinner.com/auth/photo/', postOptions)
                     .then(res => res.json())
                     .then(data => {
-                        alert(JSON.stringify(data))
-                    },
-                    (error: Error) => {
-                        alert(JSON.stringify(error))
+                        alert(`Result: ${JSON.stringify(data)}`)
+                    })
+                    .catch(error => {
+                        alert(`Error: ${JSON.stringify(error)}`)
                     })
             })
         })
