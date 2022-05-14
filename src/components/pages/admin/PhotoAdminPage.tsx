@@ -63,10 +63,9 @@ const PhotoAdminPage: React.FC = () => {
         setDisable(true)
         Array.from(files).forEach((file: File) => {
             getBase64(file).then(base64 => {
-                const encodedFile = String(base64).replace('data:', '').replace(/^.+,/, '')
                 const restaurant_photo = {
                     restaurant_id: restaurantId,
-                    file_content: encodedFile
+                    file_content: String(base64) 
                 }
                 const postOptions = {
                     method: 'POST',
@@ -79,7 +78,7 @@ const PhotoAdminPage: React.FC = () => {
                 fetch('https://api.tokyo-dinner.com/auth/photo/', postOptions)
                     .then(res => res.json())
                     .then(data => {
-                        alert(`Result: ${JSON.stringify(data)}`)
+                        console.dir(data)
                     })
                     .catch(error => {
                         alert(`Error: ${JSON.stringify(error)}`)
