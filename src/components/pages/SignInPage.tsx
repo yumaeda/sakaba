@@ -17,11 +17,8 @@ const SignInPage: React.FC = () => {
           'Authorization': `Bearer ${getCookie('jwt')}`
       }
     })
-        .then(res => res.json())
-        .then(data => {
-          alert(JSON.stringify(data))
-          const loginUser = JSON.parse(JSON.stringify(data.body))
-          if (loginUser.text == 'Hello Admin.') {
+        .then(response => {
+          if (response.status == 200) {
             setRedirectToReferrer(true)
           }
         })
