@@ -6,21 +6,17 @@ import { Redirect } from 'react-router-dom'
 import { getCookie } from '../../utils/CookieUtility'
 
 const SignInPage: React.FC = () => {
-  const [token, setToken] = React.useState<string>('')
   const [redirectToReferrer, setRedirectToReferrer] = React.useState<boolean>(false)
   const [email, setEmail] = React.useState<string>('')
   const [password, setPassword] = React.useState<string>('')
 
   React.useEffect(() => {
-    setToken(getCookie('jwt'))
-    const getOptions = {
-      method: 'GET',
+    fetch('https://api.tokyo-dinner.com/auth/home', {
       headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
+          'Authorization': `Bearer ${getCookie('jwt')}`
       }
-    }
-    fetch('https://api.tokyo-dinner.com/auth/home', getOptions)
+    })
         .then(res => res.json())
         .then(data => {
           alert(JSON.stringify(data))
