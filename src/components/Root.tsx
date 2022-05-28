@@ -26,6 +26,7 @@ const Root: React.FC<{}> = () => {
                 <Route path="/admin/restaurant-genre" component={RestaurantGenreAdminPage} />
                 <Route exact path="/" component={HomePage} />
                 <Route path="/dishes/:id" component={DishRestaurantPage} />
+                <Route path="/drinks/:id" component={DrinkRestaurantPage} />
                 <Route path="/genres/:id" component={GenreRestaurantPage} />
                 <Route path="/ranking" component={RankingPage} />
                 <Route path="/:area/:restaurant" component={RestaurantPage} />

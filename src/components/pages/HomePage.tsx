@@ -3,6 +3,7 @@
  */
 import * as React from 'react'
 import Dish from '../../interfaces/Dish'
+import Drink from '../../interfaces/Drink'
 import Genre from '../../interfaces/Genre'
 import Photo from '../../interfaces/Photo'
 import { Link } from 'react-router-dom'
@@ -17,6 +18,7 @@ interface RestaurantInfo {
  
 const HomePage: React.FC<{}> = () => {
     const [dishes, setDishes] = React.useState<Dish[]>([])
+    const [drinks, setDrinks] = React.useState<Drink[]>([])
     const [genres, setGenres] = React.useState<Genre[]>([])
     const [photos, setPhotos] = React.useState<Photo[]>([])
     const [restaurantInfos, setRestaurantInfos] = React.useState<RestaurantInfo[]>()
@@ -29,6 +31,16 @@ const HomePage: React.FC<{}> = () => {
             .then(res => res.json())
             .then((data) => {
                 setDishes(JSON.parse(JSON.stringify(data.body)))
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
+
+        fetch(`${apiBasePath}/drinks/`, { headers: {} })
+            .then(res => res.json())
+            .then((data) => {
+                setDrinks(JSON.parse(JSON.stringify(data.body)))
             },
             (error: Error) => {
                 setError(error)
@@ -88,6 +100,17 @@ const HomePage: React.FC<{}> = () => {
                         <li className="navigation-item">
                             <span className="navigation-button">
                                 <Link className="list-item" to={`/${info.area}/`}>{`${AreaDictionary[info.area]} (${info.count})`}</Link>
+                            </span>
+                        </li>)) :
+                        <li>Loading...</li>
+                    }
+                    </ul>
+                    <h4 className="navigation-label">Drink</h4>
+                    <ul className="navigation-list">
+                    { drinks ? drinks.map((drink: Drink) => (
+                        <li className="navigation-item">
+                            <span className="navigation-button">
+                                <Link className="list-item" to={`/drinks/${drink.id}/`}>{drink.name}</Link>
                             </span>
                         </li>)) :
                         <li>Loading...</li>
