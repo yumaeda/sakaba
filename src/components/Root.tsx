@@ -3,6 +3,7 @@
  */
 import HomeAdminPage from './pages/admin/HomeAdminPage'
 import RestaurantAdminPage from './pages/admin/RestaurantAdminPage'
+import RestaurantDrinkAdminPage from './pages/admin/RestaurantDrinkAdminPage'
 import RestaurantGenreAdminPage from './pages/admin/RestaurantGenreAdminPage'
 import AreaPage from './pages/AreaPage'
 import DishRestaurantPage from './pages/DishRestaurantPage'
@@ -24,6 +25,7 @@ const Root: React.FC<{}> = () => {
                 <Route path="/admin/index" component={HomeAdminPage} />
                 <Route path="/admin/photo" component={PhotoAdminPage} />
                 <Route path="/admin/restaurant" component={RestaurantAdminPage} />
+                <Route path="/admin/restaurant-drink" component={RestaurantDrinkAdminPage} />
                 <Route path="/admin/restaurant-genre" component={RestaurantGenreAdminPage} />
                 <Route exact path="/" component={HomePage} />
                 <Route path="/dishes/:id" component={DishRestaurantPage} />

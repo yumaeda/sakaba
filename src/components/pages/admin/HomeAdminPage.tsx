@@ -11,6 +11,7 @@ const HomeAdminPage: React.FC = () => {
                 <ul>
                     <li><Link to="/admin/photo">写真を登録</Link></li>
                     <li><Link to="/admin/restaurant-genre">レストランのジャンルを登録</Link></li>
+                    <li><Link to="/admin/restaurant-drink">レストランにお酒を登録</Link></li>
                     <li><Link to="/admin/restaurant">レストランを登録</Link></li>
                 </ul>
             </div> 
