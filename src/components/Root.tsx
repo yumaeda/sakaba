@@ -14,27 +14,27 @@ import RankingPage from './pages/RankingPage'
 import RestaurantPage from './pages/RestaurantPage'
 import SignInPage from './pages/SignInPage'
 import * as React from 'react'
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import PhotoAdminPage from './pages/admin/PhotoAdminPage'
 
 const Root: React.FC<{}> = () => {
     return (
         <Router>
-            <Switch>
-                <Route path="/signin" component={SignInPage} />
-                <Route path="/admin/index" component={HomeAdminPage} />
-                <Route path="/admin/photo" component={PhotoAdminPage} />
-                <Route path="/admin/restaurant" component={RestaurantAdminPage} />
-                <Route path="/admin/restaurant-drink" component={RestaurantDrinkAdminPage} />
-                <Route path="/admin/restaurant-genre" component={RestaurantGenreAdminPage} />
-                <Route exact path="/" component={HomePage} />
-                <Route path="/dishes/:id" component={DishRestaurantPage} />
-                <Route path="/drinks/:id" component={DrinkRestaurantPage} />
-                <Route path="/genres/:id" component={GenreRestaurantPage} />
-                <Route path="/ranking" component={RankingPage} />
-                <Route path="/:area/:restaurant" component={RestaurantPage} />
-                <Route path="/:area" component={AreaPage} />
-            </Switch>
+            <Routes>
+                <Route path="/signin" element={<SignInPage />} />
+                <Route path="/admin/index" element={<HomeAdminPage />} />
+                <Route path="/admin/photo" element={<PhotoAdminPage />} />
+                <Route path="/admin/restaurant" element={<RestaurantAdminPage />} />
+                <Route path="/admin/restaurant-drink" element={<RestaurantDrinkAdminPage />} />
+                <Route path="/admin/restaurant-genre" element={<RestaurantGenreAdminPage />} />
+                <Route exact path="/" element={<HomePage />} />
+                <Route path="/dishes/:id" element={<DishRestaurantPage />} />
+                <Route path="/drinks/:id" element={<DrinkRestaurantPage />} />
+                <Route path="/genres/:id" element={<GenreRestaurantPage />} />
+                <Route path="/ranking" element={<RankingPage />} />
+                <Route path="/:area/:restaurant" element={<RestaurantPage />} />
+                <Route path="/:area" element={<AreaPage />} />
+            </Routes>
         </Router>
     )
 }
