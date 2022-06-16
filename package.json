@@ -28,7 +28,6 @@
     "react-dom": "^17.0.0",
     "react-router-dom": "^5.3.0",
     "react-simple-image-viewer": "1.1.1",
-    "react-virtualized-auto-sizer": "^1.0.6",
     "react-window": "^1.8.6"
   },
   "devDependencies": {
@@ -36,7 +35,6 @@
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
     "@types/react-router-dom": "^5.3.0",
-    "@types/react-virtualized-auto-sizer": "^1.0.0",
     "@types/react-window": "^1.8.2",
     "css-loader": "^6.5.0",
     "mini-css-extract-plugin": "^2.4.3",
