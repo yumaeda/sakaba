@@ -13,7 +13,8 @@ const AreaPage: React.FC = () => {
     const params = useParams()
     const [error, setError] = React.useState<Error>()
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
-    const areaName = params.area in AreaDictionary ? AreaDictionary[params.area] : ''
+    const area = params.area || ''
+    const areaName = area != '' ? AreaDictionary[params.area] : ''
     const newApiUrl = 'https://api.tokyo-dinner.com'
     const basePath = 'https://sakaba.link'
     const imageBasePath = 'https://tokyo-takeout.com'
@@ -30,7 +31,7 @@ const AreaPage: React.FC = () => {
             (data) => {
                 setRestaurants(
                     camelcaseKeys(JSON.parse(JSON.stringify(data.body))
-                        .filter((restaurant: Restaurant) => restaurant.area == params.area)
+                        .filter((restaurant: Restaurant) => restaurant.area == area)
                     )
                 )
             },
