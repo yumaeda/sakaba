@@ -10,6 +10,7 @@ import CategorySwitch from '../CategorySwitch'
 
 const RestaurantPage: React.FC = () => {
     const params = useParams()
+    const restaurantId = params.restaurant || ''
     const defaultCategory = { id: 0, name: ''}
     const [error, setError] = React.useState<Error>()
     const [category, setCategory] = React.useState<Category>(defaultCategory)
@@ -24,7 +25,7 @@ const RestaurantPage: React.FC = () => {
     }
 
     React.useEffect(() => {
-        fetch(`${newApiUrl}/categories/${params.restaurant}`, {
+        fetch(`${newApiUrl}/categories/${restaurantId}`, {
             headers: {}
         })
         .then(res => res.json())
@@ -39,7 +40,7 @@ const RestaurantPage: React.FC = () => {
             }
         )
 
-        fetch(`${apiUrl}/menus?restaurant_id=${params.restaurant}`, {
+        fetch(`${apiUrl}/menus?restaurant_id=${restaurantId}`, {
             headers: {}
         })
         .then(res => res.json())
@@ -62,8 +63,8 @@ const RestaurantPage: React.FC = () => {
         return (
             <>
                 <header className="menu-header"
-                        style={{ backgroundImage: `url(${imageDir}/menu-headers/${params.restaurant}.png)`}}>
-                    <CategorySwitch categoryId={ category.id } onCategoryClick={ handleCategoryClick } restaurantId={params.restaurant} />
+                        style={{ backgroundImage: `url(${imageDir}/menu-headers/${restaurantId}.png)`}}>
+                    <CategorySwitch categoryId={ category.id } onCategoryClick={ handleCategoryClick } restaurantId={restaurantId} />
                 </header>
                 <div className="contents">
                 {
