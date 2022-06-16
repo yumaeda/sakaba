@@ -2,17 +2,18 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import { useParams } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import camelcaseKeys = require('camelcase-keys')
 import RestaurantList from '../RestaurantList'
 import AreaDictionary from '../../AreaDictionary'
 import Footer from '../Footer'
 
-const AreaPage: React.FC<{ match: any }> = (props) => {
-    const { match } = props
+const AreaPage: React.FC = () => {
+    const params = useParams()
     const [error, setError] = React.useState<Error>()
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
-    const areaName = AreaDictionary[match.params.area]
+    const areaName = AreaDictionary[params.area]
     const newApiUrl = 'https://api.tokyo-dinner.com'
     const basePath = 'https://sakaba.link'
     const imageBasePath = 'https://tokyo-takeout.com'
@@ -29,7 +30,7 @@ const AreaPage: React.FC<{ match: any }> = (props) => {
             (data) => {
                 setRestaurants(
                     camelcaseKeys(JSON.parse(JSON.stringify(data.body))
-                        .filter((restaurant: Restaurant) => restaurant.area == match.params.area)
+                        .filter((restaurant: Restaurant) => restaurant.area == params.area)
                     )
                 )
             },

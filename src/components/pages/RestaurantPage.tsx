@@ -2,13 +2,14 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import { useParams } from 'react-router-dom'
 import camelcaseKeys = require('camelcase-keys')
 import { Category, Menu } from '@yumaeda/sakaba-interface'
 import MenuList from '../MenuList'
 import CategorySwitch from '../CategorySwitch'
 
-const RestaurantPage: React.FC<{ match: any }> = (props) => {
-    const { match } = props
+const RestaurantPage: React.FC = () => {
+    const params = useParams()
     const defaultCategory = { id: 0, name: ''}
     const [error, setError] = React.useState<Error>()
     const [category, setCategory] = React.useState<Category>(defaultCategory)
@@ -23,7 +24,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
     }
 
     React.useEffect(() => {
-        fetch(`${newApiUrl}/categories/${match.params.restaurant}`, {
+        fetch(`${newApiUrl}/categories/${params.restaurant}`, {
             headers: {}
         })
         .then(res => res.json())
@@ -38,7 +39,7 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
             }
         )
 
-        fetch(`${apiUrl}/menus?restaurant_id=${match.params.restaurant}`, {
+        fetch(`${apiUrl}/menus?restaurant_id=${params.restaurant}`, {
             headers: {}
         })
         .then(res => res.json())
@@ -61,8 +62,8 @@ const RestaurantPage: React.FC<{ match: any }> = (props) => {
         return (
             <>
                 <header className="menu-header"
-                        style={{ backgroundImage: `url(${imageDir}/menu-headers/${match.params.restaurant}.png)`}}>
-                    <CategorySwitch categoryId={ category.id } onCategoryClick={ handleCategoryClick } restaurantId={match.params.restaurant} />
+                        style={{ backgroundImage: `url(${imageDir}/menu-headers/${params.restaurant}.png)`}}>
+                    <CategorySwitch categoryId={ category.id } onCategoryClick={ handleCategoryClick } restaurantId={params.restaurant} />
                 </header>
                 <div className="contents">
                 {

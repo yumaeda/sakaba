@@ -2,25 +2,25 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import { useParams } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import camelcaseKeys = require('camelcase-keys')
 import Dish from '../../interfaces/Dish'
 import RestaurantList from '../RestaurantList'
 import Footer from '../Footer'
 
-const DishRestaurantPage: React.FC<{ match: any }> = (props) => {
-    const { match } = props
+const DishRestaurantPage: React.FC = () => {
+    const params = useParams()
     const [error, setError] = React.useState<Error>()
     const [dish, setDish] = React.useState<Dish>({name: '', id: 0})
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
-    const dishId = match.params.id
     const newApiUrl = 'https://api.tokyo-dinner.com'
     const basePath = 'https://sakaba.link'
     const imageBasePath = 'https://tokyo-takeout.com'
     const imageDir = `${imageBasePath}/images`
 
     React.useEffect(() => {
-        fetch(`${newApiUrl}/restaurants/dishes/${dishId}`, { headers: {} })
+        fetch(`${newApiUrl}/restaurants/dishes/${params.id}`, { headers: {} })
             .then(res => res.json())
             .then(
                 (data) => {
@@ -31,7 +31,7 @@ const DishRestaurantPage: React.FC<{ match: any }> = (props) => {
                 }
             )
 
-        fetch(`${newApiUrl}/dishes/${dishId}`, { headers: {} })
+        fetch(`${newApiUrl}/dishes/${params.id}`, { headers: {} })
             .then(res => res.json())
             .then((data) => {
                 setDish(JSON.parse(JSON.stringify(data.body)))
