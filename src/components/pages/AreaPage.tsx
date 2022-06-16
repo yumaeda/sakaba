@@ -14,7 +14,7 @@ const AreaPage: React.FC = () => {
     const [error, setError] = React.useState<Error>()
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
     const area = params.area || ''
-    const areaName = area != '' ? AreaDictionary[params.area] : ''
+    const areaName = area != '' ? AreaDictionary[area] : ''
     const newApiUrl = 'https://api.tokyo-dinner.com'
     const basePath = 'https://sakaba.link'
     const imageBasePath = 'https://tokyo-takeout.com'
