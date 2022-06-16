@@ -1,5 +1,5 @@
 const path = require('path')
-const MODE = 'development'
+const MODE = 'production'
 const MiniCssExtractPlugin = require('mini-css-extract-plugin')
 
 module.exports = [{
