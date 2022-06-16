@@ -4,6 +4,8 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
+import Drink from '../../../interfaces/Drink'
+import Dropdown from '../../Dropdown'
 import RestaurantDropDown from '../../RestaurantDropdown'
 import camelcaseKeys = require('camelcase-keys')
 import { getCookie } from '../../../utils/CookieUtility'
@@ -13,6 +15,7 @@ const RestaurantDrinkAdminPage: React.FC = () => {
     const [drink, setDrink] = React.useState<number>(0)
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
     const [restaurantId, setRestaurantId] = React.useState<string>('')
+    const [drinks, setDrinks] = React.useState<Drink[]>([])
  
     React.useEffect(() => {
         setToken(getCookie('jwt'))
@@ -28,12 +31,29 @@ const RestaurantDrinkAdminPage: React.FC = () => {
                     console.dir(error)
                 }
             )
+
+        fetch('https://api.tokyo-dinner.com/drinks/', { headers: {} })
+            .then(res => res.json())
+            .then(
+                (data) => {
+                    const tmpDrinks = JSON.parse(JSON.stringify(data.body))
+                    setDrink(tmpDrinks[0].id)
+                    setDrinks(tmpDrinks)
+                },
+                (error: Error) => {
+                    console.dir(error)
+                }
+            )
     }, [])
 
-    const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleRestaurantSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setRestaurantId(event.currentTarget.value)
     }
  
+    const handleDrinkSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setDrink(Number(event.currentTarget.value))
+    }
+
     const handleSubmit = (event: React.SyntheticEvent) => {
         event.preventDefault()
 
@@ -73,9 +93,9 @@ const RestaurantDrinkAdminPage: React.FC = () => {
                     <Link to="/admin/index">Home</Link>
                 </header>
                 <div className="admin-contents">
-                    <RestaurantDropDown onSelect={handleSelect} restaurantId={restaurantId} restaurants={restaurants} /><br />
+                    <RestaurantDropDown onSelect={handleRestaurantSelect} restaurantId={restaurantId} restaurants={restaurants} /><br />
+                    <Dropdown onSelect={handleDrinkSelect} itemId={drink} items={drinks} /><br />
                     <div>
-                        <input className="admin-input" placeholder="Drink ID" type="number" onChange={ (event: React.FormEvent<HTMLInputElement>) => setDrink(Number(event.currentTarget.value)) } /><br />
                         <button className="admin-button" type="submit" onClick={handleSubmit}>Save</button>
                     </div>
                 </div> 

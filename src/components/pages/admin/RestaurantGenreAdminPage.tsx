@@ -5,7 +5,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import Genre from '../../../interfaces/Genre'
-import GenreDropDown from '../../GenreDropdown'
+import Dropdown from '../../Dropdown'
 import RestaurantDropDown from '../../RestaurantDropdown'
 import camelcaseKeys = require('camelcase-keys')
 import { getCookie } from '../../../utils/CookieUtility'
@@ -44,7 +44,6 @@ const RestaurantGenreAdminPage: React.FC = () => {
                     console.dir(error)
                 }
             )
-
     }, [])
 
     const handleRestaurantSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -95,7 +94,7 @@ const RestaurantGenreAdminPage: React.FC = () => {
                 </header>
                 <div className="admin-contents">
                     <RestaurantDropDown onSelect={handleRestaurantSelect} restaurantId={restaurantId} restaurants={restaurants} /><br />
-                    <GenreDropDown onSelect={handleGenreSelect} genreId={genre} genres={genres} /><br />
+                    <Dropdown onSelect={handleGenreSelect} itemId={genre} items={genres} /><br />
                     <div>
                         <button className="admin-button" type="submit" onClick={handleSubmit}>Save</button>
                     </div>
