@@ -56,7 +56,7 @@ const DrinkRestaurantPage: React.FC = () => {
                             <img src={`${imageDir}/back.png`} className="back-image" alt="Back" />
                         </picture>
                     </a>
-                    <h1 className="header-label">{`${drink.id}:${drink.name}`}</h1>
+                    <h1 className="header-label">{drink.name}</h1>
                 </header>
                 <div className="contents">
                     <RestaurantList restaurants={restaurants} />
