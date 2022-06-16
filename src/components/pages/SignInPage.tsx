@@ -2,7 +2,7 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
-import { Redirect } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { getCookie } from '../../utils/CookieUtility'
 
 const SignInPage: React.FC = () => {
@@ -55,7 +55,7 @@ const SignInPage: React.FC = () => {
   } 
 
   if (redirectToReferrer === true) {
-    return <Redirect to={'/admin/index'} />
+    return <Navigate to={'/admin/index'} />
   }
 
   return (
