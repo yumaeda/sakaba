@@ -29,6 +29,9 @@ const AreaDictionary : { [id: string]: string } = {
     'tokiwadai': '常盤台',
     'takashimadaira': '高島平',
 
+    // Saitama
+    'kawagoe': '川越',
+
     // Chiba
     'narita-airport': '成田空港',
 
