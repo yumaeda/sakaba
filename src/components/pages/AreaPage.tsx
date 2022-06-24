@@ -56,7 +56,7 @@ const AreaPage: React.FC = () => {
                     <h1 className="header-label">{areaName}</h1>
                 </header>
                 <div className="contents">
-                    <RestaurantList restaurants={restaurants} />
+                    <RestaurantList restaurants={restaurants} sortByDistance={false} />
                 </div> 
                 <Footer />
             </>

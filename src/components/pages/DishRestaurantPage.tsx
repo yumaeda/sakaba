@@ -57,7 +57,7 @@ const DishRestaurantPage: React.FC = () => {
                     <h1 className="header-label">{`${dish.id}:${dish.name}`}</h1>
                 </header>
                 <div className="contents">
-                    <RestaurantList restaurants={restaurants} />
+                    <RestaurantList restaurants={restaurants} sortByDistance={true} />
                 </div> 
                 <Footer />
             </>

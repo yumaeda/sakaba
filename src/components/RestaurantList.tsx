@@ -4,30 +4,35 @@
 import * as React from 'react'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import ImageViewer from 'react-simple-image-viewer'
+import Geolocation from '../interfaces/Geolocation'
 import Photo from '../interfaces/Photo'
 import Video from '../interfaces/Video'
+import { getDistance } from '../utils/GeoLocationUtility'
 import Address from './Address'
-import Distance from './Distance'
+import DishPhotoList from './DishPhotoList'
+import OpenHours from './OpenHours'
 import PhoneNumber from './PhoneNumber'
 import RestaurantPageLink from './RestaurantPageLink'
-import DishPhotoList from './DishPhotoList'
 import RestaurantVideoList from './RestaurantVideoList'
-import OpenHours from './OpenHours'
+
+interface GeolocationRestaurant extends Restaurant {
+    distance: number
+}
 
 interface Props {
     restaurants: Restaurant[]
+    sortByDistance: boolean
 }
 
 const RestaurantList: React.FC<Props> = (props) => {
-    const { restaurants } = props
-    const [latitude, setLatitude] = React.useState<number>(0)
-    const [longitude, setLongitude] = React.useState<number>(0)
+    const { restaurants, sortByDistance } = props
+    const [geolocationRestaurants, setGeolocationRestaurants] = React.useState<GeolocationRestaurant[]>([])
     const [photos, setPhotos] = React.useState<Photo[]>([])
     const [videos, setVideos] = React.useState<Video[]>()
     const newApiUrl = 'https://api.tokyo-dinner.com'
-    const [ imageUrls, setImageUrls ] = React.useState<string[]>([])
-    const [ imageIndex, setImageIndex ] = React.useState<number>(0)
-    const [ isViewerOpen, setIsViewerOpen ] = React.useState<boolean>(false)
+    const [imageUrls, setImageUrls] = React.useState<string[]>([])
+    const [imageIndex, setImageIndex] = React.useState<number>(0)
+    const [isViewerOpen, setIsViewerOpen] = React.useState<boolean>(false)
     const imageBasePath = 'https://tokyo-takeout.com'
     const imageDir = `${imageBasePath}/images`
 
@@ -38,8 +43,25 @@ const RestaurantList: React.FC<Props> = (props) => {
     }
 
     const getCurrentPosition = (position: GeolocationPosition) => {
-        setLatitude(position.coords.latitude)
-        setLongitude(position.coords.longitude)
+        const from: Geolocation = {
+            latitude: position.coords.latitude,
+            longitude: position.coords.longitude
+        }
+
+        const tmpRestaurants: GeolocationRestaurant[] = restaurants.map((restaurant: Restaurant) => {
+            return {
+                ...restaurant,
+                distance: getDistance(from, {
+                    latitude: Number(restaurant.latitude),
+                    longitude: Number(restaurant.longitude)
+                })
+            }
+        })
+
+        if (sortByDistance) {
+            tmpRestaurants.sort((lhs, rhs) => (lhs.distance > rhs.distance) ? 1 : ((rhs.distance > lhs.distance) ? -1 : 0))
+        }
+        setGeolocationRestaurants(tmpRestaurants)
     }
 
     const openImageViewer = (restaurantId: string, index: number) => {
@@ -110,14 +132,14 @@ const RestaurantList: React.FC<Props> = (props) => {
 
     return (
         <ul className="shop-list">
-        {restaurants ? restaurants.map((restaurant: Restaurant) => {
+        {geolocationRestaurants ? geolocationRestaurants.map((restaurant: GeolocationRestaurant) => {
             const restaurantId = restaurant.id
             return (
             <li className="shop-item" key={restaurantId} id={restaurantId}>
                 <div className="shop-item-photo">
                     <Address text={restaurant.address} latitude={restaurant.latitude} longitude={restaurant.longitude} />
                     <PhoneNumber tel={restaurant.tel} />
-                    <Distance from={{ latitude, longitude }} to={{ latitude: Number(restaurant.latitude), longitude: Number(restaurant.longitude) }} />
+                    <p className="distance">{ `${restaurant.distance.toFixed(2)} km` }</p>
                 </div>
                 <div className="shop-item-grid">
                     <h4>
