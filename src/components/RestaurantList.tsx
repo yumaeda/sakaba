@@ -49,13 +49,12 @@ const RestaurantList: React.FC<Props> = (props) => {
         }
 
         const tmpRestaurants: GeolocationRestaurant[] = restaurants.map((restaurant: Restaurant) => {
-            return {
-                ...restaurant,
+            return Object.assign({
                 distance: getDistance(from, {
                     latitude: Number(restaurant.latitude),
                     longitude: Number(restaurant.longitude)
                 })
-            }
+            }, restaurant)
         })
 
         if (sortByDistance) {
@@ -88,6 +87,10 @@ const RestaurantList: React.FC<Props> = (props) => {
             default:
                 alert('Unknown Error')
         }
+        const tmpRestaurants: GeolocationRestaurant[] = restaurants.map((restaurant: Restaurant) => {
+            return Object.assign({ distance: 99999 }, restaurant)
+        })
+        setGeolocationRestaurants(tmpRestaurants)
     }
 
     React.useEffect(() => {
