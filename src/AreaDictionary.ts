@@ -19,6 +19,7 @@ const AreaDictionary : { [id: string]: string } = {
     'nishidai': '西台',
     'nishisugamo': '西巣鴨',
     'oji': '王子',
+    'osaki': '大崎',
     'otsuka': '大塚',
     'oyama': '大山',
     'okachimachi': '御徒町',
