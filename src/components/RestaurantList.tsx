@@ -69,17 +69,12 @@ const RestaurantList: React.FC<Props> = (props) => {
         }
     }
 
-    const updatePosition = async () => {
-        try {
-          const position: GeolocationPosition = await getCurrentPositionAsync()
-          alert(JSON.stringify(position))
-        } catch (positionError) {
-          alert(JSON.stringify(positionError))
-        }
-    }
-
     React.useEffect(() => {
-        updatePosition()
+        getCurrentPositionAsync().then((position: GeolocationPosition) => {
+          alert(JSON.stringify(position))
+          console.dir(position)
+        })
+
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 getCurrentPosition,
