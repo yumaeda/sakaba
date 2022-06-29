@@ -6,6 +6,7 @@ import { Restaurant } from '@yumaeda/sakaba-interface'
 import ImageViewer from 'react-simple-image-viewer'
 import Photo from '../interfaces/Photo'
 import Video from '../interfaces/Video'
+import { getCurrentPositionAsync } from '../utils/GeoLocationUtility'
 import Address from './Address'
 import Distance from './Distance'
 import PhoneNumber from './PhoneNumber'
@@ -68,7 +69,17 @@ const RestaurantList: React.FC<Props> = (props) => {
         }
     }
 
+    const updatePosition = async () => {
+        try {
+          const position: GeolocationPosition = await getCurrentPositionAsync()
+          alert(JSON.stringify(position))
+        } catch (positionError) {
+          alert(JSON.stringify(positionError))
+        }
+    }
+
     React.useEffect(() => {
+        updatePosition()
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 getCurrentPosition,
