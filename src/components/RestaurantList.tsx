@@ -69,11 +69,24 @@ const RestaurantList: React.FC<Props> = (props) => {
         }
     }
 
+    const getPosition = (options?: PositionOptions): Promise<GeolocationPosition> => {
+        return new Promise((resolve, reject) => 
+            navigator.geolocation.getCurrentPosition(resolve, reject, options)
+        )
+    }
+
     React.useEffect(() => {
-        getCurrentPositionAsync().then((position: GeolocationPosition) => {
-          alert(JSON.stringify(position))
-          console.dir(position)
+        getPosition({
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
         })
+            .then((position: GeolocationPosition) => {
+                alert(JSON.stringify(position))
+            })
+            .catch((error) => {
+                alert(error.message)
+            })
 
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
