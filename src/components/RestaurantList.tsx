@@ -37,11 +37,6 @@ const RestaurantList: React.FC<Props> = (props) => {
         setIsViewerOpen(false)
     }
 
-    const getCurrentPosition = (position: GeolocationPosition) => {
-        setLatitude(position.coords.latitude)
-        setLongitude(position.coords.longitude)
-    }
-
     const openImageViewer = (restaurantId: string, index: number) => {
         const restaurantImageDir = `${imageDir}/restaurants/${restaurantId}`
         const tmpImageUrls = photos
@@ -81,7 +76,8 @@ const RestaurantList: React.FC<Props> = (props) => {
             maximumAge: 0
         })
             .then((position: GeolocationPosition) => {
-                getCurrentPosition(position)
+                setLatitude(position.coords.latitude)
+                setLongitude(position.coords.longitude)
             })
             .catch((error: GeolocationPositionError) => {
                 handleGeolocationError(error)
