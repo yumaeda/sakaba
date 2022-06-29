@@ -82,25 +82,10 @@ const RestaurantList: React.FC<Props> = (props) => {
         })
             .then((position: GeolocationPosition) => {
                 getCurrentPosition(position)
-                alert(JSON.stringify(position))
             })
             .catch((error: GeolocationPositionError) => {
                 handleGeolocationError(error)
             })
-
-        /*
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(
-                getCurrentPosition,
-                handleGeolocationError,
-                {
-                    enableHighAccuracy: true,
-                    timeout: 5000,
-                    maximumAge: 0
-                }
-            )
-        }
-        */
 
         fetch(`${newApiUrl}/photos/`, {
             headers: {}
