@@ -81,12 +81,14 @@ const RestaurantList: React.FC<Props> = (props) => {
             maximumAge: 0
         })
             .then((position: GeolocationPosition) => {
+                getCurrentPosition(position)
                 alert(JSON.stringify(position))
             })
-            .catch((error) => {
-                alert(error.message)
+            .catch((error: GeolocationPositionError) => {
+                handleGeolocationError(error)
             })
 
+        /*
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(
                 getCurrentPosition,
@@ -98,6 +100,7 @@ const RestaurantList: React.FC<Props> = (props) => {
                 }
             )
         }
+        */
 
         fetch(`${newApiUrl}/photos/`, {
             headers: {}
