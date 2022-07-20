@@ -48,7 +48,7 @@ const AreaPage: React.FC = () => {
             <>
                 <header className="header">
                     <a href={`${basePath}/`}>
-                        <picture>
+                        <picture className="back-image-container">
                             <source type="image/webp" media="(min-width: 150px)" srcSet={`${imageDir}/back.webp`} />
                             <img src={`${imageDir}/back.png`} className="back-image" alt="Back" />
                         </picture>
