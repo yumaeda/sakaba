@@ -6,6 +6,7 @@ import { Restaurant } from '@yumaeda/sakaba-interface'
 import ImageViewer from 'react-simple-image-viewer'
 import Photo from '../interfaces/Photo'
 import Video from '../interfaces/Video'
+import { getPosition, handleGeolocationError } from '../utils/GeoLocationUtility'
 import Address from './Address'
 import Distance from './Distance'
 import PhoneNumber from './PhoneNumber'
@@ -45,28 +46,6 @@ const RestaurantList: React.FC<Props> = (props) => {
         setImageUrls(tmpImageUrls)
         setImageIndex(index)
         setIsViewerOpen(true)
-    }
-
-    const handleGeolocationError = (error: GeolocationPositionError) => {
-        switch (error.code) {
-            case error.PERMISSION_DENIED:
-                alert(`PERMISSION_DENIED: ${error.message}`)
-                break
-            case error.POSITION_UNAVAILABLE:
-                alert(`POSITION_UNAVAILABLE: ${error.message}`)
-                break
-            case error.TIMEOUT:
-                alert(`TIMEOUT: ${error.message}`)
-                break
-            default:
-                alert('Unknown Error')
-        }
-    }
-
-    const getPosition = (options?: PositionOptions): Promise<GeolocationPosition> => {
-        return new Promise((resolve, reject) => 
-            navigator.geolocation.getCurrentPosition(resolve, reject, options)
-        )
     }
 
     React.useEffect(() => {

@@ -5,6 +5,7 @@ import * as React from 'react'
 import { useParams } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import camelcaseKeys = require('camelcase-keys')
+import { getPosition, handleGeolocationError } from '../../utils/GeoLocationUtility'
 import Genre from '../../interfaces/Genre'
 import RestaurantList from '../RestaurantList'
 import Footer from '../Footer'
@@ -20,18 +21,28 @@ const GenreRestaurantPage: React.FC = () => {
     const imageDir = `${imageBasePath}/images`
 
     React.useEffect(() => {
-        fetch(`${newApiUrl}/restaurants/genres/${params.id}`, {
-            headers: {}
+        getPosition({
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
         })
-        .then(res => res.json())
-        .then(
-            (data) => {
-                setRestaurants(camelcaseKeys(JSON.parse(JSON.stringify(data.body))))
-            },
-            (error: Error) => {
-                setError(error)
-            }
-        )
+            .then((position: GeolocationPosition) => {
+                fetch(`${newApiUrl}/restaurants/genres/${params.id}/${position.coords.latitude}/${position.coords.longitude}`, {
+                    headers: {}
+                })
+                .then(res => res.json())
+                .then(
+                    (data) => {
+                        setRestaurants(camelcaseKeys(JSON.parse(JSON.stringify(data.body))))
+                    },
+                    (error: Error) => {
+                        setError(error)
+                    }
+                )
+            })
+            .catch((error: GeolocationPositionError) => {
+                handleGeolocationError(error)
+            })
 
         fetch(`${newApiUrl}/genres/${params.id}`, { headers: {} })
             .then(res => res.json())
