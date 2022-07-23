@@ -6,9 +6,7 @@ import { Restaurant } from '@yumaeda/sakaba-interface'
 import ImageViewer from 'react-simple-image-viewer'
 import Photo from '../interfaces/Photo'
 import Video from '../interfaces/Video'
-import { getPosition, handleGeolocationError } from '../utils/GeoLocationUtility'
 import Address from './Address'
-import Distance from './Distance'
 import PhoneNumber from './PhoneNumber'
 import RestaurantPageLink from './RestaurantPageLink'
 import DishPhotoList from './DishPhotoList'
@@ -21,8 +19,6 @@ interface Props {
 
 const RestaurantList: React.FC<Props> = (props) => {
     const { restaurants } = props
-    const [latitude, setLatitude] = React.useState<number>(0)
-    const [longitude, setLongitude] = React.useState<number>(0)
     const [photos, setPhotos] = React.useState<Photo[]>([])
     const [videos, setVideos] = React.useState<Video[]>()
     const newApiUrl = 'https://api.tokyo-dinner.com'
@@ -49,19 +45,6 @@ const RestaurantList: React.FC<Props> = (props) => {
     }
 
     React.useEffect(() => {
-        getPosition({
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
-        })
-            .then((position: GeolocationPosition) => {
-                setLatitude(position.coords.latitude)
-                setLongitude(position.coords.longitude)
-            })
-            .catch((error: GeolocationPositionError) => {
-                handleGeolocationError(error)
-            })
-
         fetch(`${newApiUrl}/photos/`, {
             headers: {}
         })
