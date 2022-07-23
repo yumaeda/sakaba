@@ -98,7 +98,7 @@ const RestaurantList: React.FC<Props> = (props) => {
                 <div className="shop-item-photo">
                     <Address text={restaurant.address} latitude={restaurant.latitude} longitude={restaurant.longitude} />
                     <PhoneNumber tel={restaurant.tel} />
-                    <Distance from={{ latitude, longitude }} to={{ latitude: Number(restaurant.latitude), longitude: Number(restaurant.longitude) }} />
+                    <p className="distance">{ `${restaurant.distance} km` }</p>
                 </div>
                 <div className="shop-item-grid">
                     <h4>
