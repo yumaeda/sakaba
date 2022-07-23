@@ -5,6 +5,7 @@ import * as React from 'react'
 import { useParams } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import camelcaseKeys = require('camelcase-keys')
+import { getPosition, handleGeolocationError } from '../../utils/GeoLocationUtility'
 import RestaurantList from '../RestaurantList'
 import AreaDictionary from '../../AreaDictionary'
 import Footer from '../Footer'
@@ -23,22 +24,28 @@ const AreaPage: React.FC = () => {
     React.useEffect(() => {
         document.title = `${areaName}｜酒場リンク`
 
-        fetch(`${newApiUrl}/restaurants/`, {
-            headers: {}
+        getPosition({
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
         })
-        .then(res => res.json())
-        .then(
-            (data) => {
-                setRestaurants(
-                    camelcaseKeys(JSON.parse(JSON.stringify(data.body))
-                        .filter((restaurant: Restaurant) => restaurant.area == area)
-                    )
+            .then((position: GeolocationPosition) => {
+                fetch(`${newApiUrl}/restaurants/areas/${area}/${position.coords.latitude}/${position.coords.longitude}`, {
+                    headers: {}
+                })
+                .then(res => res.json())
+                .then(
+                    (data) => {
+                        setRestaurants(camelcaseKeys(JSON.parse(JSON.stringify(data.body))))
+                    },
+                    (error: Error) => {
+                        setError(error)
+                    }
                 )
-            },
-            (error: Error) => {
-                setError(error)
-            }
-        )
+            })
+            .catch((error: GeolocationPositionError) => {
+                handleGeolocationError(error)
+            })
     }, [])
 
     if (error) {
