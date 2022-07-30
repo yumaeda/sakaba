@@ -7,7 +7,6 @@ import { Restaurant } from '@yumaeda/sakaba-interface'
 import camelcaseKeys = require('camelcase-keys')
 import { getPosition, handleGeolocationError } from '../../utils/GeoLocationUtility'
 import RestaurantList from '../RestaurantList'
-import AreaDictionary from '../../AreaDictionary'
 import Footer from '../Footer'
 
 const AreaPage: React.FC = () => {
@@ -15,14 +14,13 @@ const AreaPage: React.FC = () => {
     const [error, setError] = React.useState<Error>()
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
     const area = params.area || ''
-    const areaName = area != '' ? AreaDictionary[area] : ''
     const newApiUrl = 'https://api.tokyo-dinner.com'
     const basePath = 'https://sakaba.link'
     const imageBasePath = 'https://tokyo-takeout.com'
     const imageDir = `${imageBasePath}/images`
 
     React.useEffect(() => {
-        document.title = `${areaName}｜酒場リンク`
+        document.title = `${area}｜酒場リンク`
 
         getPosition({
             enableHighAccuracy: true,
@@ -60,7 +58,7 @@ const AreaPage: React.FC = () => {
                             <img src={`${imageDir}/back.png`} className="back-image" alt="Back" />
                         </picture>
                     </a>
-                    <h1 className="header-label">{areaName}</h1>
+                    <h1 className="header-label">{area}</h1>
                 </header>
                 <div className="contents">
                     <RestaurantList restaurants={restaurants} />

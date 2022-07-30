@@ -2,12 +2,12 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import Area from '../../interfaces/Area'
 import Dish from '../../interfaces/Dish'
 import Drink from '../../interfaces/Drink'
 import Genre from '../../interfaces/Genre'
 import Photo from '../../interfaces/Photo'
 import { Link } from 'react-router-dom'
-import AreaDictionary from '../../AreaDictionary'
 import Footer from '../Footer'
 import LatestPhotoList from '../LatestPhotoList'
 
@@ -17,6 +17,7 @@ interface RestaurantInfo {
 }
  
 const HomePage: React.FC<{}> = () => {
+    const [areaDict, setAreaDict] = React.useState<{ [area: string]: string }>({})
     const [dishes, setDishes] = React.useState<Dish[]>([])
     const [drinks, setDrinks] = React.useState<Drink[]>([])
     const [genres, setGenres] = React.useState<Genre[]>([])
@@ -27,6 +28,21 @@ const HomePage: React.FC<{}> = () => {
     const imageBasePath = 'https://tokyo-takeout.com'
 
     React.useEffect(() => {
+        fetch(`${apiBasePath}/areas/`, { headers: {} })
+            .then(res => res.json())
+            .then((data) => {
+                const areas = JSON.parse(JSON.stringify(data.body))
+                var tmpAreaDict: {[area: string]: string} = {}
+                areas.forEach((area: Area) => {
+                    tmpAreaDict[area.value] = area.name
+                })
+                setAreaDict(tmpAreaDict)
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
+
         fetch(`${apiBasePath}/dishes/`, { headers: {} })
             .then(res => res.json())
             .then((data) => {
@@ -99,7 +115,7 @@ const HomePage: React.FC<{}> = () => {
                     { restaurantInfos ? restaurantInfos.map((info: RestaurantInfo) => (
                         <li className="navigation-item">
                             <span className="navigation-button">
-                                <Link className="list-item" to={`/${info.area}/`}>{`${AreaDictionary[info.area]} (${info.count})`}</Link>
+                                <Link className="list-item" to={`/${info.area}/`}>{`${areaDict[info.area]} (${info.count})`}</Link>
                             </span>
                         </li>)) :
                         <li>Loading...</li>
