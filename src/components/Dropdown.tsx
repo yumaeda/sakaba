@@ -7,11 +7,12 @@ import Item from '../interfaces/Item'
 interface Props {
     items: Item[]
     itemId: string
+    useIdAsValue: boolean
     onSelect: React.ChangeEventHandler<HTMLSelectElement>
 }
 
 const Dropdown: React.FC<Props> = (props: Props) => {
-    const { itemId, items, onSelect} = props
+    const { itemId, items, useIdAsValue, onSelect} = props
     if (items.length === 0) {
         return <></>
     }
@@ -20,7 +21,7 @@ const Dropdown: React.FC<Props> = (props: Props) => {
         <select onChange={onSelect} value={itemId}>
         {
             items ? items.map((item: Item, index: number) => (
-                <option value={item.id} key={index}>{item.name}</option>
+                <option value={useIdAsValue ? item.id : item.value} key={index}>{item.name}</option>
             )) : ''
         }
         </select>
