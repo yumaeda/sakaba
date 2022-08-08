@@ -3,7 +3,9 @@
  */
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import Area from '../../../interfaces/Area'
 import { getCookie } from '../../../utils/CookieUtility'
+import Dropdown from '../../Dropdown'
  
 const RestaurantAdminPage: React.FC = () => {
     const [token, setToken] = React.useState<string>('')
@@ -13,6 +15,7 @@ const RestaurantAdminPage: React.FC = () => {
     const [tel, setTel] = React.useState<string>('')
     const [address, setAddress] = React.useState<string>('')
     const [building, setBuilding] = React.useState<string>('')
+    const [areas, setAreas] = React.useState<Area[]>([])
     const [area, setArea] = React.useState<string>('')
 
     const businessDayString = '"Start":"1700","End":"2300"'
@@ -49,6 +52,25 @@ const RestaurantAdminPage: React.FC = () => {
         }
 
         return `{${businessDayInfos.join(',')}}`
+    }
+
+    React.useEffect(() => {
+        fetch('https://api.tokyo-dinner.com/areas/', { headers: {} })
+            .then(res => res.json())
+            .then(
+                (data) => {
+                    const tmpAreas = JSON.parse(JSON.stringify(data.body))
+                    setArea(tmpAreas[0].value)
+                    setAreas(tmpAreas)
+                },
+                (error: Error) => {
+                    console.dir(error)
+                }
+            )
+    }, [])
+
+    const handleAreaSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setArea(event.currentTarget.value)
     }
 
     const handleSubmit = (event: React.SyntheticEvent) => {
@@ -117,6 +139,7 @@ const RestaurantAdminPage: React.FC = () => {
                     <input className="admin-input" placeholder="Address" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setAddress(event.currentTarget.value) } />
                     <input className="admin-input" placeholder="Building" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setBuilding(event.currentTarget.value) } /><br />
                     <input className="admin-input" placeholder="Area" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setArea(event.currentTarget.value) } /><br />
+                    <Dropdown onSelect={handleAreaSelect} itemId={area} items={areas} /><br />
                     <h2>Business Day Info</h2>
                     <span>Sun:&nbsp;</span><input type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setSundayInfo(event.currentTarget.value) } defaultValue={sundayInfo} /><br />
                     <span>Mon:&nbsp;</span><input type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setMondayInfo(event.currentTarget.value) } defaultValue={mondayInfo} /><br />

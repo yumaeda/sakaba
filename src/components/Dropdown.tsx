@@ -6,7 +6,7 @@ import Item from '../interfaces/Item'
 
 interface Props {
     items: Item[]
-    itemId: number
+    itemId: string
     onSelect: React.ChangeEventHandler<HTMLSelectElement>
 }
 

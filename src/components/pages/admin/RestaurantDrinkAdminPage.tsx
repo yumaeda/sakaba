@@ -94,7 +94,7 @@ const RestaurantDrinkAdminPage: React.FC = () => {
                 </header>
                 <div className="admin-contents">
                     <RestaurantDropDown onSelect={handleRestaurantSelect} restaurantId={restaurantId} restaurants={restaurants} /><br />
-                    <Dropdown onSelect={handleDrinkSelect} itemId={drink} items={drinks} /><br />
+                    <Dropdown onSelect={handleDrinkSelect} itemId={drink.toString()} items={drinks} /><br />
                     <div>
                         <button className="admin-button" type="submit" onClick={handleSubmit}>Save</button>
                     </div>
