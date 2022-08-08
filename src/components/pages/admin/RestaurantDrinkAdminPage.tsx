@@ -95,10 +95,10 @@ const RestaurantDrinkAdminPage: React.FC = () => {
                 <div className="admin-contents">
                     <RestaurantDropDown onSelect={handleRestaurantSelect} restaurantId={restaurantId} restaurants={restaurants} /><br />
                     <Dropdown onSelect={handleDrinkSelect} itemId={drink.toString()} items={drinks} useIdAsValue={true} /><br />
-                    <div>
-                        <button className="admin-button" type="submit" onClick={handleSubmit}>Save</button>
-                    </div>
-                </div> 
+                </div>
+                <div className="admin-footer"> 
+                    <button className="admin-button" type="submit" onClick={handleSubmit}>Save</button>
+                </div>
             </>
      )
  }

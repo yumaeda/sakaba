@@ -147,7 +147,7 @@ const RestaurantAdminPage: React.FC = () => {
                     <span>Thu:&nbsp;</span><input type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setThursdayInfo(event.currentTarget.value) } defaultValue={thursdayInfo} /><br />
                     <span>Fri:&nbsp;</span><input type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setFridayInfo(event.currentTarget.value) } defaultValue={fridayInfo} /><br />
                     <span>Sat:&nbsp;</span><input type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setSaturdayInfo(event.currentTarget.value) } defaultValue={saturdayInfo} /><br />
-                    <div>
+                    <div className="admin-footer">
                         <button className="admin-button" onClick={handleSubmit}>Create</button>
                     </div>
                 </div>
