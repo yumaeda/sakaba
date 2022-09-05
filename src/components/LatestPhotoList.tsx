@@ -11,12 +11,11 @@ interface Props {
 
 const LatestPhotoList: React.FC<Props> = (props) => {
     const { basePath, photos } = props
-    const photoCount = 12;
 
     return (
         <div className="latest-image-container">
         {
-            photos?.slice(0, photoCount).map((photo: Photo, index: number) => (
+            photos?.map((photo: Photo, index: number) => (
                 <div className="latest-image-wrapper">
                     <picture>
                         <source type="image/webp" media="(min-width: 150px)" srcSet={`${basePath}/images/restaurants/${photo.restaurant_id}/${photo.thumbnail_webp}`} />

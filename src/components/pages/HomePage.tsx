@@ -73,7 +73,7 @@ const HomePage: React.FC<{}> = () => {
             }
         )
 
-        fetch(`${apiBasePath}/photos/`, {
+        fetch(`${apiBasePath}/latest-photos/`, {
             headers: {}
         })
         .then(res => res.json())
