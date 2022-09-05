@@ -5,11 +5,12 @@
 }
 
 .header {
+    height: 70px;
     text-align: center;
 }
 
 .header-label {
-    font-size: 5.0vw;
+    font-size: 8.0vw;
 }
 
 .second-paragraph {
@@ -26,7 +27,7 @@
 }
 
 .navigation-label {
-    font-size: 5.0vw;
+    font-size: 8.0vw;
     text-align: center;
     margin: 60px 0 0 0;
     color: palegoldenrod;
@@ -34,13 +35,13 @@
 
 .navigation-list {
     text-align: center;
-    padding: 30px;
+    padding: 0;
 }
 
 .navigation-item {
-    font-size: 3.0vw;
+    font-size: 5.0vw;
     display: inline-block;
-    margin: 40px 30px;
+    margin: 40px 0 30px 0;
 }
 
 .navigation-button {
@@ -51,7 +52,7 @@
 
 .shop-name {
     color: rgb(255, 255, 255);
-    font-size: 22px;
+    font-size: 8vw;
     text-decoration: none;
 }
 
