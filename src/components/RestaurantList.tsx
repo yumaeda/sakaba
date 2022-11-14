@@ -78,17 +78,15 @@ const RestaurantList: React.FC<Props> = (props) => {
             const restaurantId = restaurant.id
             return (
             <li className="shop-item" key={restaurantId} id={restaurantId}>
-                <div className="shop-item-photo">
-                    <Address text={restaurant.address} latitude={restaurant.latitude} longitude={restaurant.longitude} />
-                    <PhoneNumber tel={restaurant.tel} />
-                    <p className="distance">{ `${Number(restaurant.distance).toFixed(2)} km` }</p>
-                </div>
                 <div className="shop-item-grid">
                     <h4>
                         <RestaurantPageLink id={restaurantId} area={restaurant.area} url={restaurant.url} name={restaurant.name} /><br />
                         <div className="shop-genre">{restaurant.genre}</div>
                     </h4>
+                    <Address text={restaurant.address} latitude={restaurant.latitude} longitude={restaurant.longitude} />
+                    <PhoneNumber tel={restaurant.tel} />
                     <OpenHours businessDayJson={restaurant.businessDayInfo} />
+                    <span className="distance">{ `${Number(restaurant.distance).toFixed(2)} km` }</span>
                 </div>
                 <DishPhotoList
                     openImageViewer={openImageViewer}

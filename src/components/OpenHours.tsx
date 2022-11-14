@@ -19,7 +19,7 @@ const OpenHours: React.FC<Props> = (props) => {
         }
     }
 
-    return <div className="open-hour">{openHourText}</div>
+    return <span className="open-hour">{openHourText}</span>
 }
 
 export default OpenHours
