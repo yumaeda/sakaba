@@ -58,7 +58,7 @@ const AreaPage: React.FC = () => {
                             <img src={`${imageDir}/back.png`} className="back-image" alt="Back" />
                         </picture>
                     </a>
-                    <h1 className="header-label">{area}</h1>
+                    <p className="header-label">{area}</p>
                 </header>
                 <div className="contents">
                     <RestaurantList restaurants={restaurants} />

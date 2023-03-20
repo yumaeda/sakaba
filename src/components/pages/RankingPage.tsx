@@ -16,6 +16,9 @@ interface Ranking {
 const RankingPage: React.FC = () => {
     const [error, setError] = React.useState<Error>()
     const [rankings, setRankings] = React.useState<Ranking[]>()
+    const basePath = 'https://sakaba.link'
+    const imageBasePath = 'https://tokyo-takeout.com'
+    const imageDir = `${imageBasePath}/images`
 
     React.useEffect(() => {
         fetch('https://api.tokyo-dinner.com/rankings/', {
@@ -35,20 +38,23 @@ const RankingPage: React.FC = () => {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else {
-        const basePath = 'https://sakaba.link'
-        const baseImagePath = 'https://tokyo-takeout.com'
 
         return (
             <>
                 <header className="header">
-                    <h1 className="header-label">{`フードランキング`}</h1>
-                    <a href={`${basePath}/`}>Back</a>
+                    <a href={`${basePath}/`}>
+                        <picture className="back-image-container">
+                            <source type="image/webp" media="(min-width: 150px)" srcSet={`${imageDir}/back.webp`} />
+                            <img src={`${imageDir}/back.png`} className="back-image" alt="Back" />
+                        </picture>
+                    </a>
+                    <p className="header-label">{`フードランキング`}</p>
                 </header>
                 <div className="contents">
                     <ul className="ranking-list">
                     {rankings ? rankings.map((ranking: Ranking) => {
                         const restaurantId = ranking.restaurant_id
-                        const restaurantImageDir = `${baseImagePath}/images/restaurants/${restaurantId}`
+                        const restaurantImageDir = `${imageDir}/restaurants/${restaurantId}`
                         return (
                         <li className="ranking-item" key={`${ranking.dish}#${ranking.rank}`}>
                             <div>

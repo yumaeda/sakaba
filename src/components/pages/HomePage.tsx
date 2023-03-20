@@ -106,7 +106,7 @@ const HomePage: React.FC<{}> = () => {
         return (
             <>
                 <header className="header">
-                    <h1 className="header-label">酒場リンク</h1>
+                    <p className="header-label">酒場リンク</p>
                 </header>
                 <div className="contents">
                     <LatestPhotoList basePath={imageBasePath} photos={photos} />
