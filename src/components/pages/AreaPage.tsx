@@ -16,7 +16,7 @@ const AreaPage: React.FC = () => {
     const area = params.area || ''
     const newApiUrl = 'https://api.tokyo-dinner.com'
     const basePath = 'https://sakaba.link'
-    const imageBasePath = 'https://tokyo-takeout.com'
+    const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
     const imageDir = `${imageBasePath}/images`
 
     React.useEffect(() => {

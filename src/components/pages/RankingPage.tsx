@@ -17,7 +17,7 @@ const RankingPage: React.FC = () => {
     const [error, setError] = React.useState<Error>()
     const [rankings, setRankings] = React.useState<Ranking[]>()
     const basePath = 'https://sakaba.link'
-    const imageBasePath = 'https://tokyo-takeout.com'
+    const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
     const imageDir = `${imageBasePath}/images`
 
     React.useEffect(() => {

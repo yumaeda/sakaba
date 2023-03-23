@@ -25,7 +25,7 @@ const RestaurantList: React.FC<Props> = (props) => {
     const [ imageUrls, setImageUrls ] = React.useState<string[]>([])
     const [ imageIndex, setImageIndex ] = React.useState<number>(0)
     const [ isViewerOpen, setIsViewerOpen ] = React.useState<boolean>(false)
-    const imageBasePath = 'https://tokyo-takeout.com'
+    const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
     const imageDir = `${imageBasePath}/images`
 
     const closeImageViewer = () => {

@@ -25,7 +25,7 @@ const HomePage: React.FC<{}> = () => {
     const [restaurantInfos, setRestaurantInfos] = React.useState<RestaurantInfo[]>()
     const [error, setError] = React.useState<Error>()
     const apiBasePath = 'https://api.tokyo-dinner.com'
-    const imageBasePath = 'https://tokyo-takeout.com'
+    const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
 
     React.useEffect(() => {
         fetch(`${apiBasePath}/areas/`, { headers: {} })

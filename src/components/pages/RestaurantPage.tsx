@@ -57,7 +57,7 @@ const RestaurantPage: React.FC = () => {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else {
-        const baseImagePath = 'https://tokyo-takeout.com'
+        const baseImagePath = 'https://d1ds2m6k69pml3.cloudfront.net'
         const imageDir = `${baseImagePath}/images`
 
         return (
