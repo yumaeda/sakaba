@@ -39,9 +39,9 @@ const DishPhotoList: React.FC<Props> = (props) => {
     const { basePath, openImageViewer, restaurantId, photos } = props
     return (
         <FixedSizeList
-            height={127}
+            height={85}
             itemCount={photos ? photos.length : 0}
-            itemSize={150}
+            itemSize={100}
             layout="horizontal"
             width={window.innerWidth}
             itemData={{ openImageViewer, photos, restaurantId, basePath }}>

@@ -116,8 +116,8 @@
 
 .dish-image-wrapper {
     display: inline-block;
-    height: 127px;
-    width: 150px;
+    height: 85px;
+    width: 100px;
     background-color: black;
 }
 
@@ -135,7 +135,8 @@
 }
 
 .dish-image {
-    width: 150px;
+    // This value has to match FixedSizeList.itemSize 
+    width: 100px;
 }
 
 .latest-image {
