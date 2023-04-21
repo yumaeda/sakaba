@@ -19,7 +19,7 @@ const LatestPhotoList: React.FC<Props> = (props) => {
                 <div className="latest-image-wrapper">
                     <picture>
                         <source type="image/webp" media="(min-width: 150px)" srcSet={`${basePath}/images/restaurants/${photo.restaurant_id}/${photo.thumbnail_webp}`} />
-                        <img src={`${basePath}/images/restaurants/${photo.restaurant_id}/${photo.thumbnail}`} className="latest-image" alt={`店舗写真${index}`} />
+                        <img src={`${basePath}/images/restaurants/${photo.restaurant_id}/${photo.thumbnail}`} className="tile-image latest-image" alt={`店舗写真${index}`} />
                     </picture>
                 </div>
             ))
