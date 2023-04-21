@@ -15,10 +15,11 @@ const RestaurantVideoList: React.FC<Props> = (props) => {
         <div className="video-container">
         {
             videos.map((video: Video) => (
-                    <iframe width="100"
-                            height="85"
+                    <iframe width="200"
+                            height="170"
                             src={video.url}
                             title={video.name}
+                            frameBorder="0"
                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                             allowFullScreen></iframe>
             ))

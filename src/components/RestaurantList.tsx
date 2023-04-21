@@ -79,14 +79,10 @@ const RestaurantList: React.FC<Props> = (props) => {
             return (
             <li className="shop-item" key={restaurantId} id={restaurantId}>
                 <div className="shop-item-grid">
-                    <h4>
-                        <RestaurantPageLink id={restaurantId} area={restaurant.area} url={restaurant.url} name={restaurant.name} /><br />
-                        <div className="shop-genre">{restaurant.genre}</div>
+                    <span className="shop-genre">{restaurant.genre}</span>
+                    <h4 className="shop-name-wrapper">
+                        <RestaurantPageLink id={restaurantId} area={restaurant.area} url={restaurant.url} name={restaurant.name} />
                     </h4>
-                    <OpenHours businessDayJson={restaurant.businessDayInfo} />
-                    <span className="distance">{ `${Number(restaurant.distance).toFixed(2)} km` }</span>
-                    <Address text={restaurant.address} latitude={restaurant.latitude} longitude={restaurant.longitude} />
-                    <PhoneNumber tel={restaurant.tel} />
                 </div>
                 <DishPhotoList
                     openImageViewer={openImageViewer}
@@ -94,6 +90,12 @@ const RestaurantList: React.FC<Props> = (props) => {
                     restaurantId={restaurantId}
                     photos={ photos ? photos.filter((photo: Photo) => photo.restaurant_id == restaurantId) : null }
                 />
+                <div>
+                    <OpenHours businessDayJson={restaurant.businessDayInfo} />
+                    <span className="distance">{ `${Number(restaurant.distance).toFixed(2)} km` }</span>
+                    <Address text={restaurant.address} latitude={restaurant.latitude} longitude={restaurant.longitude} />
+                    <PhoneNumber tel={restaurant.tel} />
+                </div>
                 <RestaurantVideoList
                     videos={ videos ? videos.filter((video: Video) => video.restaurant_id == restaurantId) : null }
                 />
