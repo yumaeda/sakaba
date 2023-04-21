@@ -62,7 +62,7 @@ const RankingPage: React.FC = () => {
                                 <span>【</span>
                                 <a href={ranking.restaurant_url} rel="nofollow noopener" target="_blank">{ranking.restaurant}</a>
                                 <span>】</span><br />
-                                <img src={`${restaurantImageDir}/${ranking.photo}_thumbnail.jpg`} className="dish-image" alt={`${ranking.dish}#${ranking.rank}`} />
+                                <img src={`${restaurantImageDir}/${ranking.photo}_thumbnail.jpg`} alt={`${ranking.dish}#${ranking.rank}`} />
                             </div>
                         </li>
                         )}) : <div>Loading...</div>}
