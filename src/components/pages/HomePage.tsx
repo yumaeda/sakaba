@@ -114,7 +114,7 @@ const HomePage: React.FC<{}> = () => {
                     <ul className="navigation-list">
                     { restaurantInfos ? restaurantInfos.map((info: RestaurantInfo) => (
                         <li className="navigation-item">
-                            <span className="navigation-button">
+                            <span>
                                 <Link className="list-item" to={`/${info.area}/`}>{`${areaDict[info.area]} (${info.count})`}</Link>
                             </span>
                         </li>)) :
@@ -125,7 +125,7 @@ const HomePage: React.FC<{}> = () => {
                     <ul className="navigation-list">
                     { drinks ? drinks.map((drink: Drink) => (
                         <li className="navigation-item">
-                            <span className="navigation-button">
+                            <span>
                                 <Link className="list-item" to={`/drinks/${drink.id}/`}>{drink.name}</Link>
                             </span>
                         </li>)) :
@@ -136,7 +136,7 @@ const HomePage: React.FC<{}> = () => {
                     <ul className="navigation-list">
                     { genres ? genres.map((genre: Genre) => (
                         <li className="navigation-item">
-                            <span className="navigation-button">
+                            <span>
                                 <Link className="list-item" to={`/genres/${genre.id}/`}>{genre.name}</Link>
                             </span>
                         </li>)) :
@@ -147,7 +147,7 @@ const HomePage: React.FC<{}> = () => {
                     <ul className="navigation-list">
                     { dishes ? dishes.map((dish: Dish) => (
                         <li className="navigation-item">
-                            <span className="navigation-button">
+                            <span>
                                 <Link className="list-item" to={`/dishes/${dish.id}/`}>{dish.name}</Link>
                             </span>
                         </li>)) :
