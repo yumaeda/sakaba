@@ -15,8 +15,8 @@ const RestaurantVideoList: React.FC<Props> = (props) => {
         <div className="video-container">
         {
             videos.map((video: Video) => (
-                    <iframe width="200"
-                            height="170"
+                    <iframe width="100"
+                            height="85"
                             src={video.url}
                             title={video.name}
                             frameBorder="0"

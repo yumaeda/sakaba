@@ -90,7 +90,7 @@ const RestaurantList: React.FC<Props> = (props) => {
                     restaurantId={restaurantId}
                     photos={ photos ? photos.filter((photo: Photo) => photo.restaurant_id == restaurantId) : null }
                 />
-                <div>
+                <div className="shop-info">
                     <OpenHours businessDayJson={restaurant.businessDayInfo} />
                     <span className="distance">{ `${Number(restaurant.distance).toFixed(2)} km` }</span>
                     <Address text={restaurant.address} latitude={restaurant.latitude} longitude={restaurant.longitude} />
