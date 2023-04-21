@@ -28,7 +28,7 @@ const DishPhoto: React.FC<ColumnStyle> = (props) => {
             <div className="dish-image-wrapper" onClick={ () => { data.openImageViewer(data.restaurantId, index) }}>
                 <picture>
                     <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
-                    <img src={`${restaurantImageDir}/${photo.thumbnail}`} alt={`店舗写真${index}`} />
+                    <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="dish-image" alt={`店舗写真${index}`} />
                 </picture>
             </div>
         </div>

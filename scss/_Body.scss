@@ -115,7 +115,6 @@
 }
 
 .dish-image-wrapper {
-    border: 1px solid floralwhite;
     display: inline-block;
     height: 127px;
     width: 150px;
@@ -127,6 +126,10 @@
     width: 25vw;
     height: 25vw;
     text-align: center;
+}
+
+.dish-image {
+    min-width: 150px;
 }
 
 .latest-image {
