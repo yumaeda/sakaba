@@ -10,6 +10,7 @@ import DishRestaurantPage from './pages/DishRestaurantPage'
 import DrinkRestaurantPage from './pages/DrinkRestaurantPage'
 import GenreRestaurantPage from './pages/GenreRestaurantPage'
 import HomePage from './pages/HomePage'
+import MemberPage from './pages/MemberPage'
 import RankingPage from './pages/RankingPage'
 import RestaurantPage from './pages/RestaurantPage'
 import SignInPage from './pages/SignInPage'
@@ -22,6 +23,7 @@ const Root: React.FC<{}> = () => {
         <Router>
             <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="member" element={<MemberPage />} />
                 <Route path="signin" element={<SignInPage />} />
                 <Route path="admin/index" element={<HomeAdminPage />} />
                 <Route path="admin/photo" element={<PhotoAdminPage />} />

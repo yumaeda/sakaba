@@ -72,7 +72,7 @@ const RestaurantList: React.FC<Props> = (props) => {
             }
         )
 
-        setShowAllRestaurants(localStorage.getItem('showAllRestaurants') == "1" ?? false)
+        setShowAllRestaurants(localStorage.getItem('hideClosedRestaurants') != "1" ?? false)
     }, [])
 
     return (
