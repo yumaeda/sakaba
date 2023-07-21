@@ -115,7 +115,7 @@ const HomePage: React.FC<{}> = () => {
                     { restaurantInfos ? restaurantInfos.map((info: RestaurantInfo) => (
                         <li className="navigation-item">
                             <span>
-                                <Link className="list-item" to={`/${info.area}/`}>{`${areaDict[info.area]} (${info.count})`}</Link>
+                                <Link className="list-item" to={`/${info.area}/`}>{`${areaDict[info.area]}`}</Link>
                             </span>
                         </li>)) :
                         <li>Loading...</li>
