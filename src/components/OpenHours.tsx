@@ -15,7 +15,9 @@ const OpenHours: React.FC<Props> = (props) => {
         const businessDayObj = JSON.parse(businessDayJson)
         if (businessDayObj.hasOwnProperty(currentDay)) {
             const endTime = businessDayObj[currentDay]['End']
-            openHourText = `${endTime.substring(0, 2)}:${endTime.substring(2, 4)} まで営業`
+            if (endTime) {
+                openHourText = `${endTime.substring(0, 2)}:${endTime.substring(2, 4)} まで営業`
+            }
         }
     }
 
