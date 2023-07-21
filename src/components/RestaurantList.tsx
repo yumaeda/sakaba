@@ -74,14 +74,16 @@ const RestaurantList: React.FC<Props> = (props) => {
 
     return (
         <ul className="shop-list">
-        {restaurants ? restaurants.map((restaurant: Restaurant) => {
-            const restaurantId = restaurant.id
+        {restaurants ? restaurants
+            .filter((restaurant: Restaurant) => restaurant.isOpen == 1)
+            .map((openRestaurant: Restaurant) => {
+            const restaurantId = openRestaurant.id
             return (
             <li className="shop-item" key={restaurantId} id={restaurantId}>
                 <div className="shop-item-grid">
-                    <span className="shop-genre">{restaurant.genre}</span>
+                    <span className="shop-genre">{openRestaurant.genre}</span>
                     <h4 className="shop-name-wrapper">
-                        <RestaurantPageLink id={restaurantId} area={restaurant.area} url={restaurant.url} name={restaurant.name} />
+                        <RestaurantPageLink id={restaurantId} area={openRestaurant.area} url={openRestaurant.url} name={openRestaurant.name} />
                     </h4>
                 </div>
                 <DishPhotoList
@@ -91,10 +93,10 @@ const RestaurantList: React.FC<Props> = (props) => {
                     photos={ photos ? photos.filter((photo: Photo) => photo.restaurant_id == restaurantId) : null }
                 />
                 <div className="shop-info">
-                    <OpenHours businessDayJson={restaurant.businessDayInfo} />
-                    <span className="distance">{ `${Number(restaurant.distance).toFixed(2)} km` }</span>
-                    <Address text={restaurant.address} latitude={restaurant.latitude} longitude={restaurant.longitude} />
-                    <PhoneNumber tel={restaurant.tel} />
+                    <OpenHours businessDayJson={openRestaurant.businessDayInfo} />
+                    <span className="distance">{ `${Number(openRestaurant.distance).toFixed(2)} km` }</span>
+                    <Address text={openRestaurant.address} latitude={openRestaurant.latitude} longitude={openRestaurant.longitude} />
+                    <PhoneNumber tel={openRestaurant.tel} />
                 </div>
                 <RestaurantVideoList
                     videos={ videos ? videos.filter((video: Video) => video.restaurant_id == restaurantId) : null }
