@@ -25,6 +25,7 @@ const RestaurantList: React.FC<Props> = (props) => {
     const [ imageUrls, setImageUrls ] = React.useState<string[]>([])
     const [ imageIndex, setImageIndex ] = React.useState<number>(0)
     const [ isViewerOpen, setIsViewerOpen ] = React.useState<boolean>(false)
+    const [ showAllRestaurants, setShowAllRestaurants ] = React.useState<boolean>(false)
     const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
     const imageDir = `${imageBasePath}/images`
 
@@ -70,12 +71,14 @@ const RestaurantList: React.FC<Props> = (props) => {
                 console.error(error)
             }
         )
+
+        setShowAllRestaurants(localStorage.getItem('showAllRestaurants') == "1" ?? false)
     }, [])
 
     return (
         <ul className="shop-list">
         {restaurants ? restaurants
-            .filter((restaurant: Restaurant) => restaurant.isOpen == 1)
+            .filter((restaurant: Restaurant) => (showAllRestaurants || restaurant.isOpen == 1))
             .map((openRestaurant: Restaurant) => {
             const restaurantId = openRestaurant.id
             return (
