@@ -16,7 +16,6 @@ const RestaurantPage: React.FC = () => {
     const [category, setCategory] = React.useState<Category>(defaultCategory)
     const [categories, setCategories] = React.useState<Category[]>([])
     const [menus, setMenus] = React.useState<Menu[]>([])
-    const apiUrl = 'https://api.sakaba.link'
     const newApiUrl = 'https://api.tokyo-dinner.com'
 
     const handleCategoryClick = (event: React.MouseEvent<HTMLSpanElement>) => {
@@ -40,7 +39,7 @@ const RestaurantPage: React.FC = () => {
             }
         )
 
-        fetch(`${apiUrl}/menus?restaurant_id=${restaurantId}`, {
+        fetch(`${newApiUrl}/menus/${restaurantId}`, {
             headers: {}
         })
         .then(res => res.json())
