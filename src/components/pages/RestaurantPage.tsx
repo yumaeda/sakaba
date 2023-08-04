@@ -45,7 +45,8 @@ const RestaurantPage: React.FC = () => {
         .then(res => res.json())
         .then(
             (data) => {
-                setMenus(camelcaseKeys(JSON.parse(data.body)))
+                const tmpMenus = camelcaseKeys(JSON.parse(JSON.stringify(data.body)))
+                setMenus(tmpMenus)
             },
             (error: Error) => {
                 setError(error)
