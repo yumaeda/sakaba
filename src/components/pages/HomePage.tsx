@@ -24,6 +24,7 @@ const HomePage: React.FC<{}> = () => {
     const [photos, setPhotos] = React.useState<Photo[]>([])
     const [restaurantInfos, setRestaurantInfos] = React.useState<RestaurantInfo[]>()
     const [error, setError] = React.useState<Error>()
+    const [ showAllRestaurants, setShowAllRestaurants ] = React.useState<boolean>(false)
     const apiBasePath = 'https://api.tokyo-dinner.com'
     const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
 
@@ -98,6 +99,8 @@ const HomePage: React.FC<{}> = () => {
                 setError(error)
             }
         )
+
+        setShowAllRestaurants(localStorage.getItem('hideClosedRestaurants') != "1" ?? false)
     }, [])
 
     if (error) {
@@ -112,7 +115,9 @@ const HomePage: React.FC<{}> = () => {
                     <LatestPhotoList basePath={imageBasePath} photos={photos} />
                     <h4 className="navigation-label">Area</h4>
                     <ul className="navigation-list">
-                    { restaurantInfos ? restaurantInfos.map((info: RestaurantInfo) => (
+                    { restaurantInfos ? restaurantInfos
+                        .filter((restaurantInfos: RestaurantInfo) => (showAllRestaurants || restaurantInfos.count > 0))
+                        .map((info: RestaurantInfo) => (
                         <li className="navigation-item">
                             <span>
                                 <Link className="list-item" to={`/${info.area}/`}>{`${areaDict[info.area]}`}</Link>
