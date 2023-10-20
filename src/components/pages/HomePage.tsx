@@ -7,6 +7,7 @@ import Drink from '../../interfaces/Drink'
 import Genre from '../../interfaces/Genre'
 import Photo from '../../interfaces/Photo'
 import RestaurantInfo from '../../interfaces/RestaurantInfo'
+import { getPosition, handleGeolocationError } from '../../utils/GeoLocationUtility'
 import { Link } from 'react-router-dom'
 import Footer from '../Footer'
 import LatestPhotoList from '../LatestPhotoList'
@@ -23,6 +24,29 @@ const HomePage: React.FC<{}> = () => {
     const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
 
     React.useEffect(() => {
+        getPosition({
+            enableHighAccuracy: true,
+            timeout: 5000,
+            maximumAge: 0
+        })
+            .then((position: GeolocationPosition) => {
+                fetch(`${apiBasePath}/restaurant-counts/${position.coords.latitude}/${position.coords.longitude}`, {
+                    headers: {}
+                })
+                .then(res => res.json())
+                .then(
+                    (data) => {
+                        setRestaurantInfos(JSON.parse(JSON.stringify(data.body)))
+                    },
+                    (error: Error) => {
+                        setError(error)
+                    }
+                )
+            })
+            .catch((error: GeolocationPositionError) => {
+                handleGeolocationError(error)
+            })
+
         fetch(`${apiBasePath}/dishes/`, { headers: {} })
             .then(res => res.json())
             .then((data) => {
@@ -66,18 +90,6 @@ const HomePage: React.FC<{}> = () => {
             }
         )
 
-        fetch(`${apiBasePath}/restaurant-counts/`, {
-            headers: {}
-        })
-        .then(res => res.json())
-        .then(
-            (data) => {
-                setRestaurantInfos(JSON.parse(JSON.stringify(data.body)))
-            },
-            (error: Error) => {
-                setError(error)
-            }
-        )
 
         setShowAllRestaurants(localStorage.getItem('hideClosedRestaurants') != "1" ?? false)
     }, [])
