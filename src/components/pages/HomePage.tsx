@@ -95,7 +95,7 @@ const HomePage: React.FC<{}> = () => {
                     <h4 className="navigation-label">Area</h4>
                     <ul className="navigation-list">
                     { restaurantInfos ? restaurantInfos
-                        .filter((restaurantInfos: RestaurantInfo) => (showAllRestaurants || restaurantInfos.count > 0))
+                        .filter((restaurantInfo: RestaurantInfo) => (showAllRestaurants || restaurantInfo.count > 0))
                         .map((info: RestaurantInfo) => (
                         <li className="navigation-item">
                             <span>
