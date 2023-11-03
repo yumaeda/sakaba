@@ -1,6 +1,8 @@
 # sakaba-front
 Repository for Sakaba Frontend
 
+![Status Badge](https://github.com/yumaeda/sakaba-front/workflows/gcs_deploy/badge.svg)
+
 ## Deploy
 - Automatically deployed by GitHub action upon commit to main branch.
 
