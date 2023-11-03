@@ -30,6 +30,8 @@ jobs:
           NODE_AUTH_TOKEN: ${{ secrets.DEV_OPS_TOKEN_READ_PACKAGES }}
     - name: Build
       run: npm run build --if-present
+    - name: 'Authenticate Request to GCS'
+      run: gcloud auth login
     - name: Deploy to GCS
       run: |
           gsutil cp index.min.js gs://ramen-mania.net/
