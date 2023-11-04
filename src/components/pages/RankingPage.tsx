@@ -16,7 +16,7 @@ interface Ranking {
 const RankingPage: React.FC = () => {
     const [error, setError] = React.useState<Error>()
     const [rankings, setRankings] = React.useState<Ranking[]>()
-    const basePath = 'https://sakaba.link'
+    const basePath = 'https://sakabas.com'
     const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
     const imageDir = `${imageBasePath}/images`
 

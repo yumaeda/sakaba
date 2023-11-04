@@ -2,4 +2,4 @@ User-agent: *
 Allow: /*.html$
 Disallow: /*.js$
 Disallow: /*.css$
-Sitemap: http://sakaba.link/sitemap.xml
+Sitemap: http://sakabas.com/sitemap.xml

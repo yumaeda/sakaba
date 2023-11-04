@@ -16,7 +16,7 @@ const DrinkRestaurantPage: React.FC = () => {
     const [drink, setDrink] = React.useState<Drink>({name: '', id: 0})
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
     const newApiUrl = 'https://api.tokyo-dinner.com'
-    const basePath = 'https://sakaba.link'
+    const basePath = 'https://sakabas.com'
     const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
     const imageDir = `${imageBasePath}/images`
 

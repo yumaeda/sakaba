@@ -45,7 +45,7 @@ const SignInPage: React.FC = () => {
     fetch('https://api.tokyo-dinner.com/login', postOptions)
         .then((res) => res.json())
         .then((data) => {
-          const domain = 'sakaba.link'
+          const domain = 'sakabas.com'
           const maxAge = 3600
           if (data.code == 200) {
             document.cookie = `jwt=${data.token}; max-Age=${maxAge}; domain=${domain}; secure`
