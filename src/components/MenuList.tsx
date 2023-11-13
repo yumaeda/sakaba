@@ -16,7 +16,7 @@ const MenuList: React.FC<Props> = (props) => {
         <div>
             <ul className="menu-list">
             {
-                menus.map((menu: Menu) => {
+                menus.filter((targetMenu: Menu) => targetMenu.isHidden == 0).map((menu: Menu) => {
                     return (
                         <li className="menu-item" key={menu.name}>
                             <div className="menu-name-cell">
@@ -25,7 +25,6 @@ const MenuList: React.FC<Props> = (props) => {
                                 <span className="menu-name-ja">{menu.nameJpn}</span>
                             </div>
                             <MenuPrice price={menu.price} isMinPrice={menu.isMinPrice} />
-                            <p>{menu.isHidden}</p>
                         </li>
                     )
                 })
