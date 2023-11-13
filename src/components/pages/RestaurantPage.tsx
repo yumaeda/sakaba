@@ -46,7 +46,7 @@ const RestaurantPage: React.FC = () => {
         .then(
             (data) => {
                 const tmpMenus = camelcaseKeys(JSON.parse(JSON.stringify(data.body)))
-                setMenus(tmpMenus.filter((menu: Menu) => menu.isHidden == 0))
+                setMenus(tmpMenus)
             },
             (error: Error) => {
                 setError(error)
@@ -72,28 +72,28 @@ const RestaurantPage: React.FC = () => {
                         <div>
                         {
                             (categories.filter((currentCategory: Category) => currentCategory.parentId == category.id).length == 0) ? (
-                                <MenuList menus={menus.filter((menu: Menu) => menu.category == category.id && menu.subCategory == 0 && menu.region == 0)} />
+                                <MenuList menus={menus.filter((menu: Menu) => menu.isHidden == 0 && menu.category == category.id && menu.subCategory == 0 && menu.region == 0)} />
                             ) : (
                                 <>
                                 {
                                     categories.filter((currentCategory: Category) => currentCategory.parentId == category.id).map((subCategory: Category) => {
                                         const regions = categories.filter((currentCategory: Category) => currentCategory.parentId == subCategory.id)
-                                        return (menus.filter((menu: Menu) => menu.category == category.id && menu.subCategory == subCategory.id).length > 0) ? (
+                                        return (menus.filter((menu: Menu) => menu.isHidden == 0 && menu.category == category.id && menu.subCategory == subCategory.id).length > 0) ? (
                                             <>
                                                 <h4 className="menu-sub-category">{subCategory.name}</h4>
                                                 <div>
                                                 {
                                                     (regions.length == 0) ? (
-                                                        <MenuList menus={menus.filter((menu: Menu) => menu.category == category.id && menu.subCategory == subCategory.id && menu.region == 0)} />
+                                                        <MenuList menus={menus.filter((menu: Menu) => menu.isHidden == 0 && menu.category == category.id && menu.subCategory == subCategory.id && menu.region == 0)} />
                                                     ) : (
                                                         <div>
                                                         {
                                                             regions.map((region: Category) => {
-                                                                return (menus.filter((menu: Menu) => menu.category == category.id && menu.subCategory == subCategory.id && menu.region == region.id).length > 0) ? (
+                                                                return (menus.filter((menu: Menu) => menu.isHidden == 0 && menu.category == category.id && menu.subCategory == subCategory.id && menu.region == region.id).length > 0) ? (
                                                                 <>
                                                                     <h6 className="menu-region">{region.name}</h6>
                                                                     <div>
-                                                                        <MenuList menus={menus.filter((menu: Menu) => menu.category == category.id && menu.subCategory == subCategory.id && menu.region == region.id)} />
+                                                                        <MenuList menus={menus.filter((menu: Menu) => menu.isHidden == 0 && menu.category == category.id && menu.subCategory == subCategory.id && menu.region == region.id)} />
                                                                     </div>
                                                                 </>
                                                                 ) : ''
