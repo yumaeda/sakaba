@@ -25,6 +25,7 @@ const MenuList: React.FC<Props> = (props) => {
                                 <span className="menu-name-ja">{menu.nameJpn}</span>
                             </div>
                             <MenuPrice price={menu.price} isMinPrice={menu.isMinPrice} />
+                            <p>{menu.isHidden}</p>
                         </li>
                     )
                 })
