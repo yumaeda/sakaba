@@ -16,19 +16,17 @@ const MenuList: React.FC<Props> = (props) => {
         <div>
             <ul className="menu-list">
             {
-                menus
-                    .filter((targetMenu: Menu) => { return targetMenu.isHidden == 0 })
-                    .map((menu: Menu) => {
-                        return (
-                            <li className="menu-item" key={menu.name}>
-                                <div className="menu-name-cell">
-                                    <span className="menu-name">{menu.name}</span>
-                                    <br />
-                                    <span className="menu-name-ja">{menu.nameJpn}</span>
-                                </div>
-                                <MenuPrice price={menu.price} isMinPrice={menu.isMinPrice} />
-                            </li>
-                        )
+                menus.map((menu: Menu) => {
+                    return (
+                        <li className="menu-item" key={menu.name}>
+                            <div className="menu-name-cell">
+                                <span className="menu-name">{menu.name}</span>
+                                <br />
+                                <span className="menu-name-ja">{menu.nameJpn}</span>
+                            </div>
+                            <MenuPrice price={menu.price} isMinPrice={menu.isMinPrice} />
+                        </li>
+                    )
                 })
             }
             </ul>

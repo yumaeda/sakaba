@@ -46,7 +46,7 @@ const RestaurantPage: React.FC = () => {
         .then(
             (data) => {
                 const tmpMenus = camelcaseKeys(JSON.parse(JSON.stringify(data.body)))
-                setMenus(tmpMenus)
+                setMenus(tmpMenus.filter((menu: Menu) => menu.isHidden == 0))
             },
             (error: Error) => {
                 setError(error)
