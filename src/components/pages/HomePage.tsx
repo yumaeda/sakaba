@@ -21,6 +21,7 @@ const HomePage: React.FC<{}> = () => {
     const [error, setError] = React.useState<Error>()
     const [ showAllRestaurants, setShowAllRestaurants ] = React.useState<boolean>(false)
     const apiBasePath = 'https://api.tokyo-dinner.com'
+    const newApiBasePath = 'https://api.sakabas.com'
     const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
 
     React.useEffect(() => {
@@ -47,7 +48,7 @@ const HomePage: React.FC<{}> = () => {
                 handleGeolocationError(error)
             })
 
-        fetch(`${apiBasePath}/dishes/`, { headers: {} })
+        fetch(`${newApiBasePath}/dishes/`, { headers: {} })
             .then(res => res.json())
             .then((data) => {
                 setDishes(JSON.parse(JSON.stringify(data.body)))
@@ -57,7 +58,7 @@ const HomePage: React.FC<{}> = () => {
             }
         )
 
-        fetch(`${apiBasePath}/drinks/`, { headers: {} })
+        fetch(`${newApiBasePath}/drinks/`, { headers: {} })
             .then(res => res.json())
             .then((data) => {
                 setDrinks(JSON.parse(JSON.stringify(data.body)))
@@ -67,7 +68,7 @@ const HomePage: React.FC<{}> = () => {
             }
         )
 
-        fetch(`${apiBasePath}/genres/`, { headers: {} })
+        fetch(`${newApiBasePath}/genres/`, { headers: {} })
             .then(res => res.json())
             .then((data) => {
                 setGenres(JSON.parse(JSON.stringify(data.body)))
@@ -77,7 +78,7 @@ const HomePage: React.FC<{}> = () => {
             }
         )
 
-        fetch(`${apiBasePath}/latest-photos/`, {
+        fetch(`${newApiBasePath}/latest-photos/`, {
             headers: {}
         })
         .then(res => res.json())
