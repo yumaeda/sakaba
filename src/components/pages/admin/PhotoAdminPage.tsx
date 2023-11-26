@@ -75,7 +75,7 @@ const PhotoAdminPage: React.FC = () => {
                     },
                     body: JSON.stringify(restaurant_photo)
                 }
-                fetch('https://api.tokyo-dinner.com/auth/photo/', postOptions)
+                fetch('https://api.sakabas.com/auth/photo/', postOptions)
                     .then(res => res.json())
                     .then(data => {
                         console.dir(data)

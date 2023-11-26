@@ -3,8 +3,6 @@
  */
 import * as React from 'react'
 import { Restaurant } from '@yumaeda/sakaba-interface'
-import ImageViewer from 'react-simple-image-viewer'
-import Photo from '../interfaces/Photo'
 import Video from '../interfaces/Video'
 import Address from './Address'
 import PhoneNumber from './PhoneNumber'
@@ -19,47 +17,12 @@ interface Props {
 
 const RestaurantList: React.FC<Props> = (props) => {
     const { restaurants } = props
-    const [photos, setPhotos] = React.useState<Photo[]>([])
     const [videos, setVideos] = React.useState<Video[]>()
-    const newApiUrl = 'https://api.tokyo-dinner.com'
     const apiUrl = 'https://api.sakabas.com'
-    const [ imageUrls, setImageUrls ] = React.useState<string[]>([])
-    const [ imageIndex, setImageIndex ] = React.useState<number>(0)
-    const [ isViewerOpen, setIsViewerOpen ] = React.useState<boolean>(false)
     const [ showAllRestaurants, setShowAllRestaurants ] = React.useState<boolean>(false)
     const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
-    const imageDir = `${imageBasePath}/images`
-
-    const closeImageViewer = () => {
-        setImageUrls([])
-        setImageIndex(0)
-        setIsViewerOpen(false)
-    }
-
-    const openImageViewer = (restaurantId: string, index: number) => {
-        const restaurantImageDir = `${imageDir}/restaurants/${restaurantId}`
-        const tmpImageUrls = photos
-            .filter((photo: Photo) => photo.restaurant_id == restaurantId)
-            .map((photo: Photo) => `${restaurantImageDir}/${photo.image}`)
-        setImageUrls(tmpImageUrls)
-        setImageIndex(index)
-        setIsViewerOpen(true)
-    }
 
     React.useEffect(() => {
-        fetch(`${newApiUrl}/photos/`, {
-            headers: {}
-        })
-        .then(res => res.json())
-        .then(
-            (data) => {
-                setPhotos(JSON.parse(JSON.stringify(data.body)))
-            },
-            (error: Error) => {
-                console.error(error)
-            }
-        )
-
         fetch(`${apiUrl}/videos/`, {
             headers: {}
         })
@@ -91,10 +54,8 @@ const RestaurantList: React.FC<Props> = (props) => {
                     </h4>
                 </div>
                 <DishPhotoList
-                    openImageViewer={openImageViewer}
                     basePath={imageBasePath}
                     restaurantId={restaurantId}
-                    photos={ photos ? photos.filter((photo: Photo) => photo.restaurant_id == restaurantId) : null }
                 />
                 <div className="shop-info">
                     <OpenHours businessDayJson={openRestaurant.businessDayInfo} />
@@ -107,14 +68,6 @@ const RestaurantList: React.FC<Props> = (props) => {
                 />
             </li>
             )}) : <div>Loading...</div>}
-            { isViewerOpen &&
-                <ImageViewer
-                    src={ imageUrls }
-                    currentIndex={ imageIndex }
-                    disableScroll={ false }
-                    closeOnClickOutside={ true }
-                    onClose={ closeImageViewer } />
-            }
         </ul>
     )
 }
