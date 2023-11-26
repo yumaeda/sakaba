@@ -14,7 +14,7 @@ interface Props {
 }
 
 interface ColumnProps {
-    openImageViewer: (restaurantId: string, index: number) => void
+    openImageViewer: (index: number) => void
     basePath: string
     restaurantId: string
     photos: Photo[] | null
@@ -33,7 +33,7 @@ const DishPhoto: React.FC<ColumnStyle> = (props) => {
 
     return photo ? (
         <div style={style} key={index}>
-            <div className="dish-image-wrapper" onClick={ () => { data.openImageViewer(data.restaurantId, index) }}>
+            <div className="dish-image-wrapper" onClick={ () => { data.openImageViewer(index) }}>
                 <picture>
                     <source type="image/webp" media="(min-width: 150px)" srcSet={`${restaurantImageDir}/${photo.thumbnail_webp}`} />
                     <img src={`${restaurantImageDir}/${photo.thumbnail}`} className="tile-image dish-image" alt={`店舗写真${index}`} />
@@ -49,11 +49,9 @@ const DishPhotoList: React.FC<Props> = (props) => {
     const [photos, setPhotos] = React.useState<Photo[]>([])
     const imageDir = `${basePath}/images`
 
-    const openImageViewer = (restaurantId: string, index: number) => {
+    const openImageViewer = (index: number) => {
         const restaurantImageDir = `${imageDir}/restaurants/${restaurantId}`
-        const tmpImageUrls = photos
-            .filter((photo: Photo) => photo.restaurant_id == restaurantId)
-            .map((photo: Photo) => `${restaurantImageDir}/${photo.image}`)
+        const tmpImageUrls = photos.map((photo: Photo) => `${restaurantImageDir}/${photo.image}`)
         setImageUrls(tmpImageUrls)
         setImageIndex(index)
         setIsViewerOpen(true)
