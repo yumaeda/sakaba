@@ -2,13 +2,15 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
-import ImageViewer from 'react-simple-image-viewer'
 import { FixedSizeList } from 'react-window'
 import Photo from '../interfaces/Photo'
 
 interface Props {
     basePath: string
     restaurantId: string
+    setImageUrls: (imageUrls: string[]) => void
+    setImageIndex: (imageIndex: number) => void
+    setIsViewerOpen: (isViewerOpen: boolean) => void
 }
 
 interface ColumnProps {
@@ -43,11 +45,8 @@ const DishPhoto: React.FC<ColumnStyle> = (props) => {
 
 const DishPhotoList: React.FC<Props> = (props) => {
     const apiUrl = 'https://api.sakabas.com'
-    const { basePath, restaurantId } = props
+    const { basePath, restaurantId, setImageUrls, setImageIndex, setIsViewerOpen } = props
     const [photos, setPhotos] = React.useState<Photo[]>([])
-    const [ imageUrls, setImageUrls ] = React.useState<string[]>([])
-    const [ imageIndex, setImageIndex ] = React.useState<number>(0)
-    const [ isViewerOpen, setIsViewerOpen ] = React.useState<boolean>(false)
     const imageDir = `${basePath}/images`
 
     const openImageViewer = (restaurantId: string, index: number) => {
@@ -58,12 +57,6 @@ const DishPhotoList: React.FC<Props> = (props) => {
         setImageUrls(tmpImageUrls)
         setImageIndex(index)
         setIsViewerOpen(true)
-    }
-
-    const closeImageViewer = () => {
-        setImageUrls([])
-        setImageIndex(0)
-        setIsViewerOpen(false)
     }
 
     React.useEffect(() => {
@@ -82,25 +75,15 @@ const DishPhotoList: React.FC<Props> = (props) => {
     }, [])
 
     return (
-        <>
-            <FixedSizeList
-                height={85}
-                itemCount={photos ? photos.length : 0}
-                itemSize={100}
-                layout="horizontal"
-                width={window.innerWidth}
-                itemData={{ openImageViewer, photos, restaurantId, basePath }}>
-                {DishPhoto}
-            </FixedSizeList>
-            { isViewerOpen &&
-                <ImageViewer
-                    src={ imageUrls }
-                    currentIndex={ imageIndex }
-                    disableScroll={ false }
-                    closeOnClickOutside={ true }
-                    onClose={ closeImageViewer } />
-            }
-        </>
+        <FixedSizeList
+            height={85}
+            itemCount={photos ? photos.length : 0}
+            itemSize={100}
+            layout="horizontal"
+            width={window.innerWidth}
+            itemData={{ openImageViewer, photos, restaurantId, basePath }}>
+            {DishPhoto}
+        </FixedSizeList>
     )
 }
 

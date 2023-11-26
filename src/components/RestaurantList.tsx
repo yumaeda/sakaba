@@ -2,6 +2,7 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import ImageViewer from 'react-simple-image-viewer'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import Video from '../interfaces/Video'
 import Address from './Address'
@@ -19,6 +20,9 @@ const RestaurantList: React.FC<Props> = (props) => {
     const { restaurants } = props
     const [videos, setVideos] = React.useState<Video[]>()
     const apiUrl = 'https://api.sakabas.com'
+    const [ isViewerOpen, setIsViewerOpen ] = React.useState<boolean>(false)
+    const [ imageUrls, setImageUrls ] = React.useState<string[]>([])
+    const [ imageIndex, setImageIndex ] = React.useState<number>(0)
     const [ showAllRestaurants, setShowAllRestaurants ] = React.useState<boolean>(false)
     const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
 
@@ -39,6 +43,12 @@ const RestaurantList: React.FC<Props> = (props) => {
         setShowAllRestaurants(localStorage.getItem('hideClosedRestaurants') != "1" ?? false)
     }, [])
 
+    const closeImageViewer = () => {
+        setImageUrls([])
+        setImageIndex(0)
+        setIsViewerOpen(false)
+    }
+
     return (
         <ul className="shop-list">
         {restaurants ? restaurants
@@ -56,6 +66,9 @@ const RestaurantList: React.FC<Props> = (props) => {
                 <DishPhotoList
                     basePath={imageBasePath}
                     restaurantId={restaurantId}
+                    setImageUrls={setImageUrls}
+                    setImageIndex={setImageIndex}
+                    setIsViewerOpen={setIsViewerOpen}
                 />
                 <div className="shop-info">
                     <OpenHours businessDayJson={openRestaurant.businessDayInfo} />
@@ -68,6 +81,14 @@ const RestaurantList: React.FC<Props> = (props) => {
                 />
             </li>
             )}) : <div>Loading...</div>}
+            { isViewerOpen &&
+                <ImageViewer
+                    src={ imageUrls }
+                    currentIndex={ imageIndex }
+                    disableScroll={ false }
+                    closeOnClickOutside={ true }
+                    onClose={ closeImageViewer } />
+            }
         </ul>
     )
 }
