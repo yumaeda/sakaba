@@ -11,7 +11,7 @@ const SignInPage: React.FC = () => {
   const [password, setPassword] = React.useState<string>('')
 
   React.useEffect(() => {
-    fetch('https://api.tokyo-dinner.com/auth/home', {
+    fetch('https://api.sakabas.com/auth/home', {
       headers: {
           'Content-Type': 'application/json',
           'Authorization': `Bearer ${getCookie('jwt')}`
@@ -42,7 +42,7 @@ const SignInPage: React.FC = () => {
       },
       body: JSON.stringify({ email, password })
     }
-    fetch('https://api.tokyo-dinner.com/login', postOptions)
+    fetch('https://api.sakabas.com/login', postOptions)
         .then((res) => res.json())
         .then((data) => {
           const domain = 'sakabas.com'

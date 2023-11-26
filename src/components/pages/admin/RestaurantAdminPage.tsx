@@ -55,7 +55,7 @@ const RestaurantAdminPage: React.FC = () => {
     }
 
     React.useEffect(() => {
-        fetch('https://api.tokyo-dinner.com/areas/', { headers: {} })
+        fetch('https://api.sakabas.com/areas/', { headers: {} })
             .then(res => res.json())
             .then(
                 (data) => {
@@ -114,7 +114,7 @@ const RestaurantAdminPage: React.FC = () => {
                     body: JSON.stringify(restaurant)
                 }
 
-                fetch('https://api.tokyo-dinner.com/auth/restaurant/', postOptions)
+                fetch('https://api.sakabas.com/auth/restaurant/', postOptions)
                     .then((res) => res.json())
                     .then((data) => {
                         alert(JSON.stringify(data))

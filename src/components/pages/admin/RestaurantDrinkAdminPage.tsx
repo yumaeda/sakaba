@@ -19,7 +19,7 @@ const RestaurantDrinkAdminPage: React.FC = () => {
  
     React.useEffect(() => {
         setToken(getCookie('jwt'))
-        fetch('https://api.tokyo-dinner.com/restaurants/', { headers: {} })
+        fetch('https://api.sakabas.com/restaurants/', { headers: {} })
             .then(res => res.json())
             .then(
                 (data) => {
@@ -32,7 +32,7 @@ const RestaurantDrinkAdminPage: React.FC = () => {
                 }
             )
 
-        fetch('https://api.tokyo-dinner.com/drinks/', { headers: {} })
+        fetch('https://api.sakabas.com/drinks/', { headers: {} })
             .then(res => res.json())
             .then(
                 (data) => {
@@ -79,7 +79,7 @@ const RestaurantDrinkAdminPage: React.FC = () => {
             },
             body: JSON.stringify(restaurant_drink)
         }
-        fetch('https://api.tokyo-dinner.com/auth/restaurant-drink/', postOptions)
+        fetch('https://api.sakabas.com/auth/restaurant-drink/', postOptions)
             .then((res) => res.json())
             .then((data) => {
                 alert(JSON.stringify(data))

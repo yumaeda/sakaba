@@ -19,7 +19,7 @@ const RestaurantGenreAdminPage: React.FC = () => {
  
     React.useEffect(() => {
         setToken(getCookie('jwt'))
-        fetch('https://api.tokyo-dinner.com/restaurants/', { headers: {} })
+        fetch('https://api.sakabas.com/restaurants/', { headers: {} })
             .then(res => res.json())
             .then(
                 (data) => {
@@ -32,7 +32,7 @@ const RestaurantGenreAdminPage: React.FC = () => {
                 }
             )
 
-        fetch('https://api.tokyo-dinner.com/genres/', { headers: {} })
+        fetch('https://api.sakabas.com/genres/', { headers: {} })
             .then(res => res.json())
             .then(
                 (data) => {
@@ -79,7 +79,7 @@ const RestaurantGenreAdminPage: React.FC = () => {
             },
             body: JSON.stringify(restaurant_genre)
         }
-        fetch('https://api.tokyo-dinner.com/auth/restaurant-genre/', postOptions)
+        fetch('https://api.sakabas.com/auth/restaurant-genre/', postOptions)
             .then((res) => res.json())
             .then((data) => {
                 alert(JSON.stringify(data))

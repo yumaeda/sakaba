@@ -14,7 +14,7 @@ const PhotoAdminPage: React.FC = () => {
 
     React.useEffect(() => {
         setToken(getCookie('jwt'))
-        fetch('https://api.tokyo-dinner.com/restaurants/', { headers: {} })
+        fetch('https://api.sakabas.com/restaurants/', { headers: {} })
             .then(res => res.json())
             .then(
                 (data) => {
