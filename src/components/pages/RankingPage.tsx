@@ -21,7 +21,7 @@ const RankingPage: React.FC = () => {
     const imageDir = `${imageBasePath}/images`
 
     React.useEffect(() => {
-        fetch('https://api.tokyo-dinner.com/rankings/', {
+        fetch('https://api.sakabas.com/rankings/', {
             headers: {}
         })
         .then(res => res.json())

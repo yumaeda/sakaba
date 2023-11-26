@@ -22,6 +22,7 @@ const RestaurantList: React.FC<Props> = (props) => {
     const [photos, setPhotos] = React.useState<Photo[]>([])
     const [videos, setVideos] = React.useState<Video[]>()
     const newApiUrl = 'https://api.tokyo-dinner.com'
+    const apiUrl = 'https://api.sakabas.com'
     const [ imageUrls, setImageUrls ] = React.useState<string[]>([])
     const [ imageIndex, setImageIndex ] = React.useState<number>(0)
     const [ isViewerOpen, setIsViewerOpen ] = React.useState<boolean>(false)
@@ -59,7 +60,7 @@ const RestaurantList: React.FC<Props> = (props) => {
             }
         )
 
-        fetch(`${newApiUrl}/videos/`, {
+        fetch(`${apiUrl}/videos/`, {
             headers: {}
         })
         .then(res => res.json())

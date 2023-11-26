@@ -15,7 +15,7 @@ const DrinkRestaurantPage: React.FC = () => {
     const [error, setError] = React.useState<Error>()
     const [drink, setDrink] = React.useState<Drink>({name: '', id: 0})
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
-    const newApiUrl = 'https://api.tokyo-dinner.com'
+    const apiUrl = 'https://api.sakabas.com'
     const basePath = 'https://sakabas.com'
     const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
     const imageDir = `${imageBasePath}/images`
@@ -27,7 +27,7 @@ const DrinkRestaurantPage: React.FC = () => {
             maximumAge: 0
         })
             .then((position: GeolocationPosition) => {
-                fetch(`${newApiUrl}/restaurants/drinks/${params.id}/${position.coords.latitude}/${position.coords.longitude}`, {
+                fetch(`${apiUrl}/restaurants/drinks/${params.id}/${position.coords.latitude}/${position.coords.longitude}`, {
                     headers: {}
                 })
                 .then(res => res.json())
@@ -44,7 +44,7 @@ const DrinkRestaurantPage: React.FC = () => {
                 handleGeolocationError(error)
             })
 
-        fetch(`${newApiUrl}/drinks/${params.id}`, { headers: {} })
+        fetch(`${apiUrl}/drinks/${params.id}`, { headers: {} })
             .then(res => res.json())
             .then((data) => {
                 setDrink(JSON.parse(JSON.stringify(data.body)))

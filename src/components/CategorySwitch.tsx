@@ -16,7 +16,7 @@ const CategorySwitch: React.FC<Props> = (props) => {
     const [categories, setCategories] = React.useState<Category[]>([])
 
     React.useEffect(() => {
-        fetch(`https://api.tokyo-dinner.com/categories/${restaurantId}`, {
+        fetch(`https://api.sakabas.com/categories/${restaurantId}`, {
             headers: {}
         })
         .then(res => res.json())
