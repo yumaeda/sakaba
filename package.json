@@ -8,6 +8,7 @@
     "url": "git+https://github.com/yumaeda/sakaba-front.git"
   },
   "scripts": {
+    "preinstall": "npx only-allow pnpm",
     "build": "webpack --progress --profile",
     "start": "webpack serve"
   },

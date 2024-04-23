@@ -1,13 +1,28 @@
 # sakaba-front
-Repository for Sakaba Frontend
+Repository for Sakabas Frontend
 
-## Deploy
-- Automatically deployed by GitHub action upon commit to main branch.
+## Deployment
+- Automatically deployed by GitHub Action upon commit to the main branch.
 
-## Run locally
+## Running locally
+### Preparation
+- Run below command to install pnpm.
+```sh
+brew install pnpm
+```
+
+### Install packages
 ```sh
 export NODE_AUTH_TOKEN={GITHUB_PERSONAL_ACCESS_TOKEN}
-npm install
-npm run build
-npm start
+pnpm install
+```
+
+### Build
+```sh
+pnpm run build
+```
+
+### Start running locally
+```sh
+pnpm start
 ```
