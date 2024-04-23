@@ -51,7 +51,7 @@ jobs:
       env:
           NODE_AUTH_TOKEN: ${{ secrets.DEV_OPS_TOKEN_READ_PACKAGES }}
     - name: Build
-      run: pnpm run build --if-present
+      run: pnpm run build
     - name: Deploy to GCS
       run: |
           gsutil cp index.min.js gs://sakabas.com/
