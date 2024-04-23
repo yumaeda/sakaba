@@ -13,7 +13,7 @@ brew install pnpm
 
 ### Install packages
 ```sh
-export NODE_AUTH_TOKEN={GITHUB_PERSONAL_ACCESS_TOKEN}
+export NODE_AUTH_TOKEN=ghp_xxxxxxxxxxxxxxxx
 pnpm install
 ```
 
