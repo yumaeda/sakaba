@@ -26,3 +26,6 @@ pnpm run build
 ```sh
 pnpm start
 ```
+
+## Reference
+- https://britishgeologicalsurvey.github.io/development/migrating-from-npm-to-pnpm/
