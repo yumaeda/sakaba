@@ -5,6 +5,7 @@ import * as React from 'react'
 import { useParams } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import camelcaseKeys = require('camelcase-keys')
+import * as GlobalConstants from '../../constants/Global'
 import { getPosition, handleGeolocationError } from '../../utils/GeoLocationUtility'
 import RestaurantList from '../RestaurantList'
 import Footer from '../Footer'
@@ -20,7 +21,7 @@ const AreaPage: React.FC = () => {
     const imageDir = `${imageBasePath}/images`
 
     React.useEffect(() => {
-        document.title = `${area}｜酒場リンク`
+        document.title = `${area}｜${GlobalConstants.SERVICE_NAME}`
 
         getPosition({
             enableHighAccuracy: true,
