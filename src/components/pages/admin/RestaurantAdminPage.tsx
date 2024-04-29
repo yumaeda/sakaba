@@ -163,10 +163,10 @@ const RestaurantAdminPage: React.FC = () => {
                     <input className="admin-input" placeholder="URL" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setUrl(event.currentTarget.value) } /><br />
                     <input className="admin-input" placeholder="Name" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setName(event.currentTarget.value) } /><br />
                     <input className="admin-input" placeholder="Genre" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setFakeGenre(event.currentTarget.value) } /><br />
+                    <Dropdown onSelect={handleGenreSelect} itemId={genre.toString()} items={genres} useIdAsValue={true} /><br />
                     <input className="admin-input" placeholder="Tel" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setTel(event.currentTarget.value) } /><br />
                     <input className="admin-input" placeholder="Address" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setAddress(event.currentTarget.value) } />
                     <input className="admin-input" placeholder="Building" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setBuilding(event.currentTarget.value) } /><br />
-                    <Dropdown onSelect={handleGenreSelect} itemId={genre.toString()} items={genres} useIdAsValue={true} /><br />
                     <Dropdown onSelect={handleAreaSelect} itemId={area} items={areas} useIdAsValue={false} /><br />
                     <h2>Business Day Info</h2>
                     <span>Sun:&nbsp;</span><input type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setSundayInfo(event.currentTarget.value) } defaultValue={sundayInfo} /><br />
