@@ -4,14 +4,18 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import Area from '../../../interfaces/Area'
+import Genre from '../../../interfaces/Genre'
 import { getCookie } from '../../../utils/CookieUtility'
+import { getPostOption } from '../../../utils/HttpUtility'
 import Dropdown from '../../Dropdown'
  
 const RestaurantAdminPage: React.FC = () => {
     const [token, setToken] = React.useState<string>('')
     const [url, setUrl] = React.useState<string>('')
     const [name, setName] = React.useState<string>('')
-    const [genre, setGenre] = React.useState<string>('')
+    const [genre, setGenre] = React.useState<number>(0)
+    const [genres, setGenres] = React.useState<Genre[]>([])
+    const [fakeGenre, setFakeGenre] = React.useState<string>('')
     const [tel, setTel] = React.useState<string>('')
     const [address, setAddress] = React.useState<string>('')
     const [building, setBuilding] = React.useState<string>('')
@@ -67,7 +71,24 @@ const RestaurantAdminPage: React.FC = () => {
                     console.dir(error)
                 }
             )
+
+        fetch('https://api.sakabas.com/genres/', { headers: {} })
+            .then(res => res.json())
+            .then(
+                (data) => {
+                    const defautGenre : Genre = { id: 0, name: 'Select Genre' }
+                    const tmpGenres = JSON.parse(JSON.stringify(data.body))
+                    setGenres([defautGenre, ...tmpGenres])
+                },
+                (error: Error) => {
+                    console.dir(error)
+                }
+            )
     }, [])
+
+    const handleGenreSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
+        setGenre(Number(event.currentTarget.value))
+    }
 
     const handleAreaSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
         setArea(event.currentTarget.value)
@@ -82,7 +103,7 @@ const RestaurantAdminPage: React.FC = () => {
             return
         }
 
-        if (url === '' || name === '' || genre === '' && tel === '' || address === '' || area === '') {
+        if (url === '' || name === '' || fakeGenre === '' && tel === '' || address === '' || area === '') {
             alert('Please fillout the required fields!')
             return
         }
@@ -97,7 +118,7 @@ const RestaurantAdminPage: React.FC = () => {
                 const restaurant = {
                     url,
                     name,
-                    genre,
+                    fakeGenre,
                     tel: tel.replace(/-/g, ''),
                     address: `${address} ${building}`,
                     area,
@@ -105,20 +126,27 @@ const RestaurantAdminPage: React.FC = () => {
                     latitude: `${latitude}`,
                     longitude: `${longitude}`
                 }
-                const postOptions = {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${token}`
-                    },
-                    body: JSON.stringify(restaurant)
-                }
 
+                const postOptions = getPostOption(token, restaurant)
                 fetch('https://api.sakabas.com/auth/restaurant/', postOptions)
                     .then((res) => res.json())
                     .then((data) => {
                         alert(JSON.stringify(data))
-                    })
+                        if (genre > 0) {
+                            const resData : { statusCode: string, id: string } = JSON.parse(JSON.stringify(data))
+                            const restaurant_genre = {
+                                restaurant_id: resData.id,
+                                genre_id: genre.toString()
+                            }
+
+                            const genrePostOptions = getPostOption(token, restaurant_genre)
+                            fetch('https://api.sakabas.com/auth/restaurant-genre/', genrePostOptions)
+                                .then((res) => res.json())
+                                .then((data) => {
+                                    alert(JSON.stringify(data))
+                                })
+                        }
+                })
             },
             (error: Error) => {
                 console.dir(error)
@@ -134,10 +162,11 @@ const RestaurantAdminPage: React.FC = () => {
                 <div className="admin-contents">
                     <input className="admin-input" placeholder="URL" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setUrl(event.currentTarget.value) } /><br />
                     <input className="admin-input" placeholder="Name" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setName(event.currentTarget.value) } /><br />
-                    <input className="admin-input" placeholder="Genre" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setGenre(event.currentTarget.value) } /><br />
+                    <input className="admin-input" placeholder="Genre" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setFakeGenre(event.currentTarget.value) } /><br />
                     <input className="admin-input" placeholder="Tel" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setTel(event.currentTarget.value) } /><br />
                     <input className="admin-input" placeholder="Address" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setAddress(event.currentTarget.value) } />
                     <input className="admin-input" placeholder="Building" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setBuilding(event.currentTarget.value) } /><br />
+                    <Dropdown onSelect={handleGenreSelect} itemId={genre.toString()} items={genres} useIdAsValue={true} /><br />
                     <Dropdown onSelect={handleAreaSelect} itemId={area} items={areas} useIdAsValue={false} /><br />
                     <h2>Business Day Info</h2>
                     <span>Sun:&nbsp;</span><input type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setSundayInfo(event.currentTarget.value) } defaultValue={sundayInfo} /><br />
