@@ -29,7 +29,8 @@ const AreaPage: React.FC = () => {
             maximumAge: 0
         })
             .then((position: GeolocationPosition) => {
-                fetch(`${apiUrl}/restaurants/areas/${area}/${position.coords.latitude}/${position.coords.longitude}`, {
+                console.dir(position)
+                fetch(`${apiUrl}/restaurants/areas/${area}`, {
                     headers: {}
                 })
                 .then(res => res.json())

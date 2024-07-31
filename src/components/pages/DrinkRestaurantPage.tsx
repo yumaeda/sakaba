@@ -27,7 +27,8 @@ const DrinkRestaurantPage: React.FC = () => {
             maximumAge: 0
         })
             .then((position: GeolocationPosition) => {
-                fetch(`${apiUrl}/restaurants/drinks/${params.id}/${position.coords.latitude}/${position.coords.longitude}`, {
+                console.dir(position)
+                fetch(`${apiUrl}/restaurants/drinks/${params.id}`, {
                     headers: {}
                 })
                 .then(res => res.json())
