@@ -30,7 +30,8 @@ const HomePage: React.FC<{}> = () => {
             maximumAge: 0
         })
             .then((position: GeolocationPosition) => {
-                fetch(`${apiBasePath}/restaurant-counts/${position.coords.latitude}/${position.coords.longitude}`, {
+                console.dir(position)
+                fetch(`${apiBasePath}/restaurant-counts}`, {
                     headers: {}
                 })
                 .then(res => res.json())
