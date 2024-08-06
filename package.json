@@ -29,7 +29,8 @@
     "react-dom": "^18.1.0",
     "react-router-dom": "^6.3.0",
     "react-simple-image-viewer": "1.2.2",
-    "react-window": "^1.8.7"
+    "react-window": "^1.8.7",
+    "uuid": "^7.0.3"
   },
   "devDependencies": {
     "@types/camelcase-keys": "^5.1.1",
@@ -37,6 +38,7 @@
     "@types/react-dom": "^18.0.5",
     "@types/react-router-dom": "^5.3.3",
     "@types/react-window": "^1.8.5",
+    "@types/uuid": "^8.3.0",
     "css-loader": "^6.7.1",
     "mini-css-extract-plugin": "^2.6.1",
     "sass": "^1.52.3",

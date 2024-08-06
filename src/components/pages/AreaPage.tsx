@@ -15,7 +15,6 @@ const AreaPage: React.FC = () => {
     const [error, setError] = React.useState<Error>()
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
     const area = params.area || ''
-    const apiUrl = 'https://api.sakabas.com'
     const basePath = 'https://sakabas.com'
     const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
     const imageDir = `${imageBasePath}/images`
@@ -30,7 +29,7 @@ const AreaPage: React.FC = () => {
         })
             .then((position: GeolocationPosition) => {
                 console.dir(position)
-                fetch(`${apiUrl}/restaurants/areas/${area}`, {
+                fetch(`${GlobalConstants.API_URL}/restaurants/areas/${area}`, {
                     headers: {}
                 })
                 .then(res => res.json())

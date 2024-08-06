@@ -2,6 +2,8 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import HomeAdminPage from './pages/admin/HomeAdminPage'
+import MenuAdminPage from './pages/admin/MenuAdminPge'
+import PhotoAdminPage from './pages/admin/PhotoAdminPage'
 import RestaurantAdminPage from './pages/admin/RestaurantAdminPage'
 import RestaurantDrinkAdminPage from './pages/admin/RestaurantDrinkAdminPage'
 import RestaurantGenreAdminPage from './pages/admin/RestaurantGenreAdminPage'
@@ -16,7 +18,6 @@ import RestaurantPage from './pages/RestaurantPage'
 import SignInPage from './pages/SignInPage'
 import * as React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import PhotoAdminPage from './pages/admin/PhotoAdminPage'
 
 const Root: React.FC<{}> = () => {
     return (
@@ -26,6 +27,7 @@ const Root: React.FC<{}> = () => {
                 <Route path="member" element={<MemberPage />} />
                 <Route path="signin" element={<SignInPage />} />
                 <Route path="admin/index" element={<HomeAdminPage />} />
+                <Route path="admin/menu" element={<MenuAdminPage />} />
                 <Route path="admin/photo" element={<PhotoAdminPage />} />
                 <Route path="admin/restaurant" element={<RestaurantAdminPage />} />
                 <Route path="admin/restaurant-drink" element={<RestaurantDrinkAdminPage />} />
