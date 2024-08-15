@@ -1,10 +1,15 @@
 /**
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
-import { jwtDecode } from 'jwt-decode'
+import { jwtDecode, JwtPayload} from 'jwt-decode'
 import * as React from 'react'
 import { Navigate } from 'react-router-dom'
 import { getCookie } from '../../utils/CookieUtility'
+import { USER_NAME_KEY } from '../../constants/LocalStorageKeys'
+
+interface CustomJwtPayload extends JwtPayload {
+  id: string
+}
 
 const SignInPage: React.FC = () => {
   const [redirectToReferrer, setRedirectToReferrer] = React.useState<boolean>(false)
@@ -51,8 +56,8 @@ const SignInPage: React.FC = () => {
           if (data.code == 200) {
             document.cookie = `jwt=${data.token}; max-Age=${maxAge}; domain=${domain}; secure`
             try {
-              const decoded = jwtDecode(data.token)
-              console.dir(decoded)
+              const decoded = jwtDecode<CustomJwtPayload>(data.token)
+              localStorage.setItem(USER_NAME_KEY, decoded.id)
             } catch (error) {
               console.error('Failed to decode token:', error)
             }

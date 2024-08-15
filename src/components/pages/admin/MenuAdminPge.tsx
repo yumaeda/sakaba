@@ -9,6 +9,7 @@ import * as GlobalConstants from '../../../constants/Global'
 import CategoryDropDown from '../../CategoryDropDown'
 import { getCookie } from '../../../utils/CookieUtility'
 import restaurantIdHash from '../../../utils/RestaurantIdHash'
+import { USER_NAME_KEY } from '../../../constants/LocalStorageKeys'
 
 const MenuAdminPage: React.FC = () => {
   const [token, setToken] = React.useState<string>('')
@@ -16,7 +17,8 @@ const MenuAdminPage: React.FC = () => {
   const [menus, setMenus] = React.useState<Menu[]>([])
   const [menuId, setMenuId] = React.useState<string>('')
   const [menuIndex, setMenuIndex] = React.useState<number>(0)
-  const restaurantId = restaurantIdHash['yumaeda']
+  const userName = localStorage.getItem(USER_NAME_KEY)?.split('@')[0]
+  const restaurantId = restaurantIdHash[userName ?? '']
 
   React.useEffect(() => {
     setToken(getCookie('jwt'))
