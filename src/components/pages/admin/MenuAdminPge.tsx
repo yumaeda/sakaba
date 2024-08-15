@@ -17,8 +17,7 @@ const MenuAdminPage: React.FC = () => {
   const [menus, setMenus] = React.useState<Menu[]>([])
   const [menuId, setMenuId] = React.useState<string>('')
   const [menuIndex, setMenuIndex] = React.useState<number>(0)
-  const userName = localStorage.getItem(USER_NAME_KEY)?.split('@')[0]
-  const restaurantId = restaurantIdHash[userName ?? '']
+  const restaurantId = restaurantIdHash[localStorage.getItem(USER_NAME_KEY) || '']
 
   React.useEffect(() => {
     setToken(getCookie('jwt'))

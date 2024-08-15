@@ -57,7 +57,7 @@ const SignInPage: React.FC = () => {
             document.cookie = `jwt=${data.token}; max-Age=${maxAge}; domain=${domain}; secure`
             try {
               const decoded = jwtDecode<CustomJwtPayload>(data.token)
-              localStorage.setItem(USER_NAME_KEY, decoded.id)
+              localStorage.setItem(USER_NAME_KEY, decoded.id.split('@')[0])
             } catch (error) {
               console.error('Failed to decode token:', error)
             }
