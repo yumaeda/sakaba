@@ -14,6 +14,9 @@ importers:
       camelcase-keys:
         specifier: ^7.0.1
         version: 7.0.2
+      jwt-decode:
+        specifier: ^4.0.0
+        version: 4.0.0
       react:
         specifier: ^18.1.0
         version: 18.2.0
@@ -33,9 +36,6 @@ importers:
         specifier: ^7.0.3
         version: 7.0.3
     devDependencies:
-      '@types/camelcase-keys':
-        specifier: ^5.1.1
-        version: 5.1.1
       '@types/react':
         specifier: ^18.0.12
         version: 18.0.15
@@ -121,10 +121,6 @@ packages:
 
   '@types/bonjour@3.5.10':
     resolution: {integrity: sha512-p7ienRMiS41Nu2/igbJxxLDWrSZ0WxM8UQgCeO9KhoVF7cOVFkrKsiDr1EsJIla8vV3oEEjGcz11jc5yimhzZw==}
-
-  '@types/camelcase-keys@5.1.1':
-    resolution: {integrity: sha512-Nlr/xdCry/Zbr5Q3jaDazCHf0FfeETVVaDVXUszP8DUUvVfkc/kt7Mab8TaNkKS6s7AE8qNFqjYLL9Y8zKA0Bg==}
-    deprecated: This is a stub types definition. camelcase-keys provides its own type definitions, so you do not need this installed.
 
   '@types/connect-history-api-fallback@1.3.5':
     resolution: {integrity: sha512-h8QJa8xSb1WD4fpKBDcATDNGXghFj6/3GRWG6dhmRcu0RX1Ubasur2Uvx5aeEwlf0MwblEC2bMzzMQntxnw/Cw==}
@@ -823,6 +819,10 @@ packages:
 
   json-schema-traverse@1.0.0:
     resolution: {integrity: sha512-NM8/P9n3XjXhIZn1lLhkFaACTOURQXjWhV4BA/RnOv8xvgqtqpAX9IO4mRQxSx1Rlo4tqzeqb0sOlruaOy3dug==}
+
+  jwt-decode@4.0.0:
+    resolution: {integrity: sha512-+KJGIyHgkGuIq3IEBNftfhW/LfWhXUIY6OmyVWjliu5KH1y0fw7VQ8YndE2O4qZdMSd9SqbnC8GOcZEy0Om7sA==}
+    engines: {node: '>=18'}
 
   kind-of@6.0.3:
     resolution: {integrity: sha512-dcS1ul+9tmeD95T+x28/ehLgd9mENa3LsvDTtzm3vyBEO7RPptvAD+t44WVXaUjTBRcrpFeFlC8WCruUR456hw==}
@@ -1539,10 +1539,6 @@ snapshots:
   '@types/bonjour@3.5.10':
     dependencies:
       '@types/node': 18.0.6
-
-  '@types/camelcase-keys@5.1.1':
-    dependencies:
-      camelcase-keys: 7.0.2
 
   '@types/connect-history-api-fallback@1.3.5':
     dependencies:
@@ -2282,6 +2278,8 @@ snapshots:
   json-schema-traverse@0.4.1: {}
 
   json-schema-traverse@1.0.0: {}
+
+  jwt-decode@4.0.0: {}
 
   kind-of@6.0.3: {}
 

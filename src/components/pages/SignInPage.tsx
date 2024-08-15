@@ -1,6 +1,7 @@
 /**
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
+import { jwtDecode } from 'jwt-decode'
 import * as React from 'react'
 import { Navigate } from 'react-router-dom'
 import { getCookie } from '../../utils/CookieUtility'
@@ -49,6 +50,13 @@ const SignInPage: React.FC = () => {
           const maxAge = 3600
           if (data.code == 200) {
             document.cookie = `jwt=${data.token}; max-Age=${maxAge}; domain=${domain}; secure`
+            try {
+              const decoded = jwtDecode(data.token)
+              console.dir(decoded)
+            } catch (error) {
+              console.error('Failed to decode token:', error)
+            }
+
             setRedirectToReferrer(true)
         }
       })
