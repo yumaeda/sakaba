@@ -11,9 +11,8 @@ const HomeAdminPage: React.FC = () => {
                 <h1 className="admin-header-title">{`管理者ページ`}</h1>
             </header>
             <div className="admin-contents">
-                <ul>
-                    <li><Link to="/admin/menu">メニューを管理</Link></li>
-                </ul>
+                <h2>管理者ホーム</h2>
+                <Link to="/admin/menu">メニューの編集</Link>
             </div>
         </>
     ) : (
