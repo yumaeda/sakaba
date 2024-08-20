@@ -80,6 +80,10 @@ const MenuAdminPage: React.FC = () => {
       })
   }
 
+  const findMenuIndexById = (id: string) : number => {
+    return menus.findIndex(menu => menu.id === id);
+  }
+
   const handleDeleteMenu = () => {
     const deleteOptions = {
       method: 'DELETE',
@@ -103,7 +107,7 @@ const MenuAdminPage: React.FC = () => {
 
   const handleFocus = (event: React.FormEvent<HTMLTableRowElement>) => {
     setMenuId(event.currentTarget.getAttribute('id') || '')
-    setMenuIndex(Number(event.currentTarget.getAttribute('tabindex')) || 0)
+    setMenuIndex(findMenuIndexById(menuId))
   }
 
   const updateMenu = (column: string, value: string) => {
@@ -196,7 +200,6 @@ const MenuAdminPage: React.FC = () => {
                             onFocus={handleFocus}
                             key={menu.id}
                             id={menu.id}
-                            tabIndex={menu.sortOrder}
                           >
                             <td><input type="number" name="sort_order" defaultValue={menu.sortOrder} onChange={handleBlur} className="number_field" /></td>
                             <td>
