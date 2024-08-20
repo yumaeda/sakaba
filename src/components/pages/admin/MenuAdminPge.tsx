@@ -34,7 +34,7 @@ const MenuAdminPage: React.FC = () => {
         }
       )
 
-    fetch(`${GlobalConstants.API_URL}/menus2/${restaurantId}`, {
+    fetch(`${GlobalConstants.API_URL}/menus/${restaurantId}`, {
       headers: {}
     })
       .then((res) => res.json())
