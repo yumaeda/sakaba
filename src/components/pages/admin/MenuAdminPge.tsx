@@ -87,9 +87,11 @@ const MenuAdminPage: React.FC = () => {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${token}`
       },
-      body: JSON.stringify({})
+      body: JSON.stringify({
+        id: menuId
+      })
     }
-    fetch(`${GlobalConstants.API_URL}/auth/menu/${menuId}`, deleteOptions)
+    fetch(`${GlobalConstants.API_URL}/auth/menu/`, deleteOptions)
       .then((res) => res.json())
       .then((data) => {
         console.dir(data)
