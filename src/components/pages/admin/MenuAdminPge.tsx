@@ -106,8 +106,9 @@ const MenuAdminPage: React.FC = () => {
   }
 
   const handleFocus = (event: React.FormEvent<HTMLTableRowElement>) => {
-    setMenuId(event.currentTarget.getAttribute('id') || '')
-    setMenuIndex(findMenuIndexById(menuId))
+    const tmpMenuId = event.currentTarget.getAttribute('id') || ''
+    setMenuId(tmpMenuId)
+    setMenuIndex(findMenuIndexById(tmpMenuId))
   }
 
   const updateMenu = (column: string, value: string) => {
