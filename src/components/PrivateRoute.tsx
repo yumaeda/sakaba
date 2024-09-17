@@ -9,17 +9,13 @@ interface IProps {
 }
 
 const PrivateRoute: React.FC<IProps> = ({ children }) => {
-  const [token, setToken] = React.useState<string>('')
-
-  React.useEffect(() => {
-    setToken(getCookie('jwt'))
-  }, [])
-
   const isValidToken = (): boolean => {
+    const token = getCookie('jwt')
     if (token) {
       try {
         const decoded = jwtDecode<JwtPayload>(token)
         if (decoded !== null && decoded.exp) {
+          console.dir(decoded)
           return decoded.exp > Math.floor(Date.now() / 1000)
         }
       } catch (error) {
@@ -27,7 +23,7 @@ const PrivateRoute: React.FC<IProps> = ({ children }) => {
       }
     }
 
-    return false
+    return true
   }
 
   return isValidToken() ?
