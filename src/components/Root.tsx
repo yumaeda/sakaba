@@ -28,7 +28,7 @@ const Root: React.FC<{}> = () => {
                 <Route path="member" element={<MemberPage />} />
                 <Route path="signin" element={<SignInPage />} />
                 <Route path="admin/index" element={<PrivateRoute><HomeAdminPage /></PrivateRoute>} />
-                <Route path="admin/menu" element={<MenuAdminPage />} />
+                <Route path="admin/menu" element={<PrivateRoute><MenuAdminPage /></PrivateRoute>} />
                 <Route path="admin/photo" element={<PrivateRoute><PhotoAdminPage /></PrivateRoute>} />
                 <Route path="admin/restaurant" element={<PrivateRoute><RestaurantAdminPage /></PrivateRoute>} />
                 <Route path="admin/restaurant-drink" element={<PrivateRoute><RestaurantDrinkAdminPage /></PrivateRoute>} />
