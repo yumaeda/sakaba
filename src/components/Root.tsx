@@ -16,6 +16,7 @@ import MemberPage from './pages/MemberPage'
 import RankingPage from './pages/RankingPage'
 import RestaurantPage from './pages/RestaurantPage'
 import SignInPage from './pages/SignInPage'
+import PrivateRoute from './PrivateRoute'
 import * as React from 'react'
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 
@@ -26,12 +27,12 @@ const Root: React.FC<{}> = () => {
                 <Route path="/" element={<HomePage />} />
                 <Route path="member" element={<MemberPage />} />
                 <Route path="signin" element={<SignInPage />} />
-                <Route path="admin/index" element={<HomeAdminPage />} />
+                <Route path="admin/index" element={<PrivateRoute><HomeAdminPage /></PrivateRoute>} />
                 <Route path="admin/menu" element={<MenuAdminPage />} />
-                <Route path="admin/photo" element={<PhotoAdminPage />} />
-                <Route path="admin/restaurant" element={<RestaurantAdminPage />} />
-                <Route path="admin/restaurant-drink" element={<RestaurantDrinkAdminPage />} />
-                <Route path="admin/restaurant-genre" element={<RestaurantGenreAdminPage />} />
+                <Route path="admin/photo" element={<PrivateRoute><PhotoAdminPage /></PrivateRoute>} />
+                <Route path="admin/restaurant" element={<PrivateRoute><RestaurantAdminPage /></PrivateRoute>} />
+                <Route path="admin/restaurant-drink" element={<PrivateRoute><RestaurantDrinkAdminPage /></PrivateRoute>} />
+                <Route path="admin/restaurant-genre" element={<PrivateRoute><RestaurantGenreAdminPage /></PrivateRoute>} />
                 <Route path="dishes/:id" element={<DishRestaurantPage />} />
                 <Route path="drinks/:id" element={<DrinkRestaurantPage />} />
                 <Route path="genres/:id" element={<GenreRestaurantPage />} />
