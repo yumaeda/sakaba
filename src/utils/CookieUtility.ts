@@ -12,4 +12,9 @@ const getCookie = (name: string): string => {
     return value
 }
 
-export { getCookie }
+const deleteCookie = (name: string, path: string = '/') => {
+    // Set the cookie's expiration date to a past date
+    document.cookie = `${name}=; path=${path}; expires=Thu, 01 Jan 1970 00:00:00 GMT;`;
+}
+
+export { deleteCookie, getCookie }
