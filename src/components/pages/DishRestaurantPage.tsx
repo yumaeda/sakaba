@@ -5,7 +5,6 @@ import * as React from 'react'
 import { useParams } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import camelcaseKeys = require('camelcase-keys')
-import { getPosition, handleGeolocationError } from '../../utils/GeoLocationUtility'
 import { API_URL } from '../../constants/Global'
 import Dish from '../../interfaces/Dish'
 import BaseRestaurantPage from './BaseRestaurantPage'
@@ -17,29 +16,18 @@ const DishRestaurantPage: React.FC = () => {
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
 
     React.useEffect(() => {
-        getPosition({
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
+        fetch(`${API_URL}/restaurants/dishes/${params.id}`, {
+            headers: {}
         })
-            .then((position: GeolocationPosition) => {
-                console.dir(position)
-                fetch(`${API_URL}/restaurants/dishes/${params.id}`, {
-                    headers: {}
-                })
-                .then(res => res.json())
-                .then(
-                    (data) => {
-                        setRestaurants(camelcaseKeys(JSON.parse(JSON.stringify(data.body))))
-                    },
-                    (error: Error) => {
-                        setError(error)
-                    }
-                )
-            })
-            .catch((error: GeolocationPositionError) => {
-                handleGeolocationError(error)
-            })
+        .then(res => res.json())
+        .then(
+            (data) => {
+                setRestaurants(camelcaseKeys(JSON.parse(JSON.stringify(data.body))))
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
 
         fetch(`${API_URL}/dishes/${params.id}`, { headers: {} })
             .then(res => res.json())
