@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import camelcaseKeys = require('camelcase-keys')
 import { API_URL, IMG_URL, SERVICE_NAME, WEB_URL } from '../../constants/Global'
+import { getLatitude, getLongitude } from '../../utils/GeoLocationUtility'
 import RestaurantList from '../RestaurantList'
 import Footer from '../Footer'
 
@@ -19,7 +20,7 @@ const AreaPage: React.FC = () => {
     React.useEffect(() => {
         document.title = `${area}｜${SERVICE_NAME}`
 
-        fetch(`${API_URL}/restaurants/areas/${area}`, {
+        fetch(`${API_URL}/restaurants/areas/${area}/${getLatitude()}/${getLongitude()}`, {
             headers: {}
         })
         .then(res => res.json())

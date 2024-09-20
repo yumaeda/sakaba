@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import camelcaseKeys = require('camelcase-keys')
 import { API_URL } from '../../constants/Global'
+import { getLatitude, getLongitude } from '../../utils/GeoLocationUtility'
 import Genre from '../../interfaces/Genre'
 import BaseRestaurantPage from './BaseRestaurantPage'
 
@@ -16,7 +17,7 @@ const GenreRestaurantPage: React.FC = () => {
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
 
     React.useEffect(() => {
-        fetch(`${API_URL}/restaurants/genres/${params.id}`, {
+        fetch(`${API_URL}/restaurants/genres/${params.id}/${getLatitude()}/${getLongitude()}`, {
             headers: {}
         })
         .then(res => res.json())
