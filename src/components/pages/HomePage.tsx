@@ -2,13 +2,14 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import { Link } from 'react-router-dom'
 import { API_URL, IMG_URL } from '../../constants/Global'
 import Dish from '../../interfaces/Dish'
 import Drink from '../../interfaces/Drink'
 import Genre from '../../interfaces/Genre'
 import Photo from '../../interfaces/Photo'
 import RestaurantInfo from '../../interfaces/RestaurantInfo'
-import { Link } from 'react-router-dom'
+import { getLatitude, getLongitude } from '../../utils/GeoLocationUtility'
 import Footer from '../Footer'
 import LatestPhotoList from '../LatestPhotoList'
 
@@ -20,9 +21,11 @@ const HomePage: React.FC<{}> = () => {
     const [restaurantInfos, setRestaurantInfos] = React.useState<RestaurantInfo[]>()
     const [error, setError] = React.useState<Error>()
     const [ showAllRestaurants, setShowAllRestaurants ] = React.useState<boolean>(false)
+    const latitude = getLatitude()
+    const longitude = getLongitude()
 
     React.useEffect(() => {
-        fetch(`${API_URL}/restaurant-counts/`, {
+        fetch(`${API_URL}/restaurant-counts/${latitude}/${longitude}`, {
             headers: {}
         })
         .then(res => res.json())
