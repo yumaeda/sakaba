@@ -11,6 +11,7 @@ import AreaPage from './pages/AreaPage'
 import DishRestaurantPage from './pages/DishRestaurantPage'
 import DrinkRestaurantPage from './pages/DrinkRestaurantPage'
 import GenreRestaurantPage from './pages/GenreRestaurantPage'
+import GeolocationPage from './pages/GeolocationPage'
 import HomePage from './pages/HomePage'
 import MemberPage from './pages/MemberPage'
 import RankingPage from './pages/RankingPage'
@@ -25,6 +26,7 @@ const Root: React.FC<{}> = () => {
         <Router>
             <Routes>
                 <Route path="/" element={<HomePage />} />
+                <Route path="geolocation" element={<GeolocationPage />} />
                 <Route path="member" element={<MemberPage />} />
                 <Route path="signin" element={<SignInPage />} />
                 <Route path="admin/index" element={<PrivateRoute><HomeAdminPage /></PrivateRoute>} />

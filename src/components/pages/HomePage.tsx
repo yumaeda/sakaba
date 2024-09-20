@@ -8,7 +8,6 @@ import Drink from '../../interfaces/Drink'
 import Genre from '../../interfaces/Genre'
 import Photo from '../../interfaces/Photo'
 import RestaurantInfo from '../../interfaces/RestaurantInfo'
-import { getPosition, handleGeolocationError } from '../../utils/GeoLocationUtility'
 import { Link } from 'react-router-dom'
 import Footer from '../Footer'
 import LatestPhotoList from '../LatestPhotoList'
@@ -23,29 +22,18 @@ const HomePage: React.FC<{}> = () => {
     const [ showAllRestaurants, setShowAllRestaurants ] = React.useState<boolean>(false)
 
     React.useEffect(() => {
-        getPosition({
-            enableHighAccuracy: true,
-            timeout: 5000,
-            maximumAge: 0
+        fetch(`${API_URL}/restaurant-counts/`, {
+            headers: {}
         })
-            .then((position: GeolocationPosition) => {
-                console.dir(position)
-                fetch(`${API_URL}/restaurant-counts/`, {
-                    headers: {}
-                })
-                .then(res => res.json())
-                .then(
-                    (data) => {
-                        setRestaurantInfos(JSON.parse(JSON.stringify(data.body)))
-                    },
-                    (error: Error) => {
-                        setError(error)
-                    }
-                )
-            })
-            .catch((error: GeolocationPositionError) => {
-                handleGeolocationError(error)
-            })
+        .then(res => res.json())
+        .then(
+            (data) => {
+                setRestaurantInfos(JSON.parse(JSON.stringify(data.body)))
+            },
+            (error: Error) => {
+                setError(error)
+            }
+        )
 
         fetch(`${API_URL}/dishes/`, { headers: {} })
             .then(res => res.json())
