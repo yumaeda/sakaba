@@ -6,17 +6,15 @@ import { useParams } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import camelcaseKeys = require('camelcase-keys')
 import { getPosition, handleGeolocationError } from '../../utils/GeoLocationUtility'
-import { API_URL, IMG_URL, WEB_URL } from '../../constants/Global'
+import { API_URL } from '../../constants/Global'
 import Dish from '../../interfaces/Dish'
-import RestaurantList from '../RestaurantList'
-import Footer from '../Footer'
+import BaseRestaurantPage from './BaseRestaurantPage'
 
 const DishRestaurantPage: React.FC = () => {
     const params = useParams()
     const [error, setError] = React.useState<Error>()
     const [dish, setDish] = React.useState<Dish>({name: '', id: 0})
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
-    const imageDir = `${IMG_URL}/images`
 
     React.useEffect(() => {
         getPosition({
@@ -54,27 +52,12 @@ const DishRestaurantPage: React.FC = () => {
         )
     }, [])
 
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    } else {
-        return (
-            <>
-                <header className="header">
-                    <a href={`${WEB_URL}/`}>
-                        <picture className="back-image-container">
-                            <source type="image/webp" media="(min-width: 150px)" srcSet={`${imageDir}/back.webp`} />
-                            <img src={`${imageDir}/back.png`} className="back-image" alt="Back" />
-                        </picture>
-                    </a>
-                    <p className="header-label">{`${dish.id}:${dish.name}`}</p>
-                </header>
-                <div className="contents">
-                    <RestaurantList restaurants={restaurants} />
-                </div> 
-                <Footer />
-            </>
-        )
-    }
+    return (
+        <BaseRestaurantPage
+            title={`${dish.id}:${dish.name}`}
+            error={error}
+            restaurants={restaurants} />
+    )
 }
 
 export default DishRestaurantPage
