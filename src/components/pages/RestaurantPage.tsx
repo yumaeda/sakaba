@@ -5,6 +5,7 @@ import * as React from 'react'
 import { useParams } from 'react-router-dom'
 import camelcaseKeys = require('camelcase-keys')
 import { Category, Menu } from '@yumaeda/sakaba-interface'
+import { API_URL } from '../../constants/Global'
 import MenuList from '../MenuList'
 import CategorySwitch from '../CategorySwitch'
 
@@ -16,7 +17,6 @@ const RestaurantPage: React.FC = () => {
     const [category, setCategory] = React.useState<Category>(defaultCategory)
     const [categories, setCategories] = React.useState<Category[]>([])
     const [menus, setMenus] = React.useState<Menu[]>([])
-    const apiUrl = 'https://api.sakabas.com'
 
     const handleCategoryClick = (event: React.MouseEvent<HTMLSpanElement>) => {
         const selectedCategoryId = Number(event.currentTarget.id)
@@ -24,7 +24,7 @@ const RestaurantPage: React.FC = () => {
     }
 
     React.useEffect(() => {
-        fetch(`${apiUrl}/categories/${restaurantId}`, {
+        fetch(`${API_URL}/categories/${restaurantId}`, {
             headers: {}
         })
         .then(res => res.json())
@@ -39,7 +39,7 @@ const RestaurantPage: React.FC = () => {
             }
         )
 
-        fetch(`${apiUrl}/menus/${restaurantId}`, {
+        fetch(`${API_URL}/menus/${restaurantId}`, {
             headers: {}
         })
         .then(res => res.json())

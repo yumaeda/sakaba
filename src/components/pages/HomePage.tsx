@@ -2,6 +2,7 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
+import { API_URL } from '../../constants/Global'
 import Dish from '../../interfaces/Dish'
 import Drink from '../../interfaces/Drink'
 import Genre from '../../interfaces/Genre'
@@ -20,7 +21,6 @@ const HomePage: React.FC<{}> = () => {
     const [restaurantInfos, setRestaurantInfos] = React.useState<RestaurantInfo[]>()
     const [error, setError] = React.useState<Error>()
     const [ showAllRestaurants, setShowAllRestaurants ] = React.useState<boolean>(false)
-    const apiBasePath = 'https://api.sakabas.com'
     const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
 
     React.useEffect(() => {
@@ -31,7 +31,7 @@ const HomePage: React.FC<{}> = () => {
         })
             .then((position: GeolocationPosition) => {
                 console.dir(position)
-                fetch(`${apiBasePath}/restaurant-counts/`, {
+                fetch(`${API_URL}/restaurant-counts/`, {
                     headers: {}
                 })
                 .then(res => res.json())
@@ -48,7 +48,7 @@ const HomePage: React.FC<{}> = () => {
                 handleGeolocationError(error)
             })
 
-        fetch(`${apiBasePath}/dishes/`, { headers: {} })
+        fetch(`${API_URL}/dishes/`, { headers: {} })
             .then(res => res.json())
             .then((data) => {
                 setDishes(JSON.parse(JSON.stringify(data.body)))
@@ -58,7 +58,7 @@ const HomePage: React.FC<{}> = () => {
             }
         )
 
-        fetch(`${apiBasePath}/drinks/`, { headers: {} })
+        fetch(`${API_URL}/drinks/`, { headers: {} })
             .then(res => res.json())
             .then((data) => {
                 setDrinks(JSON.parse(JSON.stringify(data.body)))
@@ -68,7 +68,7 @@ const HomePage: React.FC<{}> = () => {
             }
         )
 
-        fetch(`${apiBasePath}/genres/`, { headers: {} })
+        fetch(`${API_URL}/genres/`, { headers: {} })
             .then(res => res.json())
             .then((data) => {
                 setGenres(JSON.parse(JSON.stringify(data.body)))
@@ -78,7 +78,7 @@ const HomePage: React.FC<{}> = () => {
             }
         )
 
-        fetch(`${apiBasePath}/latest-photos/`, {
+        fetch(`${API_URL}/latest-photos/`, {
             headers: {}
         })
         .then(res => res.json())

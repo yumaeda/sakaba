@@ -4,11 +4,13 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
+import { JWT_KEY } from '../../../constants/CookieKeys'
+import { API_URL } from '../../../constants/Global'
 import Genre from '../../../interfaces/Genre'
+import { getCookie } from '../../../utils/CookieUtility'
 import Dropdown from '../../Dropdown'
 import RestaurantDropDown from '../../RestaurantDropdown'
 import camelcaseKeys = require('camelcase-keys')
-import { getCookie } from '../../../utils/CookieUtility'
  
 const RestaurantGenreAdminPage: React.FC = () => {
     const [token, setToken] = React.useState<string>('')
@@ -18,8 +20,8 @@ const RestaurantGenreAdminPage: React.FC = () => {
     const [genres, setGenres] = React.useState<Genre[]>([])
  
     React.useEffect(() => {
-        setToken(getCookie('jwt'))
-        fetch('https://api.sakabas.com/restaurants/', { headers: {} })
+        setToken(getCookie(JWT_KEY))
+        fetch(`${API_URL}/restaurants/`, { headers: {} })
             .then(res => res.json())
             .then(
                 (data) => {
@@ -32,7 +34,7 @@ const RestaurantGenreAdminPage: React.FC = () => {
                 }
             )
 
-        fetch('https://api.sakabas.com/genres/', { headers: {} })
+        fetch(`${API_URL}/genres/`, { headers: {} })
             .then(res => res.json())
             .then(
                 (data) => {
@@ -79,7 +81,7 @@ const RestaurantGenreAdminPage: React.FC = () => {
             },
             body: JSON.stringify(restaurant_genre)
         }
-        fetch('https://api.sakabas.com/auth/restaurant-genre/', postOptions)
+        fetch(`${API_URL}/auth/restaurant-genre/`, postOptions)
             .then((res) => res.json())
             .then((data) => {
                 alert(JSON.stringify(data))

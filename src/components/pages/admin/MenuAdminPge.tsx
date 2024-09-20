@@ -10,6 +10,7 @@ import CategoryDropDown from '../../CategoryDropDown'
 import { getCookie } from '../../../utils/CookieUtility'
 import restaurantIdHash from '../../../utils/RestaurantIdHash'
 import { USER_NAME_KEY } from '../../../constants/LocalStorageKeys'
+import { JWT_KEY } from '../../../constants/CookieKeys'
 
 const MenuAdminPage: React.FC = () => {
   const [token, setToken] = React.useState<string>('')
@@ -20,7 +21,7 @@ const MenuAdminPage: React.FC = () => {
   const restaurantId = restaurantIdHash[localStorage.getItem(USER_NAME_KEY) || '']
 
   React.useEffect(() => {
-    setToken(getCookie('jwt'))
+    setToken(getCookie(JWT_KEY))
     fetch(`${GlobalConstants.API_URL}/categories/${restaurantId}`, {
       headers: {}
     })

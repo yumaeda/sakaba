@@ -3,6 +3,8 @@
  */
 import * as React from 'react'
 import { Link } from 'react-router-dom'
+import { JWT_KEY } from '../../../constants/CookieKeys'
+import { API_URL } from '../../../constants/Global'
 import Area from '../../../interfaces/Area'
 import Genre from '../../../interfaces/Genre'
 import { getCookie } from '../../../utils/CookieUtility'
@@ -59,7 +61,7 @@ const RestaurantAdminPage: React.FC = () => {
     }
 
     React.useEffect(() => {
-        fetch('https://api.sakabas.com/areas/', { headers: {} })
+        fetch(`${API_URL}/areas/`, { headers: {} })
             .then(res => res.json())
             .then(
                 (data) => {
@@ -72,7 +74,7 @@ const RestaurantAdminPage: React.FC = () => {
                 }
             )
 
-        fetch('https://api.sakabas.com/genres/', { headers: {} })
+        fetch(`${API_URL}/genres/`, { headers: {} })
             .then(res => res.json())
             .then(
                 (data) => {
@@ -97,7 +99,7 @@ const RestaurantAdminPage: React.FC = () => {
     const handleSubmit = (event: React.SyntheticEvent) => {
         event.preventDefault()
 
-        setToken(getCookie('jwt'))
+        setToken(getCookie(JWT_KEY))
         if (token == '') {
             alert('Token is expired or invalid!')
             return
@@ -128,7 +130,7 @@ const RestaurantAdminPage: React.FC = () => {
                 }
 
                 const postOptions = getPostOption(token, restaurant)
-                fetch('https://api.sakabas.com/auth/restaurant/', postOptions)
+                fetch(`${API_URL}/auth/restaurant/`, postOptions)
                     .then((res) => res.json())
                     .then((data) => {
                         alert(JSON.stringify(data))
@@ -140,7 +142,7 @@ const RestaurantAdminPage: React.FC = () => {
                             }
 
                             const genrePostOptions = getPostOption(token, restaurant_genre)
-                            fetch('https://api.sakabas.com/auth/restaurant-genre/', genrePostOptions)
+                            fetch(`${API_URL}/auth/restaurant-genre/`, genrePostOptions)
                                 .then((res) => res.json())
                                 .then((data) => {
                                     alert(JSON.stringify(data))

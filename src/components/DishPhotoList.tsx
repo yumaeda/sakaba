@@ -4,6 +4,7 @@
 import * as React from 'react'
 import { FixedSizeList } from 'react-window'
 import Photo from '../interfaces/Photo'
+import { API_URL } from '../constants/Global'
 
 interface Props {
     basePath: string
@@ -44,7 +45,6 @@ const DishPhoto: React.FC<ColumnStyle> = (props) => {
 }
 
 const DishPhotoList: React.FC<Props> = (props) => {
-    const apiUrl = 'https://api.sakabas.com'
     const { basePath, restaurantId, setImageUrls, setImageIndex, setIsViewerOpen } = props
     const [photos, setPhotos] = React.useState<Photo[]>([])
     const imageDir = `${basePath}/images`
@@ -58,7 +58,7 @@ const DishPhotoList: React.FC<Props> = (props) => {
     }
 
     React.useEffect(() => {
-        fetch(`${apiUrl}/photos/${restaurantId}`, {
+        fetch(`${API_URL}/photos/${restaurantId}`, {
             headers: {}
         })
         .then(res => res.json())

@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import camelcaseKeys = require('camelcase-keys')
 import { getPosition, handleGeolocationError } from '../../utils/GeoLocationUtility'
+import { API_URL } from '../../constants/Global'
 import Genre from '../../interfaces/Genre'
 import RestaurantList from '../RestaurantList'
 import Footer from '../Footer'
@@ -15,7 +16,6 @@ const GenreRestaurantPage: React.FC = () => {
     const [error, setError] = React.useState<Error>()
     const [genre, setGenre] = React.useState<Genre>({name: '', id: 0})
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
-    const apiUrl = 'https://api.sakabas.com'
     const basePath = 'https://sakabas.com'
     const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
     const imageDir = `${imageBasePath}/images`
@@ -28,7 +28,7 @@ const GenreRestaurantPage: React.FC = () => {
         })
             .then((position: GeolocationPosition) => {
                 console.dir(position)
-                fetch(`${apiUrl}/restaurants/genres/${params.id}`, {
+                fetch(`${API_URL}/restaurants/genres/${params.id}`, {
                     headers: {}
                 })
                 .then(res => res.json())
@@ -45,7 +45,7 @@ const GenreRestaurantPage: React.FC = () => {
                 handleGeolocationError(error)
             })
 
-        fetch(`${apiUrl}/genres/${params.id}`, { headers: {} })
+        fetch(`${API_URL}/genres/${params.id}`, { headers: {} })
             .then(res => res.json())
             .then((data) => {
                 setGenre(JSON.parse(JSON.stringify(data.body)))

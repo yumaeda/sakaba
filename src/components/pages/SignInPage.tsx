@@ -4,9 +4,11 @@
 import { jwtDecode } from 'jwt-decode'
 import * as React from 'react'
 import { Navigate } from 'react-router-dom'
-import { getCookie } from '../../utils/CookieUtility'
+import { JWT_KEY } from '../../constants/CookieKeys'
+import { API_URL } from '../../constants/Global'
 import { USER_NAME_KEY } from '../../constants/LocalStorageKeys'
 import JwtPayload from '../../interfaces/JwtPayload'
+import { getCookie } from '../../utils/CookieUtility'
 
 const SignInPage: React.FC = () => {
   const [redirectToReferrer, setRedirectToReferrer] = React.useState<boolean>(false)
@@ -14,10 +16,10 @@ const SignInPage: React.FC = () => {
   const [password, setPassword] = React.useState<string>('')
 
   React.useEffect(() => {
-    fetch('https://api.sakabas.com/auth/home', {
+    fetch(`${API_URL}/auth/home`, {
       headers: {
           'Content-Type': 'application/json',
-          'Authorization': `Bearer ${getCookie('jwt')}`
+          'Authorization': `Bearer ${getCookie(JWT_KEY)}`
       }
     })
         .then(response => {
@@ -45,7 +47,7 @@ const SignInPage: React.FC = () => {
       },
       body: JSON.stringify({ email, password })
     }
-    fetch('https://api.sakabas.com/login', postOptions)
+    fetch(`${API_URL}/login`, postOptions)
         .then((res) => res.json())
         .then((data) => {
           const domain = 'sakabas.com'

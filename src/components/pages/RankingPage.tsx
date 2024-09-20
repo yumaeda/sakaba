@@ -3,6 +3,7 @@
  */
 import * as React from 'react'
 import Footer from '../Footer'
+import { API_URL } from '../../constants/Global'
 
 interface Ranking {
     dish: string
@@ -21,7 +22,7 @@ const RankingPage: React.FC = () => {
     const imageDir = `${imageBasePath}/images`
 
     React.useEffect(() => {
-        fetch('https://api.sakabas.com/rankings/', {
+        fetch(`${API_URL}/rankings/`, {
             headers: {}
         })
         .then(res => res.json())

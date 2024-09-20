@@ -4,6 +4,7 @@
 import * as React from 'react'
 import camelcaseKeys = require('camelcase-keys')
 import { Category } from '@yumaeda/sakaba-interface'
+import { API_URL } from '../constants/Global'
 
 interface Props {
     categoryId: number
@@ -16,7 +17,7 @@ const CategorySwitch: React.FC<Props> = (props) => {
     const [categories, setCategories] = React.useState<Category[]>([])
 
     React.useEffect(() => {
-        fetch(`https://api.sakabas.com/categories/${restaurantId}`, {
+        fetch(`${API_URL}/categories/${restaurantId}`, {
             headers: {}
         })
         .then(res => res.json())

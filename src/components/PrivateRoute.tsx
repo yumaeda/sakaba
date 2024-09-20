@@ -1,4 +1,5 @@
 import * as React from 'react'
+import { JWT_KEY } from '../constants/CookieKeys'
 import JwtPayload from '../interfaces/JwtPayload'
 import { deleteCookie, getCookie } from '../utils/CookieUtility'
 import { jwtDecode } from 'jwt-decode'
@@ -9,12 +10,11 @@ interface IProps {
 }
 
 const PrivateRoute: React.FC<IProps> = ({ children }) => {
-  const JWT_COOKIE_NAME = 'jwt'
 
   const getCurrentTime = (): number => Math.floor(Date.now() / 1000)
 
   const getTokenExpiryTime = (): number => {
-    const token = getCookie(JWT_COOKIE_NAME)
+    const token = getCookie(JWT_KEY)
     if (token) {
       const decoded = jwtDecode<JwtPayload>(token)
       if (decoded !== null && decoded.exp) {
@@ -27,7 +27,7 @@ const PrivateRoute: React.FC<IProps> = ({ children }) => {
 
   const isValidToken = (getTokenExpiryTime() > getCurrentTime())
   if (!isValidToken) {
-    deleteCookie(JWT_COOKIE_NAME)
+    deleteCookie(JWT_KEY)
   }
 
   return isValidToken ?

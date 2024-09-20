@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import RestaurantDropDown from '../../RestaurantDropdown'
 import camelcaseKeys = require('camelcase-keys')
+import { JWT_KEY } from '../../../constants/CookieKeys'
+import { API_URL } from '../../../constants/Global'
 import { getCookie } from '../../../utils/CookieUtility'
  
 const PhotoAdminPage: React.FC = () => {
@@ -13,8 +15,8 @@ const PhotoAdminPage: React.FC = () => {
     const [restaurantId, setRestaurantId] = React.useState<string>('')
 
     React.useEffect(() => {
-        setToken(getCookie('jwt'))
-        fetch('https://api.sakabas.com/restaurants/', { headers: {} })
+        setToken(getCookie(JWT_KEY))
+        fetch(`${API_URL}/restaurants/`, { headers: {} })
             .then(res => res.json())
             .then(
                 (data) => {
@@ -75,7 +77,7 @@ const PhotoAdminPage: React.FC = () => {
                     },
                     body: JSON.stringify(restaurant_photo)
                 }
-                fetch('https://api.sakabas.com/auth/photo/', postOptions)
+                fetch(`${API_URL}/auth/photo/`, postOptions)
                     .then(res => res.json())
                     .then(data => {
                         console.dir(data)
