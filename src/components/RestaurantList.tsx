@@ -4,7 +4,7 @@
 import * as React from 'react'
 import ImageViewer from 'react-simple-image-viewer'
 import { Restaurant } from '@yumaeda/sakaba-interface'
-import { API_URL } from '../constants/Global'
+import { API_URL, IMG_URL } from '../constants/Global'
 import Video from '../interfaces/Video'
 import Address from './Address'
 import PhoneNumber from './PhoneNumber'
@@ -24,7 +24,6 @@ const RestaurantList: React.FC<Props> = (props) => {
     const [ imageUrls, setImageUrls ] = React.useState<string[]>([])
     const [ imageIndex, setImageIndex ] = React.useState<number>(0)
     const [ showAllRestaurants, setShowAllRestaurants ] = React.useState<boolean>(false)
-    const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
 
     React.useEffect(() => {
         fetch(`${API_URL}/videos/`, {
@@ -64,7 +63,7 @@ const RestaurantList: React.FC<Props> = (props) => {
                     </h4>
                 </div>
                 <DishPhotoList
-                    basePath={imageBasePath}
+                    basePath={IMG_URL}
                     restaurantId={restaurantId}
                     setImageUrls={setImageUrls}
                     setImageIndex={setImageIndex}

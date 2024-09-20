@@ -5,7 +5,7 @@ import * as React from 'react'
 import { useParams } from 'react-router-dom'
 import { Restaurant } from '@yumaeda/sakaba-interface'
 import camelcaseKeys = require('camelcase-keys')
-import { API_URL } from '../../constants/Global'
+import { API_URL, IMG_URL, WEB_URL } from '../../constants/Global'
 import Drink from '../../interfaces/Drink'
 import { getPosition, handleGeolocationError } from '../../utils/GeoLocationUtility'
 import RestaurantList from '../RestaurantList'
@@ -16,9 +16,7 @@ const DrinkRestaurantPage: React.FC = () => {
     const [error, setError] = React.useState<Error>()
     const [drink, setDrink] = React.useState<Drink>({name: '', id: 0})
     const [restaurants, setRestaurants] = React.useState<Restaurant[]>([])
-    const basePath = 'https://sakabas.com'
-    const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
-    const imageDir = `${imageBasePath}/images`
+    const imageDir = `${IMG_URL}/images`
 
     React.useEffect(() => {
         getPosition({
@@ -62,7 +60,7 @@ const DrinkRestaurantPage: React.FC = () => {
         return (
             <>
                 <header className="header">
-                    <a href={`${basePath}/`}>
+                    <a href={`${WEB_URL}/`}>
                         <picture className="back-image-container">
                             <source type="image/webp" media="(min-width: 150px)" srcSet={`${imageDir}/back.webp`} />
                             <img src={`${imageDir}/back.png`} className="back-image" alt="Back" />

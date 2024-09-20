@@ -2,7 +2,7 @@
  * @author Yukitaka Maeda [yumaeda@gmail.com]
  */
 import * as React from 'react'
-import { API_URL } from '../../constants/Global'
+import { API_URL, IMG_URL } from '../../constants/Global'
 import Dish from '../../interfaces/Dish'
 import Drink from '../../interfaces/Drink'
 import Genre from '../../interfaces/Genre'
@@ -21,7 +21,6 @@ const HomePage: React.FC<{}> = () => {
     const [restaurantInfos, setRestaurantInfos] = React.useState<RestaurantInfo[]>()
     const [error, setError] = React.useState<Error>()
     const [ showAllRestaurants, setShowAllRestaurants ] = React.useState<boolean>(false)
-    const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
 
     React.useEffect(() => {
         getPosition({
@@ -103,7 +102,7 @@ const HomePage: React.FC<{}> = () => {
                     <p className="header-label">酒場s</p>
                 </header>
                 <div className="contents">
-                    <LatestPhotoList basePath={imageBasePath} photos={photos} />
+                    <LatestPhotoList basePath={IMG_URL} photos={photos} />
                     <h4 className="navigation-label">Area</h4>
                     <ul className="navigation-list">
                     { restaurantInfos ? restaurantInfos

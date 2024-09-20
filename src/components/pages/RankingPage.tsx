@@ -3,7 +3,7 @@
  */
 import * as React from 'react'
 import Footer from '../Footer'
-import { API_URL } from '../../constants/Global'
+import { API_URL, IMG_URL, WEB_URL } from '../../constants/Global'
 
 interface Ranking {
     dish: string
@@ -17,9 +17,7 @@ interface Ranking {
 const RankingPage: React.FC = () => {
     const [error, setError] = React.useState<Error>()
     const [rankings, setRankings] = React.useState<Ranking[]>()
-    const basePath = 'https://sakabas.com'
-    const imageBasePath = 'https://d1ds2m6k69pml3.cloudfront.net'
-    const imageDir = `${imageBasePath}/images`
+    const imageDir = `${IMG_URL}/images`
 
     React.useEffect(() => {
         fetch(`${API_URL}/rankings/`, {
@@ -43,7 +41,7 @@ const RankingPage: React.FC = () => {
         return (
             <>
                 <header className="header">
-                    <a href={`${basePath}/`}>
+                    <a href={`${WEB_URL}/`}>
                         <picture className="back-image-container">
                             <source type="image/webp" media="(min-width: 150px)" srcSet={`${imageDir}/back.webp`} />
                             <img src={`${imageDir}/back.png`} className="back-image" alt="Back" />

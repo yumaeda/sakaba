@@ -5,7 +5,7 @@ import * as React from 'react'
 import { useParams } from 'react-router-dom'
 import camelcaseKeys = require('camelcase-keys')
 import { Category, Menu } from '@yumaeda/sakaba-interface'
-import { API_URL } from '../../constants/Global'
+import { API_URL, IMG_URL } from '../../constants/Global'
 import MenuList from '../MenuList'
 import CategorySwitch from '../CategorySwitch'
 
@@ -57,8 +57,7 @@ const RestaurantPage: React.FC = () => {
     if (error) {
         return <div>Error: {error.message}</div>;
     } else {
-        const baseImagePath = 'https://d1ds2m6k69pml3.cloudfront.net'
-        const imageDir = `${baseImagePath}/images`
+        const imageDir = `${IMG_URL}/images`
 
         return (
             <>
