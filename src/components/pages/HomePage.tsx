@@ -91,6 +91,7 @@ const HomePage: React.FC<{}> = () => {
             <>
                 <header className="header">
                     <p className="header-label">酒場s</p>
+                    <Link className="list-item" to="/geolocation">現在地を更新</Link>
                 </header>
                 <div className="contents">
                     <LatestPhotoList basePath={IMG_URL} photos={photos} />
