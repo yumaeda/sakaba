@@ -17,7 +17,6 @@ const RestaurantAdminPage: React.FC = () => {
     const [name, setName] = React.useState<string>('')
     const [genre, setGenre] = React.useState<number>(0)
     const [genres, setGenres] = React.useState<Genre[]>([])
-    const [fakeGenre, setFakeGenre] = React.useState<string>('')
     const [tel, setTel] = React.useState<string>('')
     const [address, setAddress] = React.useState<string>('')
     const [building, setBuilding] = React.useState<string>('')
@@ -105,7 +104,7 @@ const RestaurantAdminPage: React.FC = () => {
             return
         }
 
-        if (url === '' || name === '' || fakeGenre === '' && tel === '' || address === '' || area === '') {
+        if (url === '' || name === '' && tel === '' || address === '' || area === '') {
             alert('Please fillout the required fields!')
             return
         }
@@ -120,7 +119,6 @@ const RestaurantAdminPage: React.FC = () => {
                 const restaurant = {
                     url,
                     name,
-                    fakeGenre,
                     tel: tel.replace(/-/g, ''),
                     address: `${address} ${building}`,
                     area,
@@ -164,7 +162,6 @@ const RestaurantAdminPage: React.FC = () => {
                 <div className="admin-contents">
                     <input className="admin-input" placeholder="URL" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setUrl(event.currentTarget.value) } /><br />
                     <input className="admin-input" placeholder="Name" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setName(event.currentTarget.value) } /><br />
-                    <input className="admin-input" placeholder="Genre" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setFakeGenre(event.currentTarget.value) } /><br />
                     <Dropdown onSelect={handleGenreSelect} itemId={genre.toString()} items={genres} useIdAsValue={true} /><br />
                     <input className="admin-input" placeholder="Tel" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setTel(event.currentTarget.value) } /><br />
                     <input className="admin-input" placeholder="Address" type="text" onChange={ (event: React.FormEvent<HTMLInputElement>) => setAddress(event.currentTarget.value) } />
